@@ -1,0 +1,11 @@
+# Solution 
+- Download the files in challenge folder
+- Paste the contents of seed.txt file into Base64 decoder
+- Decode it. Paste the value into decrypt.py
+- Paste the contents of public.pem file into RSA decrypter
+- Copy the values of n and e
+- Paste the values of n, e into decrypt.py
+- Run decrypt.py file
+- Put the resultant flag from decrypt.py into Caesar decrypter
+- Decrypt it
+- Get the flag
