@@ -41,7 +41,7 @@ Among the best, we hack with zest.<br>
 The capture’s ours, we feel alive,<br>
 The gates are cracked at eighty-five.
 ## How to setup
-Analyse the textfile. <br />
+Analyse the chall.txt . <br />
 **Anitivirus Disabled**: Not needed <br />
 **Operating System**: Any <br />
 ## Created By
