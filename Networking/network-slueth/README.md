@@ -8,6 +8,8 @@ Enter the entire flag to validate the challenge.
 Analyse the ns.pcapng file. <br />
 **Anitivirus Disabled**: Not needed <br />
 **Operating System**: Any <br />
+## Created By
+[Rydan](https://github.com/rydanstar01)
 ## Solutions and Resources
 **Flag**: HXN{4nalyz3_the_dat4_c0rr3ctly}
 
