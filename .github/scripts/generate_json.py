@@ -82,6 +82,6 @@ if __name__ == '__main__':
         if os.path.exists(file):
             metadata = extract_metadata(file)
             all_metadata.append(metadata)
-
-    with open('Readme.json', 'w', encoding='utf-8') as out:
+    json_path = os.path.join(os.path.dirname(readme_path), 'README.json')
+    with open(json_path, 'w', encoding='utf-8') as out:
         json.dump(all_metadata, out, indent=2, ensure_ascii=False)

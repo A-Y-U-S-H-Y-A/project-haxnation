@@ -15,7 +15,7 @@ jobs:
       - name: Get changed README.md files
         id: changed_files
         run: |
-          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'README.md' | jq -R -s -c 'split("\n") | map(select(. != ""))')" >> $GITHUB_OUTPUT
+          echo "files=$(git diff --name-only HEAD^ HEAD | grep 'README.md' | jq -R -s -c 'split("\n") | map(select(. != ""))')" >> $GITHUB_OUTPUT
 
       - name: Set up Python
         uses: actions/setup-python@v4
