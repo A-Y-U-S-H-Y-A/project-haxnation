@@ -82,6 +82,16 @@ if __name__ == '__main__':
         if os.path.exists(file):
             metadata = extract_metadata(file)
             all_metadata.append(metadata)
-    json_path = os.path.join(os.path.dirname(readme_path), 'README.json')
-    with open(json_path, 'w', encoding='utf-8') as out:
-        json.dump(all_metadata, out, indent=2, ensure_ascii=False)
+            
+            # Save individual README.json next to each README.md
+            readme_dir = os.path.dirname(file)
+            json_path = os.path.join(readme_dir, 'README.json')
+            with open(json_path, 'w', encoding='utf-8') as out:
+                json.dump(metadata, out, indent=2, ensure_ascii=False)
+            print(f"Generated {json_path}")
+
+    # Also save a combined file at the root (optional)
+    if all_metadata:
+        with open('Readme.json', 'w', encoding='utf-8') as out:
+            json.dump(all_metadata, out, indent=2, ensure_ascii=False)
+        print("Generated combined Readme.json")
