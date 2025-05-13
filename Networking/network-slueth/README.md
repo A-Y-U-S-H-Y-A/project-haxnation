@@ -34,13 +34,12 @@ Beginner
 
 * Analyze PCAP files
 * Identify malicious network activity
-* Extract embedded data from HTTP traffic
 
 ---
 
 ## 🏷️ Tags
 
-`network-forensics` `pcap` `beginner` `http-analysis`
+`network-forensics` `pcap` `beginner`
 
 ---
 
@@ -60,7 +59,7 @@ Beginner
 
 ## 🧠 Hints (Optional)
 
-* Pay attention to HTTP traffic and suspicious payloads.
+* Pay attention to Telnet traffic.
 * Export objects from packets.
 
 ---
