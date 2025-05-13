@@ -1,0 +1,26 @@
+{
+  "title": "Network Sleuth",
+  "path": "Networking/network-slueth/README.md",
+  "description": "Welcome to Haxnation:Network Sleuth!\nYou’ve been recruited as a forensic analyst to investigate a critical network breach that has threatened the integrity of the Haxnation community. During the incident, a suspiciousns.pcapngfile was captured. It holds the key to uncovering the malicious activity that transpired. Your mission is to dive deep into the packet data, decipher hidden messages, and expose the culprits behind the attack. The flag is in the formatHXN{flag}.\nEnter the entire flag to validate the challenge.",
+  "difficulty": "Beginner",
+  "tags": [
+    "network-forensicspcapbeginner"
+  ],
+  "authors": [
+    {
+      "name": "Rydan",
+      "github": "https://github.com/rydanstar01"
+    }
+  ],
+  "learning_objectives": [
+    "Analyze PCAP files",
+    "Identify malicious network activity"
+  ],
+  "setup": [
+    "Analyze thens.pcapngfile using tools likeWireshark.",
+    "Antivirus: Not needed",
+    "Operating System: Any"
+  ],
+  "flag_format": "HXN{flag}",
+  "solution": null
+}
