@@ -1,0 +1,23 @@
+{
+  "title": "Data Leak",
+  "path": "OSINT/data-leak/README.md",
+  "description": "We prepare very hard to make good challenges, but we might have messed it up due to some social rituals we hope you don't look at the smaller picture and can't link us to the flag. Oh, and happy Oct '24",
+  "difficulty": null,
+  "tags": [],
+  "author": {
+    "name": "osintbeginner",
+    "github": null
+  },
+  "learning_objectives": [
+    "OSINT techniques",
+    "Analyzing social media",
+    "Finding hidden information"
+  ],
+  "setup": [
+    "No setup needed"
+  ],
+  "flag_format": null,
+  "solutions": [
+    "Flag:HXN{O$INtFl@g}Solutions are available in thesolutions/folder:solution.md(detailed walkthrough)Additional resources can be found inresources.md"
+  ]
+}
