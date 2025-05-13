@@ -1,6 +1,6 @@
 # Data Leak
 
-We prepare very hard to make good challenges, but we might have messed it up due to some social rituals we hope you don't look at the smaller picture and can't link us to the flag. Oh, and happy Oct '24
+We prepare very hard to make good challenges, but we might have messed it up due to some social rituals we hope you don't look at the smaller picture and can't link us to the flag. Oh, and happy Oct '24.
 
 The flag is in the format `HXN{Flag}`.
 Enter the entire flag to validate the challenge.
