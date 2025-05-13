@@ -21,7 +21,7 @@ Beginner
 
 ## 👨‍💻 Created By
 * [**Rydan**](https://github.com/rydanstar01)
-* [**Ayushya Shah**](https://github.com/ayushyashah)
+* [**Ayushya Shah**](https://github.com/A-Y-U-S-H-Y-A/)
 
 ---
 
