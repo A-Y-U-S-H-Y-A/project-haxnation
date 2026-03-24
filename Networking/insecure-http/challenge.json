@@ -1,0 +1,25 @@
+{
+  "id": "networking-insecure-http",
+  "name": "Insecure HTTP",
+  "category": [
+    "Networking"
+  ],
+  "difficulty": "Easy",
+  "authors": [
+    {
+      "name": "Rydan",
+      "url": "https://github.com/rydanstar01"
+    }
+  ],
+  "description": "<p>Always use HTTPS.</p><p>The flag format is <code>HXN{Flag}</code>.<br>Enter the entire flag to validate the challenge.</p>",
+  "hints": [],
+  "flags": [
+    "HXN{N37W0RK_C4P7UR3}"
+  ],
+  "assets": [
+    "./insecure.pcapng"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}
