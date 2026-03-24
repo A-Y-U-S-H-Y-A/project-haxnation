@@ -10,7 +10,7 @@ API_DIR = DIST_DIR / 'api'
 CHALLENGES_API_DIR = API_DIR / 'challenges'
 
 # Required fields for validation
-REQUIRED_FIELDS = ['id', 'name', 'category', 'difficulty', 'authors']
+REQUIRED_FIELDS = ['id', 'name', 'category', 'difficulty']
 
 def build_api():
     print("🚀 Starting Static API build...")
@@ -47,19 +47,25 @@ def build_api():
 
             chal_id = data['id']
 
+            # Calculate the exact folder path relative to the repo root (e.g., "Web Security/dev-at-99")
+            rel_path = os.path.relpath(root, REPO_ROOT).replace('\\', '/')
+            data['repo_path'] = rel_path
+
             # 2. Save the full JSON to the Deep Dive API endpoint
             full_json_path = CHALLENGES_API_DIR / f"{chal_id}.json"
             with open(full_json_path, 'w', encoding='utf-8') as f:
                 json.dump(data, f, separators=(',', ':')) # Minified
 
             # 3. Append to the Lite Index (Only what is needed for searching/filtering)
+            # Extract just the names into a flat list for easy searching
             author_names = [author['name'] for author in data.get('authors', [])]
+
             lite_entry = {
                 "id": chal_id,
                 "name": data['name'],
                 "category": data['category'],
                 "difficulty": data['difficulty'],
-                "authors": author_names
+                "authors": author_names  # Added authors to the lite index
             }
             lite_index.append(lite_entry)
             challenge_count += 1
