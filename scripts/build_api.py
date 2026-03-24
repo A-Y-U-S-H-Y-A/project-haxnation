@@ -53,11 +53,13 @@ def build_api():
                 json.dump(data, f, separators=(',', ':')) # Minified
 
             # 3. Append to the Lite Index (Only what is needed for searching/filtering)
+            author_names = [author['name'] for author in data.get('authors', [])]
             lite_entry = {
                 "id": chal_id,
                 "name": data['name'],
                 "category": data['category'],
-                "difficulty": data['difficulty']
+                "difficulty": data['difficulty'],
+                "authors": author_names
             }
             lite_index.append(lite_entry)
             challenge_count += 1
