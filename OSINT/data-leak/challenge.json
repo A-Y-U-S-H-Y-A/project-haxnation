@@ -1,0 +1,31 @@
+{
+  "id": "osint-data-leak",
+  "name": "Data Leak",
+  "category": [
+    "OSINT"
+  ],
+  "difficulty": "Easy",
+  "authors": [
+    {
+      "name": "Rydan",
+      "url": "https://github.com/rydanstar01"
+    },
+    {
+      "name": "Ayushya Shah",
+      "url": "https://github.com/A-Y-U-S-H-Y-A"
+    }
+  ],
+  "description": "<p>We prepare very hard to make good challenges, but we might have messed it up due to some social rituals we hope you don't look at the smaller picture and can't link us to the flag. Oh, and happy Oct '24.</p><p>The flag is in the format <code>HXN{Flag}</code>. Enter the entire flag to validate the challenge.</p>",
+  "hints": [
+    "Pay attention to the peculiar wording in the description",
+    "Look for hidden information in unexpected places",
+    "Consider what \"social rituals\" might refer to"
+  ],
+  "flags": [
+    "HXN{O$INtFl@g}"
+  ],
+  "assets": [],
+  "deployment": {
+    "type": "static"
+  }
+}
