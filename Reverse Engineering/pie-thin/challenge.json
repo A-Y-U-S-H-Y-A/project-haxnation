@@ -1,0 +1,27 @@
+{
+  "id": "re-pie-thin",
+  "name": "Pie-thin?",
+  "category": [
+    "Reverse Engineering"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Ahtesham",
+      "url": "https://github.com/dew1231"
+    }
+  ],
+  "description": "<p>The developer believes that this code is now secure. Is he right x(or) is he wrong?</p><p>The flag format is <code>hax{Flag}</code>.<br>Enter the entire flag to validate the challenge.</p>",
+  "hints": [
+    "Pay attention to the specific wording 'x(or)' in the description."
+  ],
+  "flags": [
+    "hax{h4Ck1ng_P3_F1l3S_i5_V3r7_F0n}"
+  ],
+  "assets": [
+    "./challenge.exe"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

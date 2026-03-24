@@ -1,0 +1,25 @@
+{
+  "id": "re-can-you-c",
+  "name": "Can you C?",
+  "category": [
+    "Reverse Engineering"
+  ],
+  "difficulty": "Easy",
+  "authors": [
+    {
+      "name": "Ayushya Shah",
+      "url": "https://github.com/A-Y-U-S-H-Y-A"
+    }
+  ],
+  "description": "<p>I found this c file which seems important. Can you get me the flag?</p><p>The flag is in the format <code>HXN{Flag}</code>.<br>Enter the entire flag to validate the challenge.</p>",
+  "hints": [],
+  "flags": [
+    "HXN{!C@nRever$e}"
+  ],
+  "assets": [
+    "./chall.c"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

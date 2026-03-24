@@ -1,0 +1,25 @@
+{
+  "id": "re-shhh",
+  "name": "Shhh?",
+  "category": [
+    "Reverse Engineering"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Sufiyan Shaikh",
+      "url": "https://github.com/Sufiyan2013"
+    }
+  ],
+  "description": "<p>Keep the apk secret?</p><p>The flag format is <code>CTF{Flag}</code>.<br>Enter the entire flag to validate the challenge.</p>",
+  "hints": [],
+  "flags": [
+    "CTF{Th1s_1s_4_S3cr3t_Fl4g}"
+  ],
+  "assets": [
+    "./android.apk"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}
