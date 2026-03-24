@@ -1,0 +1,27 @@
+{
+  "id": "web-tickets",
+  "name": "Tickets",
+  "category": [
+    "Web Security"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Ayushya Shah",
+      "url": "https://github.com/A-Y-U-S-H-Y-A"
+    }
+  ],
+  "description": "<p>I guess the other accounts have the FreezePlay Tickets? Or maybe they do not? Or maybe I have them? Or maybe I do not?</p><p>The flag is in the format <code>HXN{Flag}</code>. Enter the entire flag to validate the challenge.</p>",
+  "hints": [],
+  "flags": [
+    "HXN{IkN0WH@c!ng}"
+  ],
+  "assets": [
+    "./setup.php",
+    "./tickets.php"
+  ],
+  "deployment": {
+    "type": "php-mysql",
+    "notes": "Requires a LAMP/XAMPP stack to run setup.php and populate the database before serving tickets.php."
+  }
+}

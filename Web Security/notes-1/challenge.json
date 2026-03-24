@@ -1,0 +1,29 @@
+{
+  "id": "web-notes-1",
+  "name": "Notes - 1",
+  "category": [
+    "Web Security"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Ayushya Shah",
+      "url": "https://github.com/A-Y-U-S-H-Y-A"
+    }
+  ],
+  "description": "<p>We built a notes app. Maybe nobody can be called admin?</p><p>The flag format is <code>HXN{Flag}</code>. Enter the entire flag to validate the challenge.</p>",
+  "hints": [
+    "Maybe start with recon? Figure out the language and framework the backend of the site uses? Maybe via a 404?"
+  ],
+  "flags": [
+    "HXN{$ession1nsecure}"
+  ],
+  "assets": [
+    "./server.zip"
+  ],
+  "deployment": {
+    "type": "docker",
+    "commands": ["docker build -t my-node-app .","docker run -p 5000:5000 my-node-app"],
+    "internal_port": 5000
+  }
+}
