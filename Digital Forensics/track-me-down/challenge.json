@@ -1,0 +1,26 @@
+{
+  "id": "df-track-me-down",
+  "name": "Track Me Down",
+  "category": [
+    "Digital Forensics",
+    "OSINT"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Ayushya Shah",
+      "url": "https://github.com/A-Y-U-S-H-Y-A"
+    }
+  ],
+  "description": "<p>A known criminal uploaded an image to their social media with a caption, 'Walking 350m away keeps the eyes happy and the doctor away.'</p><p>Find out possible public places the criminal is living. The flag is the capital letters of the 2 valid places separated by an <code>_</code> ordered in the amount of ways you will take to get there.</p>",
+  "hints": [],
+  "flags": [
+    "FLG{GCH_BGH}"
+  ],
+  "assets": [
+    "./sunset.jpg"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

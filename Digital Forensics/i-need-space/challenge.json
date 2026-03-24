@@ -1,0 +1,29 @@
+{
+  "id": "df-i-need-space",
+  "name": "I Need Space",
+  "category": [
+    "Digital Forensics"
+  ],
+  "difficulty": "Easy",
+  "authors": [
+    {
+      "name": "Deep Parasiya - Aurum CTF",
+      "url": "https://github.com/deepparasiya"
+    },
+    {
+      "name": "Gayatri Tawade - Aurum CTF",
+      "url": "https://github.com/Gngt432"
+    }
+  ],
+  "description": "<p>A mysterious text file was captured from an instant messaging site. We believe it contains some type of sensitive data. Help us find the same!</p>",
+  "hints": [],
+  "flags": [
+    "aurum{hx0_jBK34_232dvfHgs}"
+  ],
+  "assets": [
+    "./challenge.txt"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

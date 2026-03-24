@@ -1,0 +1,29 @@
+{
+  "id": "df-its-magic",
+  "name": "Its Magic",
+  "category": [
+    "Digital Forensics"
+  ],
+  "difficulty": "Easy",
+  "authors": [
+    {
+      "name": "Deep Parasiya - Aurum CTF",
+      "url": "https://github.com/deepparasiya"
+    },
+    {
+      "name": "Gayatri Tawade - Aurum CTF",
+      "url": "https://github.com/Gngt432"
+    }
+  ],
+  "description": "<p>A magician probably worked his magic to make the file unreadable?</p>",
+  "hints": [],
+  "flags": [
+    "aurum{M@GiC_Byt3S_JFlF}"
+  ],
+  "assets": [
+    "./chall.jpg"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

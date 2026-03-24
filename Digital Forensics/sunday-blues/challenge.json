@@ -1,0 +1,27 @@
+{
+  "id": "df-sunday-blues",
+  "name": "Sunday Blues",
+  "category": [
+    "Digital Forensics"
+  ],
+  "difficulty": "Easy",
+  "authors": [
+    {
+      "name": "Ayushya Shah",
+      "url": "https://github.com/A-Y-U-S-H-Y-A"
+    }
+  ],
+  "description": "<blockquote>To solve the challenge set before,<br>Through shades of blue, we must explore.<br>A world unseen by red or green,<br>Where clues in black can still be gleaned.<br><br>With eyes on blue alone we gaze,<br>To search the dark in hidden ways.<br>The blackened spots, a mystery hold,<br>Their silent whispers, truths untold.<br><br>In monochrome, we walk the hue,<br>A puzzle clear when seen through blue.<br>So scan the night, find what's concealed,<br>In shadowed depths, the answer is revealed.</blockquote><p>The flag is in the format <code>HXN{Flag}</code>.<br>Enter the entire flag to validate the challenge.</p>",
+  "hints": [
+    "Explore the color planes or channels of the image."
+  ],
+  "flags": [
+    "HXN{LAYERS}"
+  ],
+  "assets": [
+    "./blues.jpg"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}
