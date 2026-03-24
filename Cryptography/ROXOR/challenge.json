@@ -1,0 +1,26 @@
+{
+  "id": "crypto-roxor",
+  "name": "ROXOR",
+  "category": [
+    "Cryptography"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Ayushya Shah",
+      "url": "https://github.com/A-Y-U-S-H-Y-A"
+    }
+  ],
+  "description": "<p>Mr X thought it was a smart idea to use his own algorithm he made using components he learnt while taking an introductory class to cryptography.</p><p>Find the <b>16 character key</b> and prove him wrong.</p>",
+  "hints": [],
+  "flags": [
+    "projecthaxnation"
+  ],
+  "assets": [
+    "./enc.py",
+    "./cases.txt"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

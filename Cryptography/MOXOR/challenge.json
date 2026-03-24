@@ -1,0 +1,31 @@
+{
+  "id": "crypto-moxor",
+  "name": "MOXOR",
+  "category": [
+    "Cryptography"
+  ],
+  "difficulty": "Easy",
+  "authors": [
+    {
+      "name": "Deep Parasiya - Aurum CTF",
+      "url": "https://github.com/deepparasiya"
+    },
+    {
+      "name": "Gayatri Tawade - Aurum CTF",
+      "url": "https://github.com/Gngt432"
+    }
+  ],
+  "description": "<p>While investigating, some encrypted text was found along with a key in a mysterious language. Find out what the text meant!</p>",
+  "hints": [
+    "⊕"
+  ],
+  "flags": [
+    "aurum{X0R_e0kc4nfj1l_8080}"
+  ],
+  "assets": [
+    "./challenge.txt"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}
