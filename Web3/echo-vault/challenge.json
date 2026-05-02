@@ -1,0 +1,27 @@
+{
+  "id": "echo-vault",
+  "name": "Web3 - Echo Vault",
+  "category": [
+    "web3"
+  ],
+  "difficulty": "Hard",
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "<b> Deploy instance with 10 Finney </b><br/>\nWe've built a futuristic, unhackable yield vault that generates massive returns. We've even implemented a flash-loan system to allow arbers to utilize idle capital, strictly verifying that the contract's balance is kept whole.\n<br/>\nCan you make off with the vault's funds?\n<br/>\n<b>Objective:</b> Drain the EchoVault so its final balance is 0.",
+  "hints": [],
+  "flags": [
+    "WEB3_PLACEHOLDER_FLAG"
+  ],
+  "assets": [
+    "https://ctf.haxnation.org/ctf-web3/?challenge=echoVault&address=0xEf363606c967e06503AFEf99cE6824c9eF359Db2",
+    "./Setup.sol",
+    "./EchoVault.sol"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}
