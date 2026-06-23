@@ -70,6 +70,20 @@ def build_api():
             # 3. Append to the Lite Index (Only what is needed for searching/filtering)
             # Extract just the names into a flat list for easy searching
             author_names = [author['name'] for author in data.get('authors', [])]
+            
+            alert_count = 0
+            if is_soc:
+                for asset in data.get('assets', []):
+                    if asset.endswith('.json'):
+                        asset_path = Path(root) / asset
+                        if asset_path.exists():
+                            with open(asset_path, 'r', encoding='utf-8') as af:
+                                try:
+                                    alerts = json.load(af)
+                                    if isinstance(alerts, list):
+                                        alert_count += len(alerts)
+                                except json.JSONDecodeError:
+                                    pass
 
             lite_entry = {
                 "id": chal_id,
@@ -80,6 +94,7 @@ def build_api():
             }
             
             if is_soc:
+                lite_entry['alert_count'] = alert_count
                 lite_index_soc.append(lite_entry)
                 challenge_count_soc += 1
             else:
