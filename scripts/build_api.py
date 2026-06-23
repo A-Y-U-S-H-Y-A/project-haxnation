@@ -110,6 +110,18 @@ def build_api():
     with open(lite_index_soc_path, 'w', encoding='utf-8') as f:
         json.dump(lite_index_soc, f, separators=(',', ':')) # Minified
 
+    # 5. Save the Total Challenges Count for Shields.io Widget
+    total_challenges = challenge_count_main + challenge_count_soc
+    badge_data = {
+        "schemaVersion": 1,
+        "label": "challenges",
+        "message": str(total_challenges),
+        "color": "blue"
+    }
+    badge_path = API_DIR / 'badge.json'
+    with open(badge_path, 'w', encoding='utf-8') as f:
+        json.dump(badge_data, f)
+
     print(f"✅ Successfully built API for {challenge_count_main} main challenges and {challenge_count_soc} SOC challenges!")
     print(f"📁 Output located in: {DIST_DIR}")
 

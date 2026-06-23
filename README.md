@@ -3,6 +3,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/A-Y-U-S-H-Y-A/project-haxnation/blob/master/LICENSE)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/A-Y-U-S-H-Y-A/project-haxnation/pulls)
+[![Challenges](https://img.shields.io/endpoint?url=https://a-y-u-s-h-y-a.github.io/project-haxnation/api/badge.json)](https://github.com/A-Y-U-S-H-Y-A/project-haxnation)
 [![Made with ❤️ by Ayushya Shah](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red)](mailto:ayushya.shah1201@gmail.com)
 
 **Project Haxnation** is an initiative by **Ayushya Shah** to create the **largest open-source repository of CTF (Capture The Flag) challenges** for security enthusiasts to explore, practice, and master various domains of cybersecurity.
