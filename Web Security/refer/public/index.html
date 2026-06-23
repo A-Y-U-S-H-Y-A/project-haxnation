@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DenimCraft - Premium Jeans Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-gray-900">DenimCraft</h1>
+                    <span class="text-sm text-gray-500">Premium Jeans Collection</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div
+                        class="flex items-center space-x-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                        <i class="fas fa-wallet"></i>
+                        <span>Balance: ₹</span>
+                        <span id="balance">0</span>
+                    </div>
+                    <a href="/redeem"
+                        class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors">
+                        <i class="fas fa-gift mr-1"></i>Redeem Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl text-white p-8 mb-8">
+            <h2 class="text-3xl font-bold mb-2">Premium Denim Collection</h2>
+            <p class="text-blue-100">Discover our carefully curated selection of high-quality jeans</p>
+            <p class="text-blue-200 text-sm mt-2">
+                <i class="fas fa-info-circle mr-1"></i>
+                New users can redeem code REDEEM100 for ₹100 off.
+            </p>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="products-grid">
+            <!-- Products will be loaded here -->
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="text-center py-8">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-4 text-gray-600">Loading premium jeans...</p>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative z-10 text-center">
+            <div class="mb-6">
+                <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-green-600 mb-2">Purchase Successful!</h3>
+                <p id="success-message" class="text-gray-700 mb-4"></p>
+                <div id="flag-display" class="hidden bg-yellow-100 border-l-4 border-yellow-500 p-4 mt-4">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-flag text-yellow-500"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-yellow-800">Congratulations! You found the flag:</p>
+                            <p id="flag-text" class="text-sm text-yellow-700 font-mono mt-1"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="close-success"
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative z-10 text-center">
+            <div class="mb-6">
+                <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-red-600 mb-2">Purchase Failed</h3>
+                <p id="error-message" class="text-gray-700 mb-4"></p>
+            </div>
+            <button id="close-error"
+                class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let products = [];
+        let redeemedCodes = JSON.parse(localStorage.getItem('redeemedCodes') || '[]');
+        let userBalance = 0;
+
+        // DOM elements
+        const productsGrid = document.getElementById('products-grid');
+        const loading = document.getElementById('loading');
+        const balanceDisplay = document.getElementById('balance');
+        const successModal = document.getElementById('success-modal');
+        const errorModal = document.getElementById('error-modal');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+        const flagDisplay = document.getElementById('flag-display');
+        const flagText = document.getElementById('flag-text');
+
+        // Initialize app
+        async function init() {
+            await loadProducts();
+            await loadBalance();
+            setupEventListeners();
+        }
+
+        // Load products from API
+        async function loadProducts() {
+            try {
+                const response = await fetch('/api/items');
+                products = await response.json();
+                renderProducts();
+                loading.classList.add('hidden');
+            } catch (error) {
+                console.error('Failed to load products:', error);
+                loading.innerHTML = '<p class="text-red-500">Failed to load products</p>';
+            }
+        }
+
+        // Load user balance
+        async function loadBalance() {
+            try {
+                const response = await fetch('/api/balance');
+                const data = await response.json();
+                userBalance = data.balance;
+                updateBalanceDisplay();
+            } catch (error) {
+                console.error('Failed to load balance:', error);
+            }
+        }
+
+        // Update balance display
+        function updateBalanceDisplay() {
+            balanceDisplay.textContent = userBalance;
+        }
+
+        // Render products grid
+        function renderProducts() {
+            const productsHTML = products.map(product => `
+                <div class="bg-white rounded-xl shadow-sm border hover:shadow-md transition-shadow">
+                    <div class="aspect-w-3 aspect-h-4 rounded-t-xl overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-sm text-gray-600 mb-4">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-blue-600">₹${product.price}</span>
+                            <button onclick="buyItem(${product.id})" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            productsGrid.innerHTML = productsHTML;
+        }
+
+        // Buy item function
+        // Buy item function
+        async function buyItem(itemId) {
+            try {
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        itemId: itemId,
+                        redeemedCodes: redeemedCodes
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    successMessage.textContent = `Successfully purchased ${result.item}! Remaining balance: ₹${result.remainingBalance}`;
+
+                    // Remove redeemed codes after successful checkout
+                    redeemedCodes = [];
+                    localStorage.setItem('redeemedCodes', JSON.stringify(redeemedCodes));
+
+                    // Check if flag is present
+                    if (result.flag) {
+                        flagDisplay.classList.remove('hidden');
+                        flagText.textContent = result.flag;
+                    } else {
+                        flagDisplay.classList.add('hidden');
+                    }
+
+                    successModal.classList.remove('hidden');
+                    successModal.classList.add('flex');
+
+                    // Update balance
+                    userBalance = result.remainingBalance;
+                    updateBalanceDisplay();
+                } else {
+                    errorMessage.textContent = result.message;
+                    errorModal.classList.remove('hidden');
+                    errorModal.classList.add('flex');
+                }
+            } catch (error) {
+                console.error('Purchase failed:', error);
+                errorMessage.textContent = 'Purchase failed. Please try again.';
+                errorModal.classList.remove('hidden');
+                errorModal.classList.add('flex');
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Modal close handlers
+            document.getElementById('close-success').addEventListener('click', () => {
+                successModal.classList.add('hidden');
+                successModal.classList.remove('flex');
+            });
+
+            document.getElementById('close-error').addEventListener('click', () => {
+                errorModal.classList.add('hidden');
+                errorModal.classList.remove('flex');
+            });
+
+            // Escape key to close modals
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    successModal.classList.add('hidden');
+                    successModal.classList.remove('flex');
+                    errorModal.classList.add('hidden');
+                    errorModal.classList.remove('flex');
+                }
+            });
+
+            // Listen for storage changes (when codes are redeemed)
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'redeemedCodes') {
+                    redeemedCodes = JSON.parse(e.newValue || '[]');
+                }
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+
+        // Update redeemed codes from localStorage periodically
+        setInterval(() => {
+            const newCodes = JSON.parse(localStorage.getItem('redeemedCodes') || '[]');
+            if (newCodes.length !== redeemedCodes.length) {
+                redeemedCodes = newCodes;
+                loadBalance(); // Refresh balance when codes change
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

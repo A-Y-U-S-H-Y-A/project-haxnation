@@ -1,0 +1,15 @@
+{
+  "name": "phantom_jeans",
+  "version": "1.0.0",
+  "description": "Items have sequential IDs. A hidden item with negative price still exists in backend. Adding it to cart flips balance to positive.",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

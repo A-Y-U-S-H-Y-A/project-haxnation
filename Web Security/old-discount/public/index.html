@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DenimCraft - Premium Jeans Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-gray-900">DenimCraft</h1>
+                    <span class="text-sm text-gray-500">Premium Jeans Collection</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/discounts"
+                        class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-red-200 transition-colors">
+                        <i class="fas fa-percent mr-1"></i>Discounts
+                    </a>
+                    <button id="cart-toggle" class="relative p-2 text-gray-600 hover:text-gray-900 transition-colors">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cart-count"
+                            class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl text-white p-8 mb-8">
+            <h2 class="text-3xl font-bold mb-2">Premium Denim Collection</h2>
+            <p class="text-blue-100">Discover our carefully curated selection of high-quality jeans</p>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Products will be loaded here -->
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="text-center py-8">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-4 text-gray-600">Loading premium jeans...</p>
+        </div>
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black bg-opacity-50" id="cart-backdrop"></div>
+
+        <!-- Sidebar -->
+        <div class="absolute right-0 top-0 h-full w-96 bg-white shadow-xl transform translate-x-full transition-transform duration-300"
+            id="cart-panel">
+            <div class="flex flex-col h-full">
+                <!-- Header -->
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h3 class="text-lg font-semibold">Shopping Cart</h3>
+                    <button id="close-cart" class="p-2 hover:bg-gray-100 rounded-full">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items -->
+                <div class="flex-1 overflow-y-auto p-6">
+                    <div id="cart-items">
+                        <div class="text-center text-gray-500 py-8">
+                            <i class="fas fa-shopping-cart text-4xl mb-4 opacity-50"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <!-- <div class="border-t p-6 bg-gray-50">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-semibold">Total:</span>
+                        <span id="cart-total" class="font-bold text-xl">₹0</span>
+                    </div>
+                    <button id="checkout-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        Proceed to Checkout
+                    </button>
+                </div> -->
+                <!-- Footer -->
+                <div class="border-t p-6 bg-gray-50">
+                    <!-- Discount Code -->
+                    <div class="mb-4">
+                        <label for="discount-code" class="block text-sm font-medium text-gray-700 mb-2">
+                            Discount Code
+                        </label>
+                        <div class="flex space-x-2">
+                            <input type="text" id="discount-code"
+                                class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter code">
+                            <button id="apply-discount"
+                                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                                Apply
+                            </button>
+                        </div>
+                        <p id="discount-status" class="mt-2 text-sm text-gray-500">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Check our <a href="/discounts" class="text-blue-600 hover:underline">discounts page</a> for
+                            available codes
+                        </p>
+                    </div>
+
+
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-semibold">Subtotal:</span>
+                        <span id="cart-subtotal" class="text-gray-700">₹0</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-1 hidden" id="discount-line">
+                        <span class="font-semibold text-green-600">Discount:</span>
+                        <span id="cart-discount" class="text-green-600">-₹0</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-semibold">Total:</span>
+                        <span id="cart-total" class="font-bold text-xl">₹0</span>
+                    </div>
+                    <button id="checkout-btn"
+                        class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled>
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative z-10 text-center">
+            <div class="mb-6">
+                <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-green-600 mb-2">Success!</h3>
+                <p id="success-message" class="text-gray-700 mb-4"></p>
+            </div>
+            <button id="close-success"
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <div id="error-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative z-10 text-center">
+            <div class="mb-6">
+                <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-red-600 mb-2">Oops!</h3>
+                <p id="error-message" class="text-gray-700 mb-4"></p>
+            </div>
+            <button id="close-error" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+    <script>
+        // Global state
+        let products = [];
+        let cart = [];
+
+        // DOM elements
+        const productsGrid = document.querySelector('.grid');
+        const loading = document.getElementById('loading');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartPanel = document.getElementById('cart-panel');
+        const cartToggle = document.getElementById('cart-toggle');
+        const closeCart = document.getElementById('close-cart');
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCount = document.getElementById('cart-count');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        let appliedDiscountCode = null;
+        let discountPercentage = 0;
+
+
+        const discountCodeInput = document.getElementById('discount-code');
+        const discountStatus = document.getElementById('discount-status');
+        const discountLine = document.getElementById('discount-line');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartDiscount = document.getElementById('cart-discount');
+
+        // Modal elements
+        const successModal = document.getElementById('success-modal');
+        const errorModal = document.getElementById('error-modal');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+
+        // Initialize app
+        async function init() {
+            await loadProducts();
+            setupEventListeners();
+        }
+
+        function applyDiscount() {
+            const code = discountCodeInput.value.trim().toUpperCase();
+
+            if (!code) {
+                discountStatus.innerHTML = '<span class="text-red-500"><i class="fas fa-times mr-1"></i>Please enter a code</span>';
+                return;
+            }
+
+            // This payload now includes the current timestamp.
+            const payload = {
+                code: code,
+                validUntil: new Date().toISOString()
+            };
+
+            fetch('/api/apply-discount', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json().then(body => ({
+                    status: res.status,
+                    body
+                })))
+                .then(({
+                    status,
+                    body
+                }) => {
+                    if (status === 200 && body.success) {
+                        appliedDiscountCode = body.code || code;
+                        discountPercentage = body.discount || 0;
+
+                        discountStatus.innerHTML = `<span class="text-green-600"><i class="fas fa-check-circle mr-1"></i>${discountPercentage}% discount applied!</span>`;
+                        updateCartUI();
+                    } else {
+                        discountStatus.innerHTML = `<span class="text-red-500"><i class="fas fa-times mr-1"></i>${body.message || 'Invalid code'}</span>`;
+                    }
+                }).catch(error => {
+                    console.error('Error applying discount:', error);
+                    discountStatus.innerHTML = '<span class="text-red-500"><i class="fas fa-exclamation-triangle mr-1"></i>An error occurred</span>';
+                });
+        }
+
+        // Load products from API
+        async function loadProducts() {
+            try {
+                const response = await fetch('/api/items');
+                products = await response.json();
+                renderProducts();
+                loading.classList.add('hidden');
+            } catch (error) {
+                console.error('Failed to load products:', error);
+                loading.innerHTML = '<p class="text-red-500">Failed to load products</p>';
+            }
+        }
+
+        // Render products grid
+        function renderProducts() {
+            const productsHTML = products.map(product => `
+                <div class="bg-white rounded-xl shadow-sm border hover:shadow-md transition-shadow">
+                    <div class="aspect-w-3 aspect-h-4 rounded-t-xl overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-sm text-gray-600 mb-4">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-blue-600">₹${product.price}</span>
+                            <button onclick="addToCart(${product.id})" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            productsGrid.innerHTML = productsHTML;
+        }
+        const originalUpdateCartUI = updateCartUI;
+        updateCartUI = function () {
+            // Run original UI logic
+            originalUpdateCartUI();
+
+
+            // Calculate subtotal
+            let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartSubtotal.textContent = `₹${subtotal}`;
+
+
+            if (discountPercentage > 0) {
+                const discountAmount = Math.round((subtotal * discountPercentage) / 100);
+                const total = subtotal - discountAmount;
+
+
+                discountLine.classList.remove('hidden');
+                cartDiscount.textContent = `-₹${discountAmount}`;
+                cartTotal.textContent = `₹${total}`;
+            } else {
+                discountLine.classList.add('hidden');
+                cartTotal.textContent = `₹${subtotal}`;
+            }
+        }
+
+
+        // Hook up button
+        document.getElementById('apply-discount').addEventListener('click', applyDiscount);
+        // Add item to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            showCartSidebar();
+        }
+
+        // Update cart UI
+        function updateCartUI() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.classList.remove('hidden');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+
+            // Update cart items
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-shopping-cart text-4xl mb-4 opacity-50"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                `;
+                cartTotal.textContent = '₹0';
+                checkoutBtn.disabled = true;
+                return;
+            }
+
+            const cartHTML = cart.map(item => `
+                <div class="flex items-center space-x-4 py-4 border-b">
+                    <div class="flex-1">
+                        <h4 class="font-medium">${item.name}</h4>
+                        <p class="text-sm text-gray-600">₹${item.price} each</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center">
+                            <i class="fas fa-minus text-xs"></i>
+                        </button>
+                        <span class="w-8 text-center">${item.quantity}</span>
+                        <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 p-2">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            cartItems.innerHTML = cartHTML;
+
+            // Calculate total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `₹${total}`;
+            checkoutBtn.disabled = false;
+        }
+
+        // Update item quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        // Show cart sidebar
+        function showCartSidebar() {
+            cartSidebar.classList.remove('hidden');
+            setTimeout(() => {
+                cartPanel.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        // Hide cart sidebar
+        function hideCartSidebar() {
+            cartPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                cartSidebar.classList.add('hidden');
+            }, 300);
+        }
+
+        // Checkout
+        async function checkout() {
+            const discountCode = discountCodeInput.value.trim().toUpperCase();
+
+            try {
+                const requestBody = {
+                    cartItems: cart
+                };
+
+                // If discount code is provided, add it to the request with the original expiry timestamp
+                if (discountCode) {
+                    // This is the key part - we're sending the original expired timestamp
+                    // Players need to intercept and modify this to a future date
+                    requestBody.discountCode = discountCode;
+                    requestBody.validUntil = "2023-12-31T23:59:59Z"; // Expired timestamp!
+                }
+
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const result = await response.json();
+
+                console.log('Checkout response:', result);
+
+                if (result.success && result.flag) {
+                    // Success! Show the CTF flag
+                    try{
+                    successMessage.textContent = result.message + ` Your flag is: ${result.flag}`;
+                    successModal.classList.remove('hidden');
+                    successModal.classList.add('flex');
+                    hideCartSidebar();
+                    cart = [];
+                    clearDiscount();
+                    updateCartUI();
+                    }
+                    catch(e){
+                        console.error('Error displaying success modal:', e);
+                    }
+
+                    
+                } else {
+                    // Show error message
+                    errorMessage.textContent = result.message;
+                    errorModal.classList.remove('hidden');
+                    errorModal.classList.add('flex');
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Something went wrong. Please try again.';
+                errorModal.classList.remove('hidden');
+                errorModal.classList.add('flex');
+            }
+        }
+
+        // Clear applied discount
+        function clearDiscount() {
+            appliedDiscountCode = null;
+            discountPercentage = 0;
+            discountCodeInput.value = '';
+            discountStatus.innerHTML = '<span class="text-gray-500"><i class="fas fa-info-circle mr-1"></i>Check our <a href="/discounts" class="text-blue-600 hover:underline">discounts page</a> for available codes</span>';
+            updateCartUI();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            cartToggle.addEventListener('click', showCartSidebar);
+            closeCart.addEventListener('click', hideCartSidebar);
+            cartBackdrop.addEventListener('click', hideCartSidebar);
+            checkoutBtn.addEventListener('click', checkout);
+
+            // Modal close handlers
+            document.getElementById('close-success').addEventListener('click', () => {
+                successModal.classList.add('hidden');
+                successModal.classList.remove('flex');
+            });
+
+            document.getElementById('close-error').addEventListener('click', () => {
+                errorModal.classList.add('hidden');
+                errorModal.classList.remove('flex');
+            });
+
+            // Escape key to close modals/sidebar
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    hideCartSidebar();
+                    successModal.classList.add('hidden');
+                    successModal.classList.remove('flex');
+                    errorModal.classList.add('hidden');
+                    errorModal.classList.remove('flex');
+                }
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>

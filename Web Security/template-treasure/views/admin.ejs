@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - DenimCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-gray-900">DenimCraft</h1>
+                    <span class="text-sm text-gray-500">Admin Panel</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-green-600 font-medium">
+                        <i class="fas fa-shield-alt"></i> Admin Access
+                    </span>
+                    <a href="/" class="text-sm text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-store"></i> Back to Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Template Editor -->
+            <div class="space-y-6">
+                <!-- Hero Section -->
+                <div class="bg-gradient-to-r from-purple-600 to-indigo-700 rounded-2xl text-white p-6">
+                    <h2 class="text-2xl font-bold mb-2">Template Compiler</h2>
+                    <p class="text-purple-100">Create and test EJS templates for the store</p>
+                </div>
+
+                <!-- Template Form -->
+                <div class="bg-white rounded-xl shadow-sm border">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-4">EJS Template Editor</h3>
+                        <form id="template-form">
+                            <div class="mb-4">
+                                <label for="template" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Template Code
+                                </label>
+                                <textarea 
+                                    id="template" 
+                                    name="template" 
+                                    rows="12" 
+                                    class="w-full p-3 border border-gray-300 rounded-lg font-mono text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    placeholder="Enter your EJS template code here..."
+                                ><div class="product-card">
+  <h3><%%= product.name %></h3>
+  <p class="price">₹<%%= product.price %></p>
+  <p class="description"><%%= product.description %></p>
+</div></textarea>
+                            </div>
+                            
+                            <div class="flex space-x-3">
+                                <button 
+                                    type="button" 
+                                    onclick="compileTemplate(false)"
+                                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+                                >
+                                    <i class="fas fa-code mr-2"></i>Compile
+                                </button>
+                                <button 
+                                    type="button" 
+                                    onclick="compileTemplate(true)"
+                                    class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors"
+                                >
+                                    <i class="fas fa-eye mr-2"></i>Compile & Preview
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Output -->
+                <div class="bg-white rounded-xl shadow-sm border">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-4">Compilation Output</h3>
+                        <div id="output" class="bg-gray-50 p-4 rounded-lg min-h-[100px] font-mono text-sm">
+                            <span class="text-gray-500">Compilation output will appear here...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compilation Logs -->
+            <div class="space-y-6">
+                <div class="bg-gradient-to-r from-green-600 to-teal-700 rounded-2xl text-white p-6">
+                    <h2 class="text-2xl font-bold mb-2">Compilation Logs</h2>
+                    <p class="text-green-100">Recent template compilation history</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold">Recent Logs</h3>
+                            <button 
+                                onclick="refreshLogs()" 
+                                class="text-sm text-blue-600 hover:text-blue-800"
+                            >
+                                <i class="fas fa-refresh mr-1"></i>Refresh
+                            </button>
+                        </div>
+                        
+                        <div id="logs-container" class="space-y-4 max-h-[600px] overflow-y-auto">
+                            <% logs.forEach(log => { %>
+                            <div class="border rounded-lg p-4 <%= log.status === 'success' ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50' %>">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="<%= log.status === 'success' ? 'text-green-600' : 'text-red-600' %>">
+                                            <i class="fas <%= log.status === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle' %>"></i>
+                                        </span>
+                                        <span class="font-medium text-sm"><%= log.template %></span>
+                                    </div>
+                                    <span class="text-xs text-gray-500">
+                                        <%= new Date(log.timestamp).toLocaleString() %>
+                                    </span>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="text-xs text-gray-600 mb-1">Template Code:</div>
+                                    <pre class="bg-gray-100 p-2 rounded text-xs overflow-x-auto"><code class="language-html"><%- log.code.replace(/</g, '&lt;').replace(/>/g, '&gt;') %></code></pre>
+                                </div>
+                                
+                                <div>
+                                    <div class="text-xs text-gray-600 mb-1">Output:</div>
+                                    <div class="text-sm font-mono <%= log.status === 'success' ? 'text-green-700' : 'text-red-700' %>">
+                                        <%= log.output %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative z-10 text-center">
+            <div class="mb-6">
+                <i class="fas fa-trophy text-6xl text-yellow-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-green-600 mb-2">Flag Found!</h3>
+                <p class="text-gray-700 mb-4">Congratulations! You've successfully exploited the template system.</p>
+                <div class="bg-gray-100 p-4 rounded-lg font-mono text-lg font-bold text-blue-600" id="flag-display"></div>
+            </div>
+            <button id="close-success" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Awesome!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        async function compileTemplate(preview = false) {
+            const template = document.getElementById('template').value;
+            const output = document.getElementById('output');
+            
+            if (!template.trim()) {
+                output.innerHTML = '<span class="text-red-500">Please enter a template first.</span>';
+                return;
+            }
+            
+            output.innerHTML = '<span class="text-blue-500"><i class="fas fa-spinner fa-spin"></i> Compiling...</span>';
+            
+            try {
+                const response = await fetch('/admin/compile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        template: template,
+                        preview: preview
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    output.innerHTML = `<span class="text-green-700">${escapeHtml(result.output)}</span>`;
+                    
+                    // Check if flag was found in the output
+                    if (result.output.includes('FLAG{')) {
+                        const flagMatch = result.output.match(/FLAG\{[^}]+\}/);
+                        if (flagMatch) {
+                            document.getElementById('flag-display').textContent = flagMatch[0];
+                            document.getElementById('success-modal').classList.remove('hidden');
+                            document.getElementById('success-modal').classList.add('flex');
+                        }
+                    }
+                } else {
+                    output.innerHTML = `<span class="text-red-700">${escapeHtml(result.output)}</span>`;
+                }
+                
+                // Refresh logs after compilation
+                setTimeout(refreshLogs, 1000);
+                
+            } catch (error) {
+                output.innerHTML = `<span class="text-red-500">Error: ${escapeHtml(error.message)}</span>`;
+            }
+        }
+        
+        async function refreshLogs() {
+            try {
+                const response = await fetch('/admin/logs');
+                const logs = await response.json();
+                
+                const container = document.getElementById('logs-container');
+                container.innerHTML = logs.map(log => `
+                    <div class="border rounded-lg p-4 ${log.status === 'success' ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="${log.status === 'success' ? 'text-green-600' : 'text-red-600'}">
+                                    <i class="fas ${log.status === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                                </span>
+                                <span class="font-medium text-sm">${escapeHtml(log.template)}</span>
+                            </div>
+                            <span class="text-xs text-gray-500">
+                                ${new Date(log.timestamp).toLocaleString()}
+                            </span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="text-xs text-gray-600 mb-1">Template Code:</div>
+                            <pre class="bg-gray-100 p-2 rounded text-xs overflow-x-auto"><code>${escapeHtml(log.code)}</code></pre>
+                        </div>
+                        
+                        <div>
+                            <div class="text-xs text-gray-600 mb-1">Output:</div>
+                            <div class="text-sm font-mono ${log.status === 'success' ? 'text-green-700' : 'text-red-700'}">
+                                ${escapeHtml(log.output)}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Failed to refresh logs:', error);
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Close modal handler
+        document.getElementById('close-success').addEventListener('click', () => {
+            document.getElementById('success-modal').classList.add('hidden');
+            document.getElementById('success-modal').classList.remove('flex');
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    compileTemplate(false);
+                } else if (e.key === 'p') {
+                    e.preventDefault();
+                    compileTemplate(true);
+                }
+            }
+            
+            if (e.key === 'Escape') {
+                document.getElementById('success-modal').classList.add('hidden');
+                document.getElementById('success-modal').classList.remove('flex');
+            }
+        });
+    </script>
+</body>
+</html>

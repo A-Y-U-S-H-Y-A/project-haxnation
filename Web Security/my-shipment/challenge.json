@@ -1,0 +1,13 @@
+{
+  "id": "web-my-shipment",
+  "name": "My Shipment",
+  "category": ["Web Security"],
+  "difficulty": "Easy",
+  "authors": [{"name": "Ayushya Shah", "url": "https://github.com/A-Y-U-S-H-Y-A"}],
+  "description": "Can you track down my shipment and uncover the hidden secrets? The flag is in the format `HXN{Flag}`.",
+  "flags": ["HXN{sh!p_id0r}"],
+  "deployment": {
+    "type": "docker",
+    "internal_port": 8080
+  }
+}

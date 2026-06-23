@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem Code - DenimCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-4 hover:opacity-75 transition-opacity">
+                        <h1 class="text-2xl font-bold text-gray-900">DenimCraft</h1>
+                        <span class="text-sm text-gray-500">Premium Jeans Collection</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                        <i class="fas fa-wallet"></i>
+                        <span>Balance: ₹</span>
+                        <span id="balance">0</span>
+                    </div>
+                    <a href="/"
+                        class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors">
+                        <i class="fas fa-store mr-1"></i>Back to Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Redeem Form -->
+        <div id="redeem-form" class="bg-white rounded-2xl shadow-sm border p-8">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-4">
+                    <i class="fas fa-gift text-white text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Redeem Your Code</h2>
+                <p class="text-gray-600">Enter your exclusive redeem code to unlock rewards</p>
+            </div>
+
+            <form id="redeem-code-form" class="space-y-6">
+                <div>
+                    <label for="redeem-code" class="block text-sm font-medium text-gray-700 mb-2">
+                        Redeem Code
+                    </label>
+                    <input type="text" id="redeem-code" name="code" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center uppercase font-mono"
+                        placeholder="Enter your code" required>
+                </div>
+
+                <button type="submit" id="redeem-button"
+                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium">
+                    <i class="fas fa-gift mr-2"></i>Redeem Code
+                </button>
+            </form>
+
+            <!-- Status Messages -->
+            <div id="status-message" class="mt-6 hidden">
+                <!-- Success/Error messages will appear here -->
+            </div>
+        </div>
+
+        <!-- Success State (Hidden by default) -->
+        <div id="success-state" class="bg-white rounded-2xl shadow-sm border p-8 hidden">
+            <div class="text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-full mb-4">
+                    <i class="fas fa-check text-white text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-green-600 mb-2">Code Redeemed!</h2>
+                <p class="text-gray-600 mb-6">You have successfully redeemed your code and earned ₹100!</p>
+                
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-center justify-center text-green-700">
+                        <i class="fas fa-coins mr-2"></i>
+                        <span class="font-semibold">+₹100 added to your balance!</span>
+                    </div>
+                </div>
+
+                <a href="/" 
+                    class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-store mr-2"></i>
+                    Start Shopping
+                </a>
+            </div>
+        </div>
+
+        <!-- Redeemed Codes Display -->
+        <div id="redeemed-codes" class="mt-8 bg-white rounded-2xl shadow-sm border p-6 hidden">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                <i class="fas fa-list mr-2 text-blue-600"></i>
+                Your Redeemed Codes
+            </h3>
+            <div id="codes-list" class="space-y-2">
+                <!-- Redeemed codes will appear here -->
+            </div>
+        </div>
+
+        <!-- Hint Section -->
+        <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-lightbulb text-blue-500 text-lg"></i>
+                </div>
+                <div class="ml-3">
+                    <h4 class="text-blue-800 font-medium">Need a code?</h4>
+                    <p class="text-blue-700 text-sm mt-1">
+                        Redeem codes are distributed to registered users. Each code adds ₹100 to your balance.
+                        Codes follow a simple pattern - try experimenting!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Global state
+        let redeemedCodes = JSON.parse(localStorage.getItem('redeemedCodes') || '[]');
+        let userBalance = 0;
+
+        // DOM elements
+        const redeemForm = document.getElementById('redeem-form');
+        const successState = document.getElementById('success-state');
+        const redeemCodeForm = document.getElementById('redeem-code-form');
+        const statusMessage = document.getElementById('status-message');
+        const balanceDisplay = document.getElementById('balance');
+        const redeemedCodesDiv = document.getElementById('redeemed-codes');
+        const codesList = document.getElementById('codes-list');
+
+        // Initialize
+        function init() {
+            loadBalance();
+            displayRedeemedCodes();
+            setupEventListeners();
+        }
+
+        // Load user balance
+        async function loadBalance() {
+            try {
+                const response = await fetch('/api/balance');
+                const data = await response.json();
+                userBalance = data.balance;
+                updateBalanceDisplay();
+            } catch (error) {
+                console.error('Failed to load balance:', error);
+            }
+        }
+
+        // Update balance display
+        function updateBalanceDisplay() {
+            balanceDisplay.textContent = userBalance;
+        }
+
+        // Display redeemed codes
+        function displayRedeemedCodes() {
+            if (redeemedCodes.length > 0) {
+                redeemedCodesDiv.classList.remove('hidden');
+                codesList.innerHTML = redeemedCodes.map(code => `
+                    <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                        <span class="font-mono text-sm">${code}</span>
+                        <span class="text-green-600 text-sm font-medium">+₹100</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Show status message
+        function showStatus(message, isError = false) {
+            statusMessage.className = `mt-6 p-4 rounded-lg ${isError ? 'bg-red-50 border border-red-200' : 'bg-green-50 border border-green-200'}`;
+            statusMessage.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${isError ? 'fa-exclamation-triangle text-red-500' : 'fa-check-circle text-green-500'} mr-3"></i>
+                    <span class="${isError ? 'text-red-700' : 'text-green-700'}">${message}</span>
+                </div>
+            `;
+            statusMessage.classList.remove('hidden');
+        }
+
+        // Redeem code
+        async function redeemCode(code) {
+            try {
+                const response = await fetch('/api/redeem', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ code: code.toUpperCase() })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Add to redeemed codes
+                    redeemedCodes.push(code.toUpperCase());
+                    localStorage.setItem('redeemedCodes', JSON.stringify(redeemedCodes));
+                    
+                    // Update balance
+                    userBalance = result.balance;
+                    updateBalanceDisplay();
+                    
+                    // Show success state and hide form
+                    redeemForm.classList.add('hidden');
+                    successState.classList.remove('hidden');
+                    
+                    displayRedeemedCodes();
+                } else {
+                    showStatus(result.message, true);
+                }
+            } catch (error) {
+                console.error('Redeem failed:', error);
+                showStatus('Failed to redeem code. Please try again.', true);
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            redeemCodeForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const code = document.getElementById('redeem-code').value.trim();
+                if (code) {
+                    redeemCode(code);
+                }
+            });
+
+            // Auto-uppercase input
+            document.getElementById('redeem-code').addEventListener('input', (e) => {
+                e.target.value = e.target.value.toUpperCase();
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>

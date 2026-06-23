@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DenimCraft - Shipment Tracking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-gray-900">DenimCraft</h1>
+                    <span class="text-sm text-gray-500">Shipment Tracking System</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-500">
+                        <i class="fas fa-truck mr-1"></i>Track Your Order
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl text-white p-8 mb-8">
+            <h2 class="text-3xl font-bold mb-2">Track Your Shipments</h2>
+            <p class="text-blue-100">Monitor your denim orders in real-time</p>
+        </div>
+
+        <!-- Available Shipments -->
+        <div class="bg-white rounded-xl shadow-sm border p-6 mb-8">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Available Shipments</h3>
+            <div id="available-shipments" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Available shipments will be loaded here -->
+            </div>
+            <div id="loading-available" class="text-center py-4">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="mt-2 text-gray-600">Loading available shipments...</p>
+            </div>
+        </div>
+
+        <!-- Shipment Details -->
+        <div id="shipment-details" class="bg-white rounded-xl shadow-sm border p-6 hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-semibold text-gray-900">Shipment Details</h3>
+                <button id="close-details" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="shipment-content">
+                <!-- Shipment details will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-details" class="text-center py-8 hidden">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-4 text-gray-600">Loading shipment details...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-message" class="bg-red-50 border border-red-200 rounded-lg p-4 hidden">
+            <div class="flex">
+                <i class="fas fa-exclamation-triangle text-red-500 mr-3 mt-1"></i>
+                <div>
+                    <h4 class="text-red-800 font-medium">Error</h4>
+                    <p id="error-text" class="text-red-700 mt-1"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal (for flag display) -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 relative z-10 text-center">
+            <div class="mb-6">
+                <i class="fas fa-flag text-6xl text-green-500 mb-4"></i>
+                <h3 class="text-2xl font-bold text-green-600 mb-2">Congratulations!</h3>
+                <p id="success-message" class="text-gray-700 mb-4"></p>
+                <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 mt-4">
+                    <code id="flag-display" class="text-lg font-mono font-bold text-blue-600"></code>
+                </div>
+            </div>
+            <button id="close-success" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Continue Tracking
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let availableShipments = [];
+
+        // DOM elements
+        const availableShipmentsDiv = document.getElementById('available-shipments');
+        const loadingAvailable = document.getElementById('loading-available');
+        const shipmentDetails = document.getElementById('shipment-details');
+        const shipmentContent = document.getElementById('shipment-content');
+        const loadingDetails = document.getElementById('loading-details');
+        const errorMessage = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+        const closeDetails = document.getElementById('close-details');
+        const successModal = document.getElementById('success-modal');
+        const successMessage = document.getElementById('success-message');
+        const flagDisplay = document.getElementById('flag-display');
+
+        // Initialize app
+        async function init() {
+            await loadAvailableShipments();
+            setupEventListeners();
+        }
+
+        // Load available shipments
+        async function loadAvailableShipments() {
+            try {
+                const response = await fetch('/api/available-shipments');
+                availableShipments = await response.json();
+                renderAvailableShipments();
+                loadingAvailable.classList.add('hidden');
+            } catch (error) {
+                console.error('Failed to load available shipments:', error);
+                showError('Failed to load available shipments');
+                loadingAvailable.classList.add('hidden');
+            }
+        }
+
+        // Render available shipments
+        function renderAvailableShipments() {
+            const shipmentsHTML = availableShipments.map(shipment => `
+                <div class="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors" onclick="loadShipmentDetails(${shipment.id})">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Tracking #${shipment.trackingNumber}</h4>
+                            <p class="text-sm text-gray-600">Status: <span class="font-medium">${shipment.status}</span></p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+            `).join('');
+
+            availableShipmentsDiv.innerHTML = shipmentsHTML;
+        }
+
+        // Load shipment details (IDOR vulnerability here)
+        async function loadShipmentDetails(shipmentId) {
+            hideError();
+            shipmentDetails.classList.add('hidden');
+            loadingDetails.classList.remove('hidden');
+
+            try {
+                // CRITICAL: This API call uses the shipment ID directly from user input
+                // Users can modify the ID to access unauthorized shipments
+                const response = await fetch(`/api/shipment/${shipmentId}`);
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to load shipment');
+                }
+
+                const shipment = await response.json();
+                renderShipmentDetails(shipment);
+                loadingDetails.classList.add('hidden');
+                shipmentDetails.classList.remove('hidden');
+
+                // Check if this is the flag shipment
+                if (shipment.items && shipment.items.some(item => item.name.includes('FLAG{'))) {
+                    const flagItem = shipment.items.find(item => item.name.includes('FLAG{'));
+                    showFlag(flagItem.name, shipment.specialMessage || 'You found the hidden shipment!');
+                }
+
+            } catch (error) {
+                console.error('Failed to load shipment details:', error);
+                showError(error.message);
+                loadingDetails.classList.add('hidden');
+            }
+        }
+
+        // Render shipment details
+        function renderShipmentDetails(shipment) {
+            const statusColor = getStatusColor(shipment.status);
+            const isDelivered = shipment.status === 'Delivered';
+            
+            const itemsHTML = shipment.items.map(item => `
+                <div class="flex justify-between py-2">
+                    <span>${item.name} (×${item.quantity})</span>
+                    <span class="font-medium">₹${item.price}</span>
+                </div>
+            `).join('');
+
+            const updatesHTML = shipment.updates.map(update => `
+                <div class="flex items-start space-x-3 py-3 border-b border-gray-100 last:border-b-0">
+                    <div class="w-3 h-3 rounded-full ${statusColor} flex-shrink-0 mt-1"></div>
+                    <div class="flex-1">
+                        <p class="font-medium text-gray-900">${update.status}</p>
+                        <p class="text-sm text-gray-600">${update.location}</p>
+                        <p class="text-xs text-gray-500 mt-1">${update.timestamp}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            const specialMessageHTML = shipment.specialMessage ? `
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                    <div class="flex">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        <div>
+                            <h4 class="text-green-800 font-medium">Special Message</h4>
+                            <p class="text-green-700 mt-1">${shipment.specialMessage}</p>
+                        </div>
+                    </div>
+                </div>
+            ` : '';
+
+            shipmentContent.innerHTML = `
+                ${specialMessageHTML}
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Shipment Overview -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Shipment Overview</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Tracking Number:</span>
+                                <span class="font-medium">${shipment.trackingNumber}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Status:</span>
+                                <span class="font-medium ${statusColor.replace('bg-', 'text-').replace('-400', '-600')}">${shipment.status}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Origin:</span>
+                                <span class="font-medium">${shipment.origin}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Destination:</span>
+                                <span class="font-medium">${shipment.destination}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">${isDelivered ? 'Delivered:' : 'Estimated Delivery:'}</span>
+                                <span class="font-medium">${isDelivered ? shipment.actualDelivery : shipment.estimatedDelivery}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Carrier:</span>
+                                <span class="font-medium">${shipment.carrier}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Current Location:</span>
+                                <span class="font-medium">${shipment.currentLocation}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Items & Updates -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Items</h4>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                            ${itemsHTML}
+                            <div class="border-t border-gray-200 pt-2 mt-2">
+                                <div class="flex justify-between font-semibold">
+                                    <span>Total Value:</span>
+                                    <span>₹${shipment.totalValue}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Tracking Updates</h4>
+                        <div class="space-y-1">
+                            ${updatesHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Get status color class
+        function getStatusColor(status) {
+            switch (status.toLowerCase()) {
+                case 'delivered': return 'bg-green-400';
+                case 'in transit': return 'bg-blue-400';
+                case 'processing': return 'bg-yellow-400';
+                case 'classified': return 'bg-purple-400';
+                default: return 'bg-gray-400';
+            }
+        }
+
+        // Show success modal with flag
+        function showFlag(flag, message) {
+            successMessage.textContent = message;
+            flagDisplay.textContent = flag;
+            successModal.classList.remove('hidden');
+            successModal.classList.add('flex');
+        }
+
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+        }
+
+        // Hide error message
+        function hideError() {
+            errorMessage.classList.add('hidden');
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            closeDetails.addEventListener('click', () => {
+                shipmentDetails.classList.add('hidden');
+            });
+
+            document.getElementById('close-success').addEventListener('click', () => {
+                successModal.classList.add('hidden');
+                successModal.classList.remove('flex');
+            });
+
+            // Escape key handlers
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    shipmentDetails.classList.add('hidden');
+                    successModal.classList.add('hidden');
+                    successModal.classList.remove('flex');
+                }
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>
