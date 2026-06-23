@@ -1,0 +1,2689 @@
+[
+  {
+    "alert_id": "alert-20260915-0001",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:00:00Z",
+    "ingested_at": "2026-09-15T09:05:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "email",
+        "malware"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Email: Malicious Attachment Detected",
+      "description": "Email with CHM attachment targeting think-tank employee.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1566.001"
+      ]
+    },
+    "alert": {
+      "title": "Email: Malicious Attachment Detected",
+      "summary": "Spearphishing email with 'DPRK_Policy_Review.chm' attachment.",
+      "status": "new",
+      "confidence": 0.87,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "gw-mail01",
+      "type": "gateway"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0001",
+      "host_risk": 32,
+      "user_risk": 22,
+      "asset_criticality": "Medium",
+      "attack_stage": "initial-access",
+      "kill_chain_phase": "Delivery"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1566.001",
+        "name": "Spearphishing Attachment"
+      }
+    },
+    "evidence": [
+      {
+        "type": "email_attachment",
+        "data": {
+          "file_name": "DPRK_Policy_Review.chm"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "192.119.65.114",
+      "dst_ip": "10.10.2.70",
+      "dst_port": 25
+    },
+    "knowledge_base": "Email: Malicious Attachment Detected - Analyze the associated files or emails for malicious characteristics."
+  },
+  {
+    "alert_id": "alert-20260915-0002",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:05:00Z",
+    "ingested_at": "2026-09-15T09:07:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Potential Port Scan Detected",
+      "description": "High volume of connections across multiple ports.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: Potential Port Scan Detected",
+      "summary": "High volume of connections across multiple ports from internal IP.",
+      "status": "new",
+      "confidence": 0.46,
+      "risk_score": 33,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0002",
+      "host_risk": 46,
+      "user_risk": 83,
+      "asset_criticality": "Medium"
+    },
+    "network": {
+      "src_ip": "10.10.5.100",
+      "dst_ip": "10.10.2.70",
+      "dst_port": 445
+    },
+    "knowledge_base": "Authorized scan, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0003",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:10:00Z",
+    "ingested_at": "2026-09-15T09:13:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Compiled HTML Help spawned command shell",
+      "description": "hh.exe executed cmd.exe.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1218.001"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Compiled HTML Help spawned command shell",
+      "summary": "hh.exe executed cmd.exe.",
+      "status": "new",
+      "confidence": 0.92,
+      "risk_score": 84,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "hh.exe",
+        "command_line": "hh.exe C:\\Users\\klee\\Downloads\\DPRK_Policy_Review.chm"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0003",
+      "host_risk": 50,
+      "user_risk": 53,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Exploitation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1218.001",
+        "name": "System Binary Proxy Execution: Compiled HTML File"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "hh.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Execution: Compiled HTML Help spawned command shell - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0004",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:11:00Z",
+    "ingested_at": "2026-09-15T09:13:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "File: VBScript Dropped by Command Shell",
+      "description": "cmd.exe created a VBS file in AppData.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.005"
+      ]
+    },
+    "alert": {
+      "title": "File: VBScript Dropped by Command Shell",
+      "summary": "cmd.exe created init.vbs.",
+      "status": "new",
+      "confidence": 0.81,
+      "risk_score": 79,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "cmd.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0004",
+      "host_risk": 40,
+      "user_risk": 79,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.005",
+        "name": "Command and Scripting Interpreter: Visual Basic"
+      }
+    },
+    "evidence": [
+      {
+        "type": "file_creation",
+        "data": {
+          "file_path": "C:\\Users\\klee\\AppData\\Roaming\\init.vbs"
+        }
+      }
+    ],
+    "knowledge_base": "File: VBScript Dropped by Command Shell - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0005",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:15:00Z",
+    "ingested_at": "2026-09-15T09:18:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Failed Logon",
+      "description": "User experienced 3 failed logon attempts.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Failed Logon",
+      "summary": "User experienced 3 failed logon attempts.",
+      "status": "new",
+      "confidence": 0.64,
+      "risk_score": 14,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "mroberts"
+      },
+      "process": {
+        "name": "lsass.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0005",
+      "host_risk": 24,
+      "user_risk": 50,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260915-0006",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:18:00Z",
+    "ingested_at": "2026-09-15T09:20:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "persistence",
+        "registry"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Persistence: Suspicious Registry Run Key",
+      "description": "VBScript added to registry run key.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1547.001"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Suspicious Registry Run Key",
+      "summary": "VBScript added to registry run key.",
+      "status": "new",
+      "confidence": 0.84,
+      "risk_score": 81,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe",
+        "command_line": "wscript.exe C:\\Users\\klee\\AppData\\Roaming\\init.vbs"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0006",
+      "host_risk": 67,
+      "user_risk": 43,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1547.001",
+        "name": "Registry Run Keys / Startup Folder"
+      }
+    },
+    "evidence": [
+      {
+        "type": "registry_event",
+        "data": {
+          "key": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\SystemInit"
+        }
+      }
+    ],
+    "additional_context": "init.vbs established persistence via HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\SystemInit.",
+    "knowledge_base": "Persistence: Suspicious Registry Run Key - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0007",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:22:00Z",
+    "ingested_at": "2026-09-15T09:23:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: Remote PowerShell Execution",
+      "description": "PowerShell remoting used by Administrator account.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: Remote PowerShell Execution",
+      "summary": "PowerShell remoting used by Administrator account.",
+      "status": "new",
+      "confidence": 0.37,
+      "risk_score": 50,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-WEB01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jsmith"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell -NoProfile -ExecutionPolicy Bypass -Command Enter-PSSession -ComputerName SRV-WEB01"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0007",
+      "host_risk": 48,
+      "user_risk": 51,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate IT administration activity, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0008",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:25:00Z",
+    "ingested_at": "2026-09-15T09:26:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.88,
+      "risk_score": 92,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0008",
+      "host_risk": 32,
+      "user_risk": 41,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "additional_context": "wscript.exe beaconing to Kimsuky C2 infrastructure to download next stage.",
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0009",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:30:00Z",
+    "ingested_at": "2026-09-15T09:33:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "defense_evasion"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Defense Evasion: Attempt to Stop Security Service",
+      "description": "PowerShell used to modify Windows Defender settings.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1562.001"
+      ]
+    },
+    "alert": {
+      "title": "Defense Evasion: Attempt to Stop Security Service",
+      "summary": "PowerShell modifying Defender settings.",
+      "status": "new",
+      "confidence": 0.74,
+      "risk_score": 76,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell.exe -ep bypass -c Add-MpPreference -ExclusionPath C:\\Users\\klee\\AppData\\Roaming"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0009",
+      "host_risk": 37,
+      "user_risk": 26,
+      "asset_criticality": "Medium",
+      "attack_stage": "defense-evasion",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1562.001",
+        "name": "Impair Defenses: Disable or Modify Tools"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "powershell.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Defense Evasion: Attempt to Stop Security Service - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0010",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:35:00Z",
+    "ingested_at": "2026-09-15T09:40:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Discovery: System Information Discovery",
+      "description": "Systeminfo executed by suspicious process.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1082"
+      ]
+    },
+    "alert": {
+      "title": "Discovery: System Information Discovery",
+      "summary": "Systeminfo executed by suspicious process.",
+      "status": "new",
+      "confidence": 0.64,
+      "risk_score": 94,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "cmd.exe",
+        "command_line": "cmd.exe /c systeminfo > C:\\Users\\klee\\AppData\\Roaming\\sys.txt"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0010",
+      "host_risk": 50,
+      "user_risk": 51,
+      "asset_criticality": "Medium",
+      "attack_stage": "discovery",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1082",
+        "name": "System Information Discovery"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "systeminfo.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Discovery: System Information Discovery - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0011",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:38:00Z",
+    "ingested_at": "2026-09-15T09:40:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Large Outbound Data Transfer",
+      "description": "Large volume of data sent to external IP.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: Large Outbound Data Transfer",
+      "summary": "Large volume of data sent to external IP.",
+      "status": "new",
+      "confidence": 0.62,
+      "risk_score": 23,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "OneDrive.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0011",
+      "host_risk": 60,
+      "user_risk": 62,
+      "asset_criticality": "Medium"
+    },
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "13.107.136.9",
+      "dst_port": 443
+    },
+    "knowledge_base": "Authorized data transfer/sync process, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0012",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:40:00Z",
+    "ingested_at": "2026-09-15T09:45:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Discovery: Process Discovery",
+      "description": "Tasklist executed by suspicious process.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1057"
+      ]
+    },
+    "alert": {
+      "title": "Discovery: Process Discovery",
+      "summary": "Tasklist executed by suspicious process.",
+      "status": "new",
+      "confidence": 0.86,
+      "risk_score": 77,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "tasklist.exe",
+        "command_line": "tasklist /v >> C:\\Users\\klee\\AppData\\Roaming\\sys.txt"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0012",
+      "host_risk": 74,
+      "user_risk": 72,
+      "asset_criticality": "Medium",
+      "attack_stage": "discovery",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1057",
+        "name": "Process Discovery"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "tasklist.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Discovery: Process Discovery - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0013",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:50:00Z",
+    "ingested_at": "2026-09-15T09:51:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file",
+        "credential_access"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Credential Access: Browser Data Accessed",
+      "description": "Suspicious process accessing Chrome user data.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1539"
+      ]
+    },
+    "alert": {
+      "title": "Credential Access: Browser Data Accessed",
+      "summary": "PowerShell accessing Chrome Login Data.",
+      "status": "new",
+      "confidence": 0.71,
+      "risk_score": 94,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0013",
+      "host_risk": 74,
+      "user_risk": 89,
+      "asset_criticality": "Medium",
+      "attack_stage": "credential-access",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1539",
+        "name": "Steal Web Session Cookie"
+      }
+    },
+    "evidence": [
+      {
+        "type": "file_access",
+        "data": {
+          "file_path": "C:\\Users\\klee\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data"
+        }
+      }
+    ],
+    "knowledge_base": "Credential Access: Browser Data Accessed - Verify the activity with the relevant IT or Security team to determine its legitimacy."
+  },
+  {
+    "alert_id": "alert-20260915-0014",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T09:55:00Z",
+    "ingested_at": "2026-09-15T10:00:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Unsigned PowerShell Script",
+      "description": "Execution of an unsigned local script.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Execution: Unsigned PowerShell Script",
+      "summary": "Execution of an unsigned local script.",
+      "status": "new",
+      "confidence": 0.56,
+      "risk_score": 29,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-DEV1",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "dsmith"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell ./build_artifacts.ps1"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0014",
+      "host_risk": 71,
+      "user_risk": 76,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate IT administration activity, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0015",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:05:00Z",
+    "ingested_at": "2026-09-15T10:10:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "collection"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Collection: Keylogging Activity Detected",
+      "description": "Unsigned DLL injected into explorer.exe hooking keyboard.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1056.001"
+      ]
+    },
+    "alert": {
+      "title": "Collection: Keylogging Activity Detected",
+      "summary": "Keylogger injected into explorer.exe.",
+      "status": "new",
+      "confidence": 0.74,
+      "risk_score": 85,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "explorer.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0015",
+      "host_risk": 30,
+      "user_risk": 76,
+      "asset_criticality": "Medium",
+      "attack_stage": "collection",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1056.001",
+        "name": "Input Capture: Keylogging"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_injection",
+        "data": {
+          "target_process": "explorer.exe"
+        }
+      }
+    ],
+    "additional_context": "Kimsuky payload injected a keylogger into explorer.exe to capture keystrokes and sensitive data.",
+    "knowledge_base": "Collection: Keylogging Activity Detected - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0016",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:20:00Z",
+    "ingested_at": "2026-09-15T10:22:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file",
+        "collection"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Collection: Data Staging via Archive",
+      "description": "Large CAB or ZIP file created in AppData.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1560.001"
+      ]
+    },
+    "alert": {
+      "title": "Collection: Data Staging via Archive",
+      "summary": "Archive file created using makecab.exe.",
+      "status": "new",
+      "confidence": 0.88,
+      "risk_score": 92,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KLEE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "makecab.exe",
+        "command_line": "makecab.exe C:\\Users\\klee\\AppData\\Roaming\\sys.txt C:\\Users\\klee\\AppData\\Roaming\\temp.cab"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0016",
+      "host_risk": 51,
+      "user_risk": 55,
+      "asset_criticality": "Medium",
+      "attack_stage": "collection",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1560.001",
+        "name": "Archive Collected Data: Archive via Utility"
+      }
+    },
+    "evidence": [
+      {
+        "type": "file_creation",
+        "data": {
+          "file_path": "C:\\Users\\klee\\AppData\\Roaming\\temp.cab"
+        }
+      }
+    ],
+    "additional_context": "Adversary using makecab.exe to archive collected sys.txt, Chrome data, and keylog data.",
+    "knowledge_base": "Collection: Data Staging via Archive - Verify the activity with the relevant IT or Security team to determine its legitimacy."
+  },
+  {
+    "alert_id": "alert-20260915-0017",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:25:00Z",
+    "ingested_at": "2026-09-15T10:29:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Logon Outside Business Hours",
+      "description": "Successful logon occurred at 3 AM.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Logon Outside Business Hours",
+      "summary": "Successful logon occurred at 3 AM.",
+      "status": "new",
+      "confidence": 0.61,
+      "risk_score": 10,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "SRV-DB01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "dba_user"
+      },
+      "process": {
+        "name": "svchost.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0017",
+      "host_risk": 42,
+      "user_risk": 87,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260915-0018",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:30:00Z",
+    "ingested_at": "2026-09-15T10:34:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "exfiltration"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Exfiltration: Data Exfiltration via HTTP POST",
+      "description": "Large HTTP POST request to suspicious domain.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1041"
+      ]
+    },
+    "alert": {
+      "title": "Exfiltration: Data Exfiltration via HTTP POST",
+      "summary": "Large POST request to suspicious domain.",
+      "status": "new",
+      "confidence": 0.86,
+      "risk_score": 91,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0018",
+      "host_risk": 30,
+      "user_risk": 21,
+      "asset_criticality": "Medium",
+      "attack_stage": "exfiltration",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1041",
+        "name": "Exfiltration Over C2 Channel"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 80
+    },
+    "additional_context": "Adversary exfiltrating temp.cab to Kimsuky infrastructure via HTTP POST.",
+    "knowledge_base": "Exfiltration: Data Exfiltration via HTTP POST"
+  },
+  {
+    "alert_id": "alert-20260915-0019",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:35:00Z",
+    "ingested_at": "2026-09-15T10:37:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.8,
+      "risk_score": 76,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0019",
+      "host_risk": 57,
+      "user_risk": 71,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0020",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:40:00Z",
+    "ingested_at": "2026-09-15T10:42:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.78,
+      "risk_score": 90,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0020",
+      "host_risk": 73,
+      "user_risk": 90,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0021",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:45:00Z",
+    "ingested_at": "2026-09-15T10:47:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.82,
+      "risk_score": 82,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0021",
+      "host_risk": 52,
+      "user_risk": 49,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0022",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:50:00Z",
+    "ingested_at": "2026-09-15T10:51:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.65,
+      "risk_score": 99,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0022",
+      "host_risk": 65,
+      "user_risk": 29,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0023",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T10:55:00Z",
+    "ingested_at": "2026-09-15T10:57:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.7,
+      "risk_score": 71,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0023",
+      "host_risk": 32,
+      "user_risk": 60,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0024",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:00:00Z",
+    "ingested_at": "2026-09-15T11:03:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.98,
+      "risk_score": 74,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0024",
+      "host_risk": 28,
+      "user_risk": 21,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0025",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:05:00Z",
+    "ingested_at": "2026-09-15T11:09:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.87,
+      "risk_score": 94,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0025",
+      "host_risk": 53,
+      "user_risk": 45,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0026",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:10:00Z",
+    "ingested_at": "2026-09-15T11:14:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.97,
+      "risk_score": 72,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0026",
+      "host_risk": 51,
+      "user_risk": 38,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0027",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:15:00Z",
+    "ingested_at": "2026-09-15T11:20:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.72,
+      "risk_score": 98,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0027",
+      "host_risk": 83,
+      "user_risk": 87,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0028",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:20:00Z",
+    "ingested_at": "2026-09-15T11:24:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.98,
+      "risk_score": 100,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0028",
+      "host_risk": 61,
+      "user_risk": 46,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0029",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:25:00Z",
+    "ingested_at": "2026-09-15T11:28:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.93,
+      "risk_score": 94,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0029",
+      "host_risk": 65,
+      "user_risk": 56,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0030",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:30:00Z",
+    "ingested_at": "2026-09-15T11:32:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.98,
+      "risk_score": 83,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0030",
+      "host_risk": 38,
+      "user_risk": 57,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0031",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:35:00Z",
+    "ingested_at": "2026-09-15T11:36:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.74,
+      "risk_score": 92,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0031",
+      "host_risk": 35,
+      "user_risk": 37,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0032",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:40:00Z",
+    "ingested_at": "2026-09-15T11:44:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.76,
+      "risk_score": 99,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0032",
+      "host_risk": 20,
+      "user_risk": 46,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0033",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T11:45:00Z",
+    "ingested_at": "2026-09-15T11:46:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic HTTPS connections to unknown external IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Periodic HTTPS connections to unknown external IP.",
+      "status": "new",
+      "confidence": 0.78,
+      "risk_score": 98,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "klee"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0033",
+      "host_risk": 20,
+      "user_risk": 90,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "27.102.114.89"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.70",
+      "dst_ip": "27.102.114.89",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0034",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T12:20:00Z",
+    "ingested_at": "2026-09-15T12:24:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Unsigned PowerShell Script",
+      "description": "Execution of an unsigned local script.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Execution: Unsigned PowerShell Script",
+      "summary": "Execution of an unsigned local script.",
+      "status": "new",
+      "confidence": 0.66,
+      "risk_score": 32,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-DEV2",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "ajohnson"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell ./test_suite.ps1"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0034",
+      "host_risk": 89,
+      "user_risk": 64,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate IT administration activity, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0035",
+    "schema_version": "1.0",
+    "timestamp": "2026-09-15T12:30:00Z",
+    "ingested_at": "2026-09-15T12:35:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: DNS query to parked domain",
+      "description": "DNS query to recently registered or parked domain.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: DNS query to parked domain",
+      "summary": "DNS query to recently registered or parked domain.",
+      "status": "new",
+      "confidence": 0.44,
+      "risk_score": 16,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:dns",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "DNS-SERVER-01",
+      "type": "server"
+    },
+    "actor": {
+      "user": {
+        "name": "jsmith"
+      },
+      "process": {
+        "name": "chrome.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:dns",
+      "incident_id": "INC-2026-1502",
+      "correlation_id": "corr-kim-0035",
+      "host_risk": 22,
+      "user_risk": 41,
+      "asset_criticality": "High"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  }
+]

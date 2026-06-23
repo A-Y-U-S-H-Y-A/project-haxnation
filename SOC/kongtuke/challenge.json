@@ -1,0 +1,23 @@
+{
+  "id": "soc-kongtuke",
+  "name": "Caught in the Web: The KongTuke Intrusion",
+  "category": [
+    "SOC"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "<div class=\"challenge-description\">\n  <h3>Background</h3>\n  <p>At 13:00 ZULU, our SOC dashboard lit up with a sequence of troubling alerts originating from the endpoint of employee <em>kthomas</em>. It started with a seemingly harmless web browsing session that was abruptly redirected to a known malicious domain. Within minutes, the EDR agent triggered critical alarms indicating obfuscated PowerShell execution and the silent installation of a portable Python environment.</p>\n\n  <h3>The Threat</h3>\n  <p>Threat intelligence suggests these are the hallmarks of <strong>KongTuke</strong>, an advanced threat actor known for leveraging drive-by compromises and custom Python-based implants like <em>ModeloRAT</em> to establish covert command-and-control (C2) channels.</p>\n\n  <h3>Your Mission</h3>\n  <p>As the incident responder on duty, you have been provided with the consolidated alert logs spanning our Network Proxy, Firewall, and Endpoint Detection and Response (EDR) solutions. The logs contain a mix of genuine threats and benign background noise.</p>\n  <p>You need to cut through the noise, identify the false positives, and reconstruct the complete attack kill chain:</p>\n  <ul>\n    <li>Identify the initial infection vector and associated malicious domains.</li>\n    <li>Deobfuscate and analyze the execution chain that led to the payload delivery.</li>\n    <li>Trace the persistence mechanism and the deployment of ModeloRAT.</li>\n    <li>Pinpoint the C2 infrastructure the implant is actively communicating with.</li>\n  </ul>\n  <p>Good luck, hunter. The network depends on you.</p>\n</div>",
+  "hints": [],
+  "flags": [],
+  "assets": [
+    "./kongtuke_scenario.json"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

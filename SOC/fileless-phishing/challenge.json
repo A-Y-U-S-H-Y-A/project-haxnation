@@ -1,0 +1,23 @@
+{
+  "id": "soc-fileless-phishing",
+  "name": "Operation Ghost Script: The Fileless Phish",
+  "category": [
+    "SOC"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "<div class=\"challenge-description\">\n  <h2>Scenario Overview</h2>\n  <p>Our Security Operations Center (SOC) recently escalated an incident (<strong>INC-2026-9500</strong>) originating from the endpoint <code>DESKTOP-FIN01</code> assigned to user <em>asmith</em>. Initial triage suggests a sophisticated <strong>fileless malware</strong> attack stemming from a seemingly harmless Office document.</p>\n  \n  <p>The adversary successfully bypassed traditional file-based defenses by \"Living off the Land\" (LotL). They utilized native Windows utilities to execute obfuscated code, establish a persistent foothold, and initiate periodic beaconing to an external Command and Control (C2) server.</p>\n\n  <h3>Your Mission</h3>\n  <p>You have been provided with the correlated SIEM/EDR alert logs in JSON format. As the lead Incident Responder, you must analyze the alerts, reconstruct the attack kill chain, and answer the following:</p>\n  <ul>\n    <li><strong>Initial Access & Execution:</strong> What was the obfuscated payload executed by the malicious Word document?</li>\n    <li><strong>Persistence:</strong> How did the attacker maintain access without dropping executable files on the disk?</li>\n    <li><strong>Command & Control:</strong> Identify the malicious C2 IP address and the frequency of the beacons.</li>\n    <li><strong>Triage:</strong> Differentiate the true positive indicators of compromise from benign background noise.</li>\n  </ul>\n  \n  <p>Download the <code>fileless_phishing_scenario.json</code> artifact to begin your investigation. Good luck, analyst!</p>\n</div>",
+  "hints": [],
+  "flags": [],
+  "assets": [
+    "./fileless_phishing_scenario.json"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

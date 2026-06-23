@@ -1,0 +1,23 @@
+{
+  "id": "soc-cobalt-kitty",
+  "name": "Operation Cobalt Kitty: The Feline Intrusion",
+  "category": [
+    "SOC"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "<div class=\"challenge-description\">\n  <h3>Background</h3>\n  <p>The Security Operations Center (SOC) at our organization has detected a series of alarming activities. Initial intelligence and threat hunting efforts suggest a highly sophisticated Advanced Persistent Threat (APT) group has compromised our network. The observed Tactics, Techniques, and Procedures (TTPs) strongly resemble the notorious <strong>Operation Cobalt Kitty</strong>.</p>\n  \n  <h3>The Incident</h3>\n  <p>The breach began when an employee received a highly targeted spearphishing email with a malicious attachment (<code>CV.doc</code>). Since then, our SIEM has ingested a flurry of alerts. The threat actors have deployed a robust arsenal of advanced techniques, including:</p>\n  <ul>\n    <li>Persistence mechanisms via suspicious scheduled tasks (using <code>mshta.exe</code>) and malicious registry run keys.</li>\n    <li>Defense evasion using obfuscated PowerShell scripts and executing payloads hidden within NTFS Alternate Data Streams (ADS).</li>\n    <li>In-memory execution of <strong>Cobalt Strike</strong> beacons.</li>\n    <li>Covert Command and Control (C2) communications, including DNS tunneling and customized Outlook macro backdoors.</li>\n    <li>Credential dumping and subsequent lateral movement using Pass-the-Hash and WMI execution.</li>\n  </ul>\n\n  <h3>Your Mission</h3>\n  <p>As the Lead Incident Responder, you are provided with a complete export of the SIEM alerts generated during the attack. Your task is to sift through the noise, identify the true positives, and piece together the entire attack kill chain.</p>\n  \n  <p>Can you connect the dots, track the adversary's lateral movement, and uncover the full extent of the compromise? Good luck, hunter!</p>\n</div>",
+  "hints": [],
+  "flags": [],
+  "assets": [
+    "./cobaltkitty_scenario.json"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

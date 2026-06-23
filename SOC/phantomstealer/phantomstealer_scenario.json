@@ -1,0 +1,1080 @@
+[
+  {
+    "alert_id": "alert-20260915-0001",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:00:00Z",
+    "ingested_at": "2026-06-08T09:02:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "malware"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Suspicious Executable Download",
+      "description": "Download of an executable file from untrusted IP.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1105"
+      ]
+    },
+    "alert": {
+      "title": "Network: Suspicious Executable Download",
+      "summary": "Executable downloaded from 189.56.0.19.",
+      "status": "new",
+      "confidence": 0.72,
+      "risk_score": 93,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "chrome.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0001",
+      "host_risk": 58,
+      "user_risk": 64,
+      "asset_criticality": "Medium",
+      "attack_stage": "initial-access",
+      "kill_chain_phase": "Delivery"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1105",
+        "name": "Ingress Tool Transfer"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "src_ip": "189.56.0.19"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "189.56.0.19",
+      "dst_port": 80
+    },
+    "additional_context": "User downloaded 'Payment_Receipt.exe' from known suspicious IP 189.56.0.19.",
+    "knowledge_base": "Network: Suspicious Executable Download"
+  },
+  {
+    "alert_id": "alert-20260915-0002",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:02:00Z",
+    "ingested_at": "2026-06-08T09:04:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: High DNS Query Volume",
+      "description": "Multiple DNS queries to unknown domains.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: High DNS Query Volume",
+      "summary": "Background DNS resolution.",
+      "status": "new",
+      "confidence": 0.43,
+      "risk_score": 47,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:dns",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "DNS-SERVER-01",
+      "type": "server"
+    },
+    "actor": {
+      "user": {
+        "name": "jsmith"
+      },
+      "process": {
+        "name": "chrome.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:dns",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0002",
+      "host_risk": 60,
+      "user_risk": 39,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Authorized scan, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0003",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:05:00Z",
+    "ingested_at": "2026-06-08T09:10:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: PhantomStealer Malware Detected",
+      "description": "Process matching known PhantomStealer hash executed.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1204.002"
+      ]
+    },
+    "alert": {
+      "title": "Execution: PhantomStealer Malware Detected",
+      "summary": "User executed the downloaded Payment_Receipt.exe.",
+      "status": "new",
+      "confidence": 0.73,
+      "risk_score": 73,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JDOE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe",
+        "file_hash": "ffca1ab5856d80e281fff18d6c33d1d069027186eb4ca8c37a15321fa6640f96"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0003",
+      "host_risk": 49,
+      "user_risk": 26,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1204.002",
+        "name": "User Execution: Malicious File"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "Payment_Receipt.exe",
+          "file_hash": "ffca1ab5856d80e281fff18d6c33d1d069027186eb4ca8c37a15321fa6640f96"
+        }
+      }
+    ],
+    "additional_context": "File executed matches SHA256 ffca1ab5856d80e281fff18d6c33d1d069027186eb4ca8c37a15321fa6640f96 identifying it as PhantomStealer.",
+    "knowledge_base": "Execution: PhantomStealer Malware Detected"
+  },
+  {
+    "alert_id": "alert-20260915-0004",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:06:00Z",
+    "ingested_at": "2026-06-08T09:09:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "defense_evasion"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Obfuscated Command Line Detected",
+      "description": "Payload spawned cmd or powershell with suspicious arguments.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.003"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Obfuscated Command Line Detected",
+      "summary": "Payment_Receipt.exe spawned cmd.exe with suspicious parameters.",
+      "status": "new",
+      "confidence": 0.65,
+      "risk_score": 100,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JDOE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "cmd.exe",
+        "command_line": "cmd.exe /c \"powershell -ExecutionPolicy Bypass -WindowStyle Hidden -EncodedCommand JABzAD0ATgBl...\""
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0004",
+      "host_risk": 23,
+      "user_risk": 62,
+      "asset_criticality": "Medium",
+      "attack_stage": "defense-evasion",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.003",
+        "name": "Command and Scripting Interpreter: Windows Command Shell"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "cmd.exe"
+        }
+      }
+    ],
+    "additional_context": "Command line truncated due to logging limits.",
+    "knowledge_base": "Execution: Obfuscated Command Line Detected - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0005",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:08:00Z",
+    "ingested_at": "2026-06-08T09:13:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Failed Logon",
+      "description": "Failed logon attempt.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Failed Logon",
+      "summary": "Failed logon attempt.",
+      "status": "new",
+      "confidence": 0.66,
+      "risk_score": 15,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jsmith"
+      },
+      "process": {
+        "name": "lsass.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0005",
+      "host_risk": 81,
+      "user_risk": 40,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260915-0006",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:10:00Z",
+    "ingested_at": "2026-06-08T09:15:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file",
+        "credential_access"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Credential Access: Browser Credential Theft",
+      "description": "Process accessing browser Login Data file.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1539"
+      ]
+    },
+    "alert": {
+      "title": "Credential Access: Browser Credential Theft",
+      "summary": "Payment_Receipt.exe reading Chrome Login Data.",
+      "status": "new",
+      "confidence": 0.87,
+      "risk_score": 96,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JDOE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0006",
+      "host_risk": 50,
+      "user_risk": 60,
+      "asset_criticality": "Medium",
+      "attack_stage": "credential-access",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1539",
+        "name": "Steal Web Session Cookie"
+      }
+    },
+    "evidence": [
+      {
+        "type": "file_access",
+        "data": {
+          "file_path": "C:\\Users\\jdoe\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data"
+        }
+      }
+    ],
+    "knowledge_base": "Credential Access: Browser Credential Theft - Verify the activity with the relevant IT or Security team to determine its legitimacy."
+  },
+  {
+    "alert_id": "alert-20260915-0007",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:11:00Z",
+    "ingested_at": "2026-06-08T09:16:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file",
+        "credential_access"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Credential Access: Application Credential Theft",
+      "description": "Process accessing FileZilla configuration.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1552.001"
+      ]
+    },
+    "alert": {
+      "title": "Credential Access: Application Credential Theft",
+      "summary": "Payment_Receipt.exe reading FileZilla recentservers.xml.",
+      "status": "new",
+      "confidence": 0.98,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JDOE",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0007",
+      "host_risk": 28,
+      "user_risk": 66,
+      "asset_criticality": "Medium",
+      "attack_stage": "credential-access",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1552.001",
+        "name": "Credentials In Files"
+      }
+    },
+    "evidence": [
+      {
+        "type": "file_access",
+        "data": {
+          "file_path": "C:\\Users\\jdoe\\AppData\\Roaming\\FileZilla\\recentservers.xml"
+        }
+      }
+    ],
+    "knowledge_base": "Credential Access: Application Credential Theft - Verify the activity with the relevant IT or Security team to determine its legitimacy."
+  },
+  {
+    "alert_id": "alert-20260915-0008",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:12:00Z",
+    "ingested_at": "2026-06-08T09:15:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Unsigned Script",
+      "description": "Execution of unsigned local script.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Execution: Unsigned Script",
+      "summary": "Execution of unsigned local script.",
+      "status": "new",
+      "confidence": 0.54,
+      "risk_score": 38,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-DEV",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "dsmith"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0008",
+      "host_risk": 70,
+      "user_risk": 89,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260915-0009",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:15:00Z",
+    "ingested_at": "2026-06-08T09:17:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "exfiltration"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Exfiltration: Data Exfiltration to Suspicious IP",
+      "description": "Large outbound data transfer to 37.208.46.130.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1041"
+      ]
+    },
+    "alert": {
+      "title": "Exfiltration: Data Exfiltration to Suspicious IP",
+      "summary": "Data exfiltrated to PhantomStealer C2 37.208.46.130.",
+      "status": "new",
+      "confidence": 0.84,
+      "risk_score": 77,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0009",
+      "host_risk": 76,
+      "user_risk": 60,
+      "asset_criticality": "Medium",
+      "attack_stage": "exfiltration",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1041",
+        "name": "Exfiltration Over C2 Channel"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "37.208.46.130"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "37.208.46.130",
+      "dst_port": 8080
+    },
+    "additional_context": "PhantomStealer compiled the stolen credentials and exfiltrated them to 37.208.46.130 over a non-standard port.",
+    "knowledge_base": "Exfiltration: Data Exfiltration to Suspicious IP"
+  },
+  {
+    "alert_id": "alert-20260915-0010",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:20:00Z",
+    "ingested_at": "2026-06-08T09:21:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic connections to 37.208.46.130.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Beaconing to 37.208.46.130.",
+      "status": "new",
+      "confidence": 0.96,
+      "risk_score": 81,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0010",
+      "host_risk": 21,
+      "user_risk": 54,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "37.208.46.130"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "37.208.46.130",
+      "dst_port": 8080
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0011",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:22:00Z",
+    "ingested_at": "2026-06-08T09:25:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic connections to 37.208.46.130.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Beaconing to 37.208.46.130.",
+      "status": "new",
+      "confidence": 0.76,
+      "risk_score": 79,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0011",
+      "host_risk": 77,
+      "user_risk": 38,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "37.208.46.130"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "37.208.46.130",
+      "dst_port": 8080
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0012",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:24:00Z",
+    "ingested_at": "2026-06-08T09:26:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic connections to 37.208.46.130.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Beaconing to 37.208.46.130.",
+      "status": "new",
+      "confidence": 0.69,
+      "risk_score": 80,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0012",
+      "host_risk": 42,
+      "user_risk": 85,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "37.208.46.130"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "37.208.46.130",
+      "dst_port": 8080
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0013",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:26:00Z",
+    "ingested_at": "2026-06-08T09:27:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic connections to 37.208.46.130.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Beaconing to 37.208.46.130.",
+      "status": "new",
+      "confidence": 0.6,
+      "risk_score": 72,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0013",
+      "host_risk": 20,
+      "user_risk": 59,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "37.208.46.130"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "37.208.46.130",
+      "dst_port": 8080
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  },
+  {
+    "alert_id": "alert-20260915-0014",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T09:28:00Z",
+    "ingested_at": "2026-06-08T09:32:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing Activity",
+      "description": "Periodic connections to 37.208.46.130.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing Activity",
+      "summary": "Beaconing to 37.208.46.130.",
+      "status": "new",
+      "confidence": 0.61,
+      "risk_score": 89,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "Payment_Receipt.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9050",
+      "correlation_id": "corr-ps-alert-20260915-0014",
+      "host_risk": 90,
+      "user_risk": 69,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "37.208.46.130"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "37.208.46.130",
+      "dst_port": 8080
+    },
+    "knowledge_base": "C2: Suspicious Beaconing Activity"
+  }
+]

@@ -8,6 +8,8 @@ REPO_ROOT = Path(__file__).parent.parent
 DIST_DIR = REPO_ROOT / 'dist'
 API_DIR = DIST_DIR / 'api'
 CHALLENGES_API_DIR = API_DIR / 'challenges'
+SOC_API_DIR = DIST_DIR / 'soc-api'
+SOC_CHALLENGES_API_DIR = SOC_API_DIR / 'challenges'
 
 # Required fields for validation
 REQUIRED_FIELDS = ['id', 'name', 'category', 'difficulty']
@@ -19,9 +21,12 @@ def build_api():
     if DIST_DIR.exists():
         shutil.rmtree(DIST_DIR)
     CHALLENGES_API_DIR.mkdir(parents=True)
+    SOC_CHALLENGES_API_DIR.mkdir(parents=True)
 
-    lite_index = []
-    challenge_count = 0
+    lite_index_main = []
+    lite_index_soc = []
+    challenge_count_main = 0
+    challenge_count_soc = 0
 
     # Crawl the repository for challenge.json files
     for root, _, files in os.walk(REPO_ROOT):
@@ -50,9 +55,15 @@ def build_api():
             # Calculate the exact folder path relative to the repo root (e.g., "Web Security/dev-at-99")
             rel_path = os.path.relpath(root, REPO_ROOT).replace('\\', '/')
             data['repo_path'] = rel_path
+            
+            is_soc = rel_path.startswith('SOC')
 
             # 2. Save the full JSON to the Deep Dive API endpoint
-            full_json_path = CHALLENGES_API_DIR / f"{chal_id}.json"
+            if is_soc:
+                full_json_path = SOC_CHALLENGES_API_DIR / f"{chal_id}.json"
+            else:
+                full_json_path = CHALLENGES_API_DIR / f"{chal_id}.json"
+                
             with open(full_json_path, 'w', encoding='utf-8') as f:
                 json.dump(data, f, separators=(',', ':')) # Minified
 
@@ -67,15 +78,24 @@ def build_api():
                 "difficulty": data['difficulty'],
                 "authors": author_names  # Added authors to the lite index
             }
-            lite_index.append(lite_entry)
-            challenge_count += 1
+            
+            if is_soc:
+                lite_index_soc.append(lite_entry)
+                challenge_count_soc += 1
+            else:
+                lite_index_main.append(lite_entry)
+                challenge_count_main += 1
 
-    # 4. Save the Master Lite Index
-    lite_index_path = API_DIR / 'challenges-lite.json'
-    with open(lite_index_path, 'w', encoding='utf-8') as f:
-        json.dump(lite_index, f, separators=(',', ':')) # Minified
+    # 4. Save the Master Lite Indexes
+    lite_index_main_path = API_DIR / 'challenges-lite.json'
+    with open(lite_index_main_path, 'w', encoding='utf-8') as f:
+        json.dump(lite_index_main, f, separators=(',', ':')) # Minified
+        
+    lite_index_soc_path = SOC_API_DIR / 'challenges-lite.json'
+    with open(lite_index_soc_path, 'w', encoding='utf-8') as f:
+        json.dump(lite_index_soc, f, separators=(',', ':')) # Minified
 
-    print(f"✅ Successfully built API for {challenge_count} challenges!")
+    print(f"✅ Successfully built API for {challenge_count_main} main challenges and {challenge_count_soc} SOC challenges!")
     print(f"📁 Output located in: {DIST_DIR}")
 
 if __name__ == "__main__":

@@ -1,0 +1,23 @@
+{
+  "id": "soc-fileless-rdp",
+  "name": "Operation Ghost Shell: The Fileless RDP Menace",
+  "category": [
+    "SOC"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "<div class=\"ctf-challenge\">\n  <h2>Scenario Overview</h2>\n  <p>Our Security Operations Center (SOC) has detected a flurry of suspicious alerts originating from one of our internet-facing servers, <strong>SRV-DMZ-01</strong>. While some alerts appear to be routine IT noise, others indicate a severe security breach.</p>\n  \n  <h3>The Incident</h3>\n  <p>The attack kicked off late in the evening with a barrage of authentication attempts. Shortly after, EDR and network sensors picked up obfuscated command executions, unusual outbound traffic, and stealthy system modifications. The attacker appears to be utilizing fileless malware techniques to evade traditional antivirus detections and blend in with normal administrative tasks.</p>\n  \n  <h3>Your Mission</h3>\n  <p>As the lead incident responder, your job is to analyze the provided JSON alert export and reconstruct the exact attack kill chain. You must sift through the noise (false positives) to uncover the truth.</p>\n  \n  <h4>Key Objectives:</h4>\n  <ul>\n    <li><strong>Initial Access:</strong> Identify how the attacker breached the server and from what IP address.</li>\n    <li><strong>Execution & Evasion:</strong> Decode the obfuscated PowerShell commands used to run the fileless payload.</li>\n    <li><strong>Command & Control (C2):</strong> Pinpoint the malicious infrastructure the compromised server is communicating with.</li>\n    <li><strong>Persistence:</strong> Discover the mechanism the attacker used to survive system reboots.</li>\n  </ul>\n  \n  <p>Do you have what it takes to track the invisible attacker and secure the DMZ? Good luck, analyst!</p>\n</div>",
+  "hints": [],
+  "flags": [],
+  "assets": [
+    "./fileless_rdp_scenario.json"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

