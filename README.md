@@ -24,20 +24,6 @@ Additionally, challenges often lack open-source code, which limits the ability o
 
 ---
 
-## 🧭 Domains Covered
-
-Project Haxnation features a growing collection of challenges across the following domains:
-
-- 🔐 Cryptography  
-- 🕵️‍♂️ Digital Forensics  
-- 🌐 Networking  
-- 🔍 OSINT (Open Source Intelligence)  
-- 💻 Programming  
-- 🔁 Reverse Engineering  
-- 🌐 Web Security
-
----
-
 ## ⚙️ Tech Stack
 
 There is **no single fixed tech stack**. Each challenge may use different tools or environments based on its domain.  
