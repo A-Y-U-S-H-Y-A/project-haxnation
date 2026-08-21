@@ -11,7 +11,7 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "<div class=\"challenge-description\">\n  <h3>Background</h3>\n  <p>A targeted phishing campaign delivers a fileless payload that leverages shared modules for execution. Subsequent alerts reveal lateral movement, credential theft, and data exfiltration to a cloud account, culminating in a covert command\u2011and\u2011control channel.</p>\n  <h3>Your Task</h3>\n  <p>As a SOC analyst, triage the alerts in the scenario file. Identify which alerts are true positives and which are false positives. Piece together the attack story by correlating the MITRE ATT&CK techniques across the kill chain.</p>\n</div>"
+  "description": "<div class=\"challenge-description\">\n  <h3>Background</h3>\n  <p>A targeted phishing campaign delivers a fileless payload that leverages shared modules for execution. Subsequent alerts reveal lateral movement, credential theft, and data exfiltration to a cloud account, culminating in a covert command-and-control channel.</p>\n  <h3>Your Task</h3>\n  <p>As a SOC analyst, triage the alerts in the scenario file. Identify which alerts are true positives and which are false positives. Piece together the attack story by correlating the MITRE ATT&CK techniques across the kill chain.</p>\n</div>",
   "hints": [],
   "flags": [],
   "assets": [
