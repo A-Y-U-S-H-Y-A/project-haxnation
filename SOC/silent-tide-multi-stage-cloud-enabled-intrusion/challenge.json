@@ -1,0 +1,15 @@
+{
+  "id": "soc-silent-tide-multi-stage-cloud-enabled-intrusion",
+  "name": "Silent Tide: Multi-Stage Cloud-Enabled Intrusion",
+  "category": [
+    "SOC"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Auto-SOC-Sim",
+      "url": "https://github.com/A-Y-U-S-H-Y-A/project-haxnation"
+    }
+  ],
+  "description": "<div class=\"challenge-description\">\n  <h3>Background</h3>\n  <p>A sophisticated adversary conducts extensive reconnaissance, builds infrastructure, and gains foothold via a spearphishing attachment. Subsequent stealthy credential theft, data collection, and proxy-based C2 lead to staged exfiltration before impact.</p>\n  <h3>Your Task</h3>\n  <p>As a SOC analyst, triage the alerts in the scenario file. Identify which alerts are true positives and which are false positives. Piece together the attack story by correlating the MITRE ATT&CK techniques across the kill chain.</p>\n</div>"
+}
