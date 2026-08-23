@@ -1,0 +1,23 @@
+{
+  "id": "soc-operation-arctic-echo",
+  "name": "Operation Arctic Echo",
+  "category": [
+    "SOC"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "<div class=\"challenge-description\"><h2>Scenario Overview</h2><p>The SOC receives a burst of low\u2011severity alerts from a new domain registration and a benign\u2011looking software update. Over the next 48 hours, additional indicators emerge: anomalous PowerShell execution, scheduled tasks, token abuse, data staging, and finally ransomware\u2011style file encryption coupled with system recovery sabotage.</p><h3>Attack Narrative</h3><p>1. <strong>Resource Development</strong>: Threat actors purchase a short\u2011lived VPS (T1650) and register <em>northwind\u2011svc.com</em> (T1583).<br/>2. <strong>Reconnaissance</strong>: They perform passive DNS queries (T1681) and scrape the victim's public job postings for email patterns (T1598).<br/>3. <strong>Initial Access</strong>: A spear\u2011phishing attachment (T1566.001) lands on a finance analyst\u2019s workstation, delivering a malicious Office macro.<br/>4. <strong>Execution</strong>: The macro launches a BITS job to download a BITS\u2011based payload (T1197) and later loads a shared module from the attacker\u2019s server (T1129).<br/>5. <strong>Privilege Escalation</strong>: The payload creates a scheduled task (T1053) and hijacks a privileged access token (T1134) to gain SYSTEM rights.<br/>6. <strong>Command and Control</strong>: Encrypted data is exfiltrated using a custom protocol over HTTP (T1132) with a fallback DNS tunnel (T1008).<br/>7. <strong>Collection</strong>: Files from removable media are copied (T1025) and archived in ZIP containers (T1560).<br/>8. <strong>Impact</strong>: The attackers delete shadow copies (T1490) and trigger a destructive script that wipes critical logs (T1657).</p><h3>Your Mission</h3><ul><li>Correlate the domain registration and VPS usage with internal DNS logs.</li><li>Identify the malicious BITS job and stop its execution.</li><li>Detect the scheduled task escalation and remediate the token abuse.</li><li>Block the custom C2 channel and its DNS fallback.</li><li>Recover encrypted archives and restore shadow copies.</li><li>Document the full kill\u2011chain for post\u2011mortem reporting.</li></ul></div>",
+  "hints": [],
+  "flags": [],
+  "assets": [
+    "./operation_arctic_echo_scenario.json"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}
