@@ -1,0 +1,1572 @@
+[
+  {
+    "alert_id": "alert-20260823-0001",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T01:38:02Z",
+    "ingested_at": "2026-08-23T01:44:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "email",
+        "malware"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Email: Malicious Attachment Detected",
+      "description": "Email with CV.doc attachment bypassing initial filters.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1566.001"
+      ]
+    },
+    "alert": {
+      "title": "Email: Malicious Attachment Detected",
+      "summary": "Email with CV.doc attachment bypassing initial filters.",
+      "status": "new",
+      "confidence": 0.85,
+      "risk_score": 75,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "gw-mail01",
+      "type": "gateway"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0001",
+      "host_risk": 76,
+      "user_risk": 44,
+      "asset_criticality": "Medium",
+      "attack_stage": "initial-access",
+      "kill_chain_phase": "Delivery"
+    },
+    "target": {
+      "hostname": "DESKTOP-JD"
+    },
+    "network": {
+      "src_ip": "104.237.218.72",
+      "dst_ip": "advouch.com",
+      "dst_port": 25
+    },
+    "threat": {
+      "technique": {
+        "id": "T1566.001",
+        "name": "Spearphishing Attachment"
+      }
+    },
+    "evidence": [
+      {
+        "type": "email_attachment",
+        "data": {
+          "file_name": "CV.doc"
+        }
+      }
+    ],
+    "knowledge_base": "Email: Malicious Attachment Detected - Analyze the associated files or emails for malicious characteristics."
+  },
+  {
+    "alert_id": "alert-20260823-0002",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T01:47:02Z",
+    "ingested_at": "2026-08-23T01:48:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: BITS Jobs",
+      "description": "Detected activity consistent with BITS Jobs (T1197).",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1197"
+      ]
+    },
+    "alert": {
+      "title": "Execution: BITS Jobs",
+      "summary": "Detected activity consistent with BITS Jobs (T1197).",
+      "status": "new",
+      "confidence": 0.81,
+      "risk_score": 90,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "LAPTOP-MK02",
+      "type": "server"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0002",
+      "host_risk": 44,
+      "user_risk": 37,
+      "asset_criticality": "High",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "knowledge_base": "Execution: BITS Jobs - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1197",
+        "name": "BITS Jobs"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "BITS Jobs"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "borellavoguedeco.com",
+      "src_ip": "10.10.4.14",
+      "dst_port": 80
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0003",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T01:56:02Z",
+    "ingested_at": "2026-08-23T01:57:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Shared Modules",
+      "description": "Detected activity consistent with Shared Modules (T1129).",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1129"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Shared Modules",
+      "summary": "Detected activity consistent with Shared Modules (T1129).",
+      "status": "new",
+      "confidence": 0.78,
+      "risk_score": 73,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WS-HR-05",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "fkim"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0003",
+      "host_risk": 37,
+      "user_risk": 49,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "knowledge_base": "Execution: Shared Modules - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1129",
+        "name": "Shared Modules"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Shared Modules"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "augenarzt-huttwil.ch",
+      "src_ip": "10.10.7.65",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0004",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T01:59:02Z",
+    "ingested_at": "2026-08-23T02:18:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "persistence"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: Suspicious Scheduled Task Creation",
+      "description": "Word document macro creating scheduled task for mshta.exe.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1053.005"
+      ]
+    },
+    "alert": {
+      "title": "Process: Suspicious Scheduled Task Creation",
+      "summary": "Word document macro creating scheduled task for mshta.exe.",
+      "status": "new",
+      "confidence": 0.9,
+      "risk_score": 90,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      },
+      "process": {
+        "name": "schtasks.exe",
+        "command_line": "schtasks /create /sc MINUTE /tn \"Windows Error Reporting\" /tr \"mshta.exe about:\" /mo 15 /F"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0004",
+      "host_risk": 37,
+      "user_risk": 81,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1053.005",
+        "name": "Scheduled Task/Job: Scheduled Task"
+      }
+    },
+    "evidence": [
+      {
+        "type": "process_creation",
+        "data": {
+          "process_name": "schtasks.exe"
+        }
+      }
+    ],
+    "additional_context": "schtasks used to execute mshta.exe every 15 minutes.",
+    "knowledge_base": "Process: Suspicious Scheduled Task Creation - Verify the process execution and command line arguments with the System Administrator.",
+    "network": {
+      "dst_ip": "xraydbdr.eng-thebrain-song.us",
+      "src_ip": "10.10.10.209",
+      "dst_port": 80
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0005",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:03:02Z",
+    "ingested_at": "2026-08-23T02:06:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "command_and_control"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Command and Control: Data Encoding",
+      "description": "Detected activity consistent with Data Encoding (T1132).",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1132"
+      ]
+    },
+    "alert": {
+      "title": "Command and Control: Data Encoding",
+      "summary": "Detected activity consistent with Data Encoding (T1132).",
+      "status": "new",
+      "confidence": 0.96,
+      "risk_score": 82,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "email:gateway",
+      "vendor": "Unknown",
+      "module": "email"
+    },
+    "observer": {
+      "name": "LAPTOP-MK02",
+      "type": "proxy"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      }
+    },
+    "context": {
+      "raw_source": "email:gateway",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0006",
+      "host_risk": 82,
+      "user_risk": 36,
+      "asset_criticality": "Medium",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "knowledge_base": "Command and Control: Data Encoding - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1132",
+        "name": "Data Encoding"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Data Encoding"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "eng-thebrain-song.us",
+      "src_ip": "10.10.9.54",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0006",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:06:02Z",
+    "ingested_at": "2026-08-23T02:05:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "reconnaissance"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Reconnaissance: Search Open Websites/Domains",
+      "description": "Detected activity consistent with Search Open Websites/Domains (T1681).",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1681"
+      ]
+    },
+    "alert": {
+      "title": "Reconnaissance: Search Open Websites/Domains",
+      "summary": "Detected activity consistent with Search Open Websites/Domains (T1681).",
+      "status": "new",
+      "confidence": 0.78,
+      "risk_score": 99,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "cloud:audit",
+      "vendor": "Unknown",
+      "module": "cloud"
+    },
+    "observer": {
+      "name": "DESKTOP-SEC02",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "elee"
+      }
+    },
+    "context": {
+      "raw_source": "cloud:audit",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0008",
+      "host_risk": 43,
+      "user_risk": 47,
+      "asset_criticality": "Medium",
+      "attack_stage": "reconnaissance",
+      "kill_chain_phase": "Reconnaissance"
+    },
+    "knowledge_base": "Reconnaissance: Search Open Websites/Domains - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1681",
+        "name": "Search Open Websites/Domains"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Search Open Websites/Domains"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "c5xxg0v3.eng-flashburnn.com",
+      "src_ip": "10.10.5.250",
+      "dst_port": 53
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0007",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:10:02Z",
+    "ingested_at": "2026-08-23T02:11:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "privilege_escalation"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Privilege Escalation: Access Token Manipulation",
+      "description": "Detected activity consistent with Access Token Manipulation (T1134).",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1134"
+      ]
+    },
+    "alert": {
+      "title": "Privilege Escalation: Access Token Manipulation",
+      "summary": "Detected activity consistent with Access Token Manipulation (T1134).",
+      "status": "new",
+      "confidence": 0.93,
+      "risk_score": 91,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "cloud:audit",
+      "vendor": "Unknown",
+      "module": "cloud"
+    },
+    "observer": {
+      "name": "SRV-FILE01",
+      "type": "proxy"
+    },
+    "actor": {
+      "user": {
+        "name": "fkim"
+      }
+    },
+    "context": {
+      "raw_source": "cloud:audit",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0005",
+      "host_risk": 70,
+      "user_risk": 77,
+      "asset_criticality": "Medium",
+      "attack_stage": "privilege-escalation",
+      "kill_chain_phase": "Exploitation"
+    },
+    "knowledge_base": "Privilege Escalation: Access Token Manipulation - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1134",
+        "name": "Access Token Manipulation"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Access Token Manipulation"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "8tc662a7.eng-homepowershield.com",
+      "src_ip": "10.10.1.113",
+      "dst_port": 80
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0008",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:17:02Z",
+    "ingested_at": "2026-08-23T02:21:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: New Service Installation",
+      "description": "New service created on endpoint.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: New Service Installation",
+      "summary": "New service created on endpoint.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 30,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "msiexec.exe",
+        "command_line": "msiexec.exe /i agent_update.msi /qn"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0020",
+      "host_risk": 86,
+      "user_risk": 49,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260823-0009",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:23:02Z",
+    "ingested_at": "2026-08-23T02:24:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network",
+        "discovery"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: ICMP Sweep",
+      "description": "Multiple pings from internal host.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: ICMP Sweep",
+      "summary": "Pings from Helpdesk subnet.",
+      "status": "new",
+      "confidence": 0.35,
+      "risk_score": 41,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "helpdesk"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0016",
+      "host_risk": 50,
+      "user_risk": 87,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Authorized scan, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260823-0010",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:26:02Z",
+    "ingested_at": "2026-08-23T02:32:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "reconnaissance"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Reconnaissance: Search Victim-owned Websites",
+      "description": "Detected activity consistent with Search Victim-owned Websites (T1598).",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1598"
+      ]
+    },
+    "alert": {
+      "title": "Reconnaissance: Search Victim-owned Websites",
+      "summary": "Detected activity consistent with Search Victim-owned Websites (T1598).",
+      "status": "new",
+      "confidence": 0.9,
+      "risk_score": 84,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "WS-HR-05",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "bwilson"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0009",
+      "host_risk": 44,
+      "user_risk": 41,
+      "asset_criticality": "High",
+      "attack_stage": "reconnaissance",
+      "kill_chain_phase": "Reconnaissance"
+    },
+    "knowledge_base": "Reconnaissance: Search Victim-owned Websites - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1598",
+        "name": "Search Victim-owned Websites"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Search Victim-owned Websites"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "advouch.com",
+      "src_ip": "10.10.1.22",
+      "dst_port": 53
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0011",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:34:02Z",
+    "ingested_at": "2026-08-23T04:30:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "resource_development"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Resource Development: Acquire Capabilities",
+      "description": "Detected activity consistent with Acquire Capabilities (T1583).",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1583"
+      ]
+    },
+    "alert": {
+      "title": "Resource Development: Acquire Capabilities",
+      "summary": "Detected activity consistent with Acquire Capabilities (T1583).",
+      "status": "new",
+      "confidence": 0.94,
+      "risk_score": 95,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "SRV-DMZ-01",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "gnguyen"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0015",
+      "host_risk": 37,
+      "user_risk": 50,
+      "asset_criticality": "Low",
+      "attack_stage": "resource-development",
+      "kill_chain_phase": "Weaponization"
+    },
+    "knowledge_base": "Resource Development: Acquire Capabilities - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1583",
+        "name": "Acquire Capabilities"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Acquire Capabilities"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "eng-homepowershield.com",
+      "src_ip": "10.10.5.68",
+      "dst_port": 80
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0012",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:39:02Z",
+    "ingested_at": "2026-08-23T02:42:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "network"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Network: Unusual SMB Traffic Volume",
+      "description": "High volume of SMB traffic detected from endpoint.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Network: Unusual SMB Traffic Volume",
+      "summary": "High volume of SMB traffic detected from endpoint.",
+      "status": "new",
+      "confidence": 0.5,
+      "risk_score": 25,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "network:firewall",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "FW-INTERNAL",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "sqlservr.exe"
+      }
+    },
+    "context": {
+      "raw_source": "network:firewall",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0018",
+      "host_risk": 79,
+      "user_risk": 44,
+      "asset_criticality": "Medium"
+    },
+    "network": {
+      "src_ip": "10.10.1.50",
+      "dst_ip": "10.10.1.200",
+      "dst_port": 445,
+      "dst_hostname": "BACKUP-NAS-01"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260823-0013",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:45:02Z",
+    "ingested_at": "2026-08-23T02:50:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: New Service Installation",
+      "description": "New service created on endpoint.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: New Service Installation",
+      "summary": "New service created on endpoint.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 30,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "msiexec.exe",
+        "command_line": "msiexec.exe /i agent_update.msi /qn"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0024",
+      "host_risk": 41,
+      "user_risk": 58,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260823-0014",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:50:02Z",
+    "ingested_at": "2026-08-23T02:01:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "command_and_control"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Command and Control: Fallback Channels",
+      "description": "Detected activity consistent with Fallback Channels (T1008).",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1008"
+      ]
+    },
+    "alert": {
+      "title": "Command and Control: Fallback Channels",
+      "summary": "Detected activity consistent with Fallback Channels (T1008).",
+      "status": "new",
+      "confidence": 0.92,
+      "risk_score": 90,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "network:dns",
+      "vendor": "Unknown",
+      "module": "network"
+    },
+    "observer": {
+      "name": "WS-HR-05",
+      "type": "firewall"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      }
+    },
+    "context": {
+      "raw_source": "network:dns",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0007",
+      "host_risk": 67,
+      "user_risk": 23,
+      "asset_criticality": "Low",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "knowledge_base": "Command and Control: Fallback Channels - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1008",
+        "name": "Fallback Channels"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Fallback Channels"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "eng-homepowershield.com",
+      "src_ip": "10.10.3.33",
+      "dst_port": 80
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0015",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:55:02Z",
+    "ingested_at": "2026-08-23T03:00:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Multiple Failed Logons",
+      "description": "User experienced 5 failed logon attempts within 2 minutes.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Multiple Failed Logons",
+      "summary": "User experienced 5 failed logon attempts within 2 minutes.",
+      "status": "new",
+      "confidence": 0.6,
+      "risk_score": 35,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "windows:security",
+      "vendor": "Unknown",
+      "module": "windows"
+    },
+    "observer": {
+      "name": "DC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "mrobinson"
+      },
+      "process": {
+        "name": "lsass.exe"
+      }
+    },
+    "context": {
+      "raw_source": "windows:security",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0026",
+      "host_risk": 81,
+      "user_risk": 87,
+      "asset_criticality": "High"
+    },
+    "target": {
+      "hostname": "DC-01"
+    },
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "10.10.1.10",
+      "dst_port": 389
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260823-0016",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T02:59:02Z",
+    "ingested_at": "2026-08-23T02:19:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "collection"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Collection: Data from Removable Media",
+      "description": "Detected activity consistent with Data from Removable Media (T1025).",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1025"
+      ]
+    },
+    "alert": {
+      "title": "Collection: Data from Removable Media",
+      "summary": "Detected activity consistent with Data from Removable Media (T1025).",
+      "status": "new",
+      "confidence": 0.74,
+      "risk_score": 84,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "email:gateway",
+      "vendor": "Unknown",
+      "module": "email"
+    },
+    "observer": {
+      "name": "DESKTOP-SEC02",
+      "type": "server"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      }
+    },
+    "context": {
+      "raw_source": "email:gateway",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0010",
+      "host_risk": 34,
+      "user_risk": 55,
+      "asset_criticality": "Low",
+      "attack_stage": "collection",
+      "kill_chain_phase": "Collection"
+    },
+    "knowledge_base": "Collection: Data from Removable Media - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1025",
+        "name": "Data from Removable Media"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Data from Removable Media"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "borellavoguedeco.com",
+      "src_ip": "10.10.2.95",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0017",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T03:22:02Z",
+    "ingested_at": "2026-08-23T02:45:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "resource_development"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Resource Development: Obtain Infrastructure",
+      "description": "Detected activity consistent with Obtain Infrastructure (T1650).",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1650"
+      ]
+    },
+    "alert": {
+      "title": "Resource Development: Obtain Infrastructure",
+      "summary": "Detected activity consistent with Obtain Infrastructure (T1650).",
+      "status": "new",
+      "confidence": 0.82,
+      "risk_score": 87,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "cloud:audit",
+      "vendor": "Unknown",
+      "module": "cloud"
+    },
+    "observer": {
+      "name": "DESKTOP-SEC02",
+      "type": "server"
+    },
+    "actor": {
+      "user": {
+        "name": "jdoe"
+      }
+    },
+    "context": {
+      "raw_source": "cloud:audit",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0014",
+      "host_risk": 50,
+      "user_risk": 67,
+      "asset_criticality": "High",
+      "attack_stage": "resource-development",
+      "kill_chain_phase": "Weaponization"
+    },
+    "knowledge_base": "Resource Development: Obtain Infrastructure - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1650",
+        "name": "Obtain Infrastructure"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Obtain Infrastructure"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "eng-thebrain-song.us",
+      "src_ip": "10.10.9.91",
+      "dst_port": 53
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0018",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T03:28:02Z",
+    "ingested_at": "2026-08-23T02:46:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "impact"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Impact: Inhibit System Recovery",
+      "description": "Detected activity consistent with Inhibit System Recovery (T1490).",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1490"
+      ]
+    },
+    "alert": {
+      "title": "Impact: Inhibit System Recovery",
+      "summary": "Detected activity consistent with Inhibit System Recovery (T1490).",
+      "status": "new",
+      "confidence": 0.71,
+      "risk_score": 98,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "cloud:audit",
+      "vendor": "Unknown",
+      "module": "cloud"
+    },
+    "observer": {
+      "name": "WS-HR-05",
+      "type": "proxy"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      }
+    },
+    "context": {
+      "raw_source": "cloud:audit",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0012",
+      "host_risk": 64,
+      "user_risk": 36,
+      "asset_criticality": "High",
+      "attack_stage": "impact",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "knowledge_base": "Impact: Inhibit System Recovery - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1490",
+        "name": "Inhibit System Recovery"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Inhibit System Recovery"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "xraydbdr.eng-thebrain-song.us",
+      "src_ip": "10.10.9.173",
+      "dst_port": 80
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0019",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T03:30:02Z",
+    "ingested_at": "2026-08-23T03:32:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: New Service Installation",
+      "description": "New service created on endpoint.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: New Service Installation",
+      "summary": "New service created on endpoint.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 30,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "msiexec.exe",
+        "command_line": "msiexec.exe /i agent_update.msi /qn"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0022",
+      "host_risk": 86,
+      "user_risk": 49,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260823-0020",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T03:38:02Z",
+    "ingested_at": "2026-08-23T03:22:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "file",
+        "collection"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Collection: Data Staging via Archive",
+      "description": "Large archive file created in Temp directory.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1560.001"
+      ]
+    },
+    "alert": {
+      "title": "Collection: Data Staging via Archive",
+      "summary": "Large ZIP file created using 7za.exe.",
+      "status": "new",
+      "confidence": 0.66,
+      "risk_score": 72,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "endpoint:edr",
+      "vendor": "Unknown",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "DC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "SYSTEM"
+      },
+      "process": {
+        "name": "7za.exe",
+        "command_line": "7za.exe a -tzip C:\\Windows\\Temp\\backup.zip C:\\Windows\\Temp\\ntds.dit"
+      }
+    },
+    "context": {
+      "raw_source": "endpoint:edr",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0011",
+      "host_risk": 73,
+      "user_risk": 58,
+      "asset_criticality": "Medium",
+      "attack_stage": "collection",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1560.001",
+        "name": "Archive Collected Data: Archive via Utility"
+      }
+    },
+    "evidence": [
+      {
+        "type": "file_creation",
+        "data": {
+          "file_path": "C:\\Windows\\Temp\\backup.zip"
+        }
+      }
+    ],
+    "additional_context": "Adversary using 7-Zip to archive NTDS.dit and SAM files for exfiltration.",
+    "knowledge_base": "Collection: Data Staging via Archive - Verify the activity with the relevant IT or Security team to determine its legitimacy.",
+    "network": {
+      "dst_ip": "augenarzt-huttwil.ch",
+      "src_ip": "10.10.2.193",
+      "dst_port": 53
+    }
+  },
+  {
+    "alert_id": "alert-20260823-0021",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-23T04:02:02Z",
+    "ingested_at": "2026-08-23T03:56:02Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "impact"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Impact: Data Destruction",
+      "description": "Detected activity consistent with Data Destruction (T1657).",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1657"
+      ]
+    },
+    "alert": {
+      "title": "Impact: Data Destruction",
+      "summary": "Detected activity consistent with Data Destruction (T1657).",
+      "status": "new",
+      "confidence": 0.88,
+      "risk_score": 93,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "cloud:audit",
+      "vendor": "Unknown",
+      "module": "cloud"
+    },
+    "observer": {
+      "name": "DESKTOP-JD",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "asmith"
+      }
+    },
+    "context": {
+      "raw_source": "cloud:audit",
+      "incident_id": "INC-2026-3121",
+      "correlation_id": "corr-0013",
+      "host_risk": 69,
+      "user_risk": 40,
+      "asset_criticality": "Medium",
+      "attack_stage": "impact",
+      "kill_chain_phase": "Actions on Objectives"
+    },
+    "knowledge_base": "Impact: Data Destruction - Verify the process execution and command line arguments with the System Administrator.",
+    "threat": {
+      "technique": {
+        "id": "T1657",
+        "name": "Data Destruction"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Data Destruction"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "8tc662a7.eng-homepowershield.com",
+      "src_ip": "10.10.5.151",
+      "dst_port": 443
+    }
+  }
+]
