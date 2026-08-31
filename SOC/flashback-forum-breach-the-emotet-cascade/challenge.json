@@ -1,0 +1,23 @@
+{
+  "id": "soc-flashback-forum-breach-the-emotet-cascade",
+  "name": "Flashback Forum Breach \u2013 The Emotet Cascade",
+  "category": [
+    "SOC"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "<div class=\"challenge-description\"><h2>Scenario Overview</h2><p>Flashback, Sweden's largest anonymous forum, is targeted by a threat actor using Emotet and QakBot. The attack begins with a malicious attachment sent to marcus.vance, senior editor. Over several alerts, the SOC analyst witnesses the attacker establish persistence, elevate privileges, impair defenses, pivot across the network, and finally exfiltrate member data using web\u2011based channels.</p><h3>Your Mission</h3><ul><li>Correlate the initial phishing alert with subsequent execution and persistence indicators.</li><li>Identify the misuse of CVE\u20112023\u201149105 in ownCloud to gain foothold on the file server.</li><li>Detect the defender\u2011impairment steps that disable Windows Defender and tamper with security policies.</li><li>Track the lateral movement to the JFrog Artifactory server (CVE\u20112026\u201166384) and the Linux kernel host (CVE\u20112026\u201153362).</li><li>Stop the exfiltration of member records by blocking the web\u2011service channel.</li></ul></div>",
+  "hints": [],
+  "flags": [],
+  "assets": [
+    "./flashback_forum_breach_the_emotet_cascade_scenario.json"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}
