@@ -1,0 +1,1577 @@
+[
+  {
+    "alert_id": "alert-20260831-0001",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:24:46Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process",
+        "tampering"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "name": "EDR Process Restarted",
+      "severity": "low",
+      "mitre_attack": [
+        "T1562.001"
+      ],
+      "id": "RUL-7204",
+      "description": "No description available.",
+      "signature": "SIG-UNKNOWN"
+    },
+    "alert": {
+      "title": "Defense Evasion: EDR Agent Restart",
+      "summary": "EDR agent process was restarted during an update cycle.",
+      "verdict": "false_positive",
+      "status": "new",
+      "confidence": 0.88,
+      "risk_score": 52
+    },
+    "knowledge_base": "This is a known false positive caused by the standard EDR auto-update mechanism.",
+    "ingested_at": "2026-08-31T14:25:57Z",
+    "source": {
+      "product": "Microsoft Defender for Endpoint",
+      "vendor": "Microsoft",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-APP-02",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "victor.stone"
+      }
+    },
+    "context": {
+      "raw_source": "Microsoft Defender for Endpoint",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0018",
+      "host_risk": 88,
+      "user_risk": 38,
+      "asset_criticality": "High"
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0002",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:27:46Z",
+    "ingested_at": "2026-08-31T14:29:07Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "authentication"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Authentication: Multiple Failed Logons",
+      "description": "User experienced 5 failed logon attempts within 2 minutes.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Authentication: Multiple Failed Logons",
+      "summary": "User experienced 5 failed logon attempts within 2 minutes.",
+      "status": "new",
+      "confidence": 0.6,
+      "risk_score": 35,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "Zscaler Internet Access Proxy",
+      "vendor": "Zscaler",
+      "module": "proxy"
+    },
+    "observer": {
+      "name": "WKSTN-FIN-04",
+      "type": "proxy"
+    },
+    "actor": {
+      "user": {
+        "name": "hannah.abbott"
+      },
+      "process": {
+        "name": "lsass.exe"
+      }
+    },
+    "context": {
+      "raw_source": "Zscaler Internet Access Proxy",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0026",
+      "host_risk": 81,
+      "user_risk": 87,
+      "asset_criticality": "High"
+    },
+    "target": {
+      "hostname": "DC-01"
+    },
+    "network": {
+      "src_ip": "10.10.4.15",
+      "dst_ip": "10.10.1.10",
+      "dst_port": 389
+    },
+    "knowledge_base": "Expected user activity, verified with the user."
+  },
+  {
+    "alert_id": "alert-20260831-0003",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:28:46Z",
+    "ingested_at": "2026-08-31T14:32:00Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "email"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Email: Spear Phishing Attachment",
+      "description": "Received email with suspicious RDP attachment mimicking Microsoft employee.",
+      "severity": "high",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1566.001"
+      ]
+    },
+    "alert": {
+      "title": "Email: Spear Phishing Attachment",
+      "summary": "Received email with suspicious RDP attachment mimicking Microsoft employee.",
+      "status": "new",
+      "confidence": 0.85,
+      "risk_score": 80,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Cisco Secure Email Gateway",
+      "vendor": "Cisco",
+      "module": "email"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "email"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Cisco Secure Email Gateway",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0001",
+      "host_risk": 25,
+      "user_risk": 54,
+      "asset_criticality": "Medium",
+      "attack_stage": "initial-access",
+      "kill_chain_phase": "Delivery"
+    },
+    "target": {
+      "hostname": "DESKTOP-JD"
+    },
+    "network": {
+      "src_ip": "47.121.137.8",
+      "dst_ip": "47.121.137.8",
+      "dst_port": 25,
+      "dst_hostname": "totalconstruction.com.au",
+      "url": "https://raw.githubusercontent.com/mezoali100/exforum-auto-poster/main/psychopathologic/exforum-poster-auto-v3.7.zip"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1566.001",
+        "name": "Spearphishing Attachment"
+      },
+      "cve": "CVE-2010-1297",
+      "vulnerability": "Adobe Flash Player Memory Corruption Vulnerability"
+    },
+    "evidence": [
+      {
+        "type": "email_attachment",
+        "data": {
+          "file_name": "Zero Trust Architecture Configuration.rdp"
+        }
+      }
+    ],
+    "additional_context": "Email from totalconstruction.com.au delivering 'Zero Trust Architecture Configuration.rdp' to multiple users.",
+    "knowledge_base": "CISA KEV: CVE-2010-1297 (Adobe Flash Player Memory Corruption Vulnerability) - Adobe Flash Player contains a memory corruption vulnerability that allows remote attackers to execute code or cause denial-of-service (DoS)."
+  },
+  {
+    "alert_id": "alert-20260831-0004",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:34:46Z",
+    "ingested_at": "2026-08-31T14:36:52Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-2841",
+      "name": "Execution: BITS Jobs",
+      "description": "Detected activity consistent with BITS Jobs (T1197).",
+      "severity": "critical",
+      "signature": "SIG-T1197",
+      "mitre_attack": [
+        "T1197"
+      ]
+    },
+    "alert": {
+      "title": "Execution: BITS Jobs",
+      "summary": "Detected activity consistent with BITS Jobs (T1197).",
+      "status": "new",
+      "confidence": 0.99,
+      "risk_score": 78,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "CrowdStrike Falcon Insight EDR",
+      "vendor": "CrowdStrike",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "CrowdStrike Falcon Insight EDR",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0002",
+      "host_risk": 49,
+      "user_risk": 93,
+      "asset_criticality": "Medium",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "knowledge_base": "Execution: BITS Jobs - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1197",
+        "name": "BITS Jobs"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "BITS Jobs"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.1.212",
+      "dst_port": 443,
+      "url": "https://raw.githubusercontent.com/mezoali100/exforum-auto-poster/main/psychopathologic/exforum-poster-auto-v3.7.zip"
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0005",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:42:46Z",
+    "ingested_at": "2026-08-31T14:45:30Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "execution"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-9909",
+      "name": "Execution: Windows Subsystem for Linux",
+      "description": "Detected activity consistent with Windows Subsystem for Linux (T1677).",
+      "severity": "high",
+      "signature": "SIG-T1677",
+      "mitre_attack": [
+        "T1677"
+      ]
+    },
+    "alert": {
+      "title": "Execution: Windows Subsystem for Linux",
+      "summary": "Detected activity consistent with Windows Subsystem for Linux (T1677).",
+      "status": "new",
+      "confidence": 0.79,
+      "risk_score": 72,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "CrowdStrike Falcon Insight EDR",
+      "vendor": "CrowdStrike",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "CrowdStrike Falcon Insight EDR",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0003",
+      "host_risk": 39,
+      "user_risk": 20,
+      "asset_criticality": "Low",
+      "attack_stage": "execution",
+      "kill_chain_phase": "Execution"
+    },
+    "knowledge_base": "Execution: Windows Subsystem for Linux - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1677",
+        "name": "Windows Subsystem for Linux"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Windows Subsystem for Linux"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.10.234",
+      "dst_port": 443,
+      "url": "https://raw.githubusercontent.com/mezoali100/exforum-auto-poster/main/psychopathologic/exforum-poster-auto-v3.7.zip"
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0006",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:45:46Z",
+    "ingested_at": "2026-08-31T14:48:20Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "persistence"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-2260",
+      "name": "Persistence: Logon Scripts",
+      "description": "Detected activity consistent with Logon Scripts (T1037).",
+      "severity": "high",
+      "signature": "SIG-T1037",
+      "mitre_attack": [
+        "T1037"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Logon Scripts",
+      "summary": "Detected activity consistent with Logon Scripts (T1037).",
+      "status": "new",
+      "confidence": 0.81,
+      "risk_score": 92,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Microsoft Defender for Endpoint",
+      "vendor": "Microsoft",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Microsoft Defender for Endpoint",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0004",
+      "host_risk": 84,
+      "user_risk": 75,
+      "asset_criticality": "Low",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "knowledge_base": "Persistence: Logon Scripts - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1037",
+        "name": "Logon Scripts"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Logon Scripts"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.1.119",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0007",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:46:46Z",
+    "ingested_at": "2026-08-31T14:51:22Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Unsigned PowerShell Script",
+      "description": "Execution of an unsigned local script.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Execution: Unsigned PowerShell Script",
+      "summary": "Execution of an unsigned local script.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 20,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "Microsoft Defender for Endpoint",
+      "vendor": "Microsoft",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "SRV-APP-02",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "marcus.vance"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell ./build_artifacts.ps1"
+      }
+    },
+    "context": {
+      "raw_source": "Microsoft Defender for Endpoint",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0020",
+      "host_risk": 49,
+      "user_risk": 73,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate IT administration activity, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260831-0008",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:52:46Z",
+    "ingested_at": "2026-08-31T14:54:47Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "persistence"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-7164",
+      "name": "Persistence: Domain Policy Modification",
+      "description": "Detected activity consistent with Domain Policy Modification (T1554).",
+      "severity": "high",
+      "signature": "SIG-T1554",
+      "mitre_attack": [
+        "T1554"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Domain Policy Modification",
+      "summary": "Detected activity consistent with Domain Policy Modification (T1554).",
+      "status": "new",
+      "confidence": 0.77,
+      "risk_score": 93,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Microsoft Defender for Endpoint",
+      "vendor": "Microsoft",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Microsoft Defender for Endpoint",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0005",
+      "host_risk": 70,
+      "user_risk": 40,
+      "asset_criticality": "High",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "knowledge_base": "Persistence: Domain Policy Modification - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1554",
+        "name": "Domain Policy Modification"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Domain Policy Modification"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.8.180",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0009",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T14:57:46Z",
+    "ingested_at": "2026-08-31T15:01:07Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "persistence",
+        "registry"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Persistence: Suspicious Registry Run Key",
+      "description": "VBScript added to registry run key.",
+      "severity": "critical",
+      "signature": "UNKNOWN",
+      "mitre_attack": [
+        "T1547.001"
+      ]
+    },
+    "alert": {
+      "title": "Persistence: Suspicious Registry Run Key",
+      "summary": "VBScript added to registry run key.",
+      "status": "new",
+      "confidence": 0.84,
+      "risk_score": 81,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "CrowdStrike Falcon Insight EDR",
+      "vendor": "CrowdStrike",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      },
+      "process": {
+        "name": "wscript.exe",
+        "command_line": "wscript.exe C:\\Users\\klee\\AppData\\Roaming\\init.vbs"
+      }
+    },
+    "context": {
+      "raw_source": "CrowdStrike Falcon Insight EDR",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0006",
+      "host_risk": 67,
+      "user_risk": 43,
+      "asset_criticality": "Medium",
+      "attack_stage": "persistence",
+      "kill_chain_phase": "Installation"
+    },
+    "threat": {
+      "technique": {
+        "id": "T1547.001",
+        "name": "Registry Run Keys / Startup Folder"
+      },
+      "cve": "CVE-2010-1297",
+      "vulnerability": "Adobe Flash Player Memory Corruption Vulnerability"
+    },
+    "evidence": [
+      {
+        "type": "registry_event",
+        "data": {
+          "key": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\SystemInit"
+        }
+      }
+    ],
+    "additional_context": "init.vbs established persistence via HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\SystemInit.",
+    "knowledge_base": "CISA KEV: CVE-2010-1297 (Adobe Flash Player Memory Corruption Vulnerability) - Adobe Flash Player contains a memory corruption vulnerability that allows remote attackers to execute code or cause denial-of-service (DoS).",
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.7.146",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0010",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:05:46Z",
+    "ingested_at": "2026-08-31T15:07:42Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "privilege_escalation"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-5214",
+      "name": "Privilege Escalation: Abuse Elevation Control Mechanism",
+      "description": "Detected activity consistent with Abuse Elevation Control Mechanism (T1548).",
+      "severity": "critical",
+      "signature": "SIG-T1548",
+      "mitre_attack": [
+        "T1548"
+      ]
+    },
+    "alert": {
+      "title": "Privilege Escalation: Abuse Elevation Control Mechanism",
+      "summary": "Detected activity consistent with Abuse Elevation Control Mechanism (T1548).",
+      "status": "new",
+      "confidence": 0.74,
+      "risk_score": 71,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "CrowdStrike Falcon Insight EDR",
+      "vendor": "CrowdStrike",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "CrowdStrike Falcon Insight EDR",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0007",
+      "host_risk": 85,
+      "user_risk": 64,
+      "asset_criticality": "Medium",
+      "attack_stage": "privilege-escalation",
+      "kill_chain_phase": "Exploitation"
+    },
+    "knowledge_base": "CISA KEV: CVE-2010-1297 (Adobe Flash Player Memory Corruption Vulnerability) - Adobe Flash Player contains a memory corruption vulnerability that allows remote attackers to execute code or cause denial-of-service (DoS).",
+    "threat": {
+      "technique": {
+        "id": "T1548",
+        "name": "Abuse Elevation Control Mechanism"
+      },
+      "cve": "CVE-2010-1297",
+      "vulnerability": "Adobe Flash Player Memory Corruption Vulnerability"
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Abuse Elevation Control Mechanism"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.4.238",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0011",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:09:46Z",
+    "ingested_at": "2026-08-31T15:14:46Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "defense_impairment"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-5195",
+      "name": "Defense Impairment: Disable Security Tools",
+      "description": "Detected activity consistent with Disable Security Tools (T1686).",
+      "severity": "high",
+      "signature": "SIG-T1686",
+      "mitre_attack": [
+        "T1686"
+      ]
+    },
+    "alert": {
+      "title": "Defense Impairment: Disable Security Tools",
+      "summary": "Detected activity consistent with Disable Security Tools (T1686).",
+      "status": "new",
+      "confidence": 0.71,
+      "risk_score": 89,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "CrowdStrike Falcon Insight EDR",
+      "vendor": "CrowdStrike",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "CrowdStrike Falcon Insight EDR",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0008",
+      "host_risk": 74,
+      "user_risk": 36,
+      "asset_criticality": "Low",
+      "attack_stage": "defense-impairment",
+      "kill_chain_phase": "Execution"
+    },
+    "knowledge_base": "Defense Impairment: Disable Security Tools - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1686",
+        "name": "Disable Security Tools"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Disable Security Tools"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.5.171",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0012",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:14:46Z",
+    "ingested_at": "2026-08-31T15:17:05Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "defense_impairment"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-8358",
+      "name": "Defense Impairment: Impair Defenses: Modify Registry",
+      "description": "Detected activity consistent with Impair Defenses: Modify Registry (T1689).",
+      "severity": "high",
+      "signature": "SIG-T1689",
+      "mitre_attack": [
+        "T1689"
+      ]
+    },
+    "alert": {
+      "title": "Defense Impairment: Impair Defenses: Modify Registry",
+      "summary": "Detected activity consistent with Impair Defenses: Modify Registry (T1689).",
+      "status": "new",
+      "confidence": 0.79,
+      "risk_score": 83,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "CrowdStrike Falcon Insight EDR",
+      "vendor": "CrowdStrike",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "CrowdStrike Falcon Insight EDR",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0009",
+      "host_risk": 74,
+      "user_risk": 79,
+      "asset_criticality": "Medium",
+      "attack_stage": "defense-impairment",
+      "kill_chain_phase": "Execution"
+    },
+    "knowledge_base": "Defense Impairment: Impair Defenses: Modify Registry - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1689",
+        "name": "Impair Defenses: Modify Registry"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Impair Defenses: Modify Registry"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.1.112",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0013",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:17:46Z",
+    "ingested_at": "2026-08-31T15:21:10Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "medium",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Process: New Service Installation",
+      "description": "New service created on endpoint.",
+      "severity": "medium",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Process: New Service Installation",
+      "summary": "New service created on endpoint.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 30,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "Microsoft Defender for Endpoint",
+      "vendor": "Microsoft",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "LAPTOP-EXEC-01",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "elizabeth.taylor"
+      },
+      "process": {
+        "name": "msiexec.exe",
+        "command_line": "msiexec.exe /i agent_update.msi /qn"
+      }
+    },
+    "context": {
+      "raw_source": "Microsoft Defender for Endpoint",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0022",
+      "host_risk": 41,
+      "user_risk": 58,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate activity, verified with the relevant team."
+  },
+  {
+    "alert_id": "alert-20260831-0014",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:21:46Z",
+    "ingested_at": "2026-08-31T15:25:20Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "command_and_control"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-7021",
+      "name": "Command and Control: Remote Access Tools",
+      "description": "Detected activity consistent with Remote Access Tools (T1219).",
+      "severity": "critical",
+      "signature": "SIG-T1219",
+      "mitre_attack": [
+        "T1219"
+      ]
+    },
+    "alert": {
+      "title": "Command and Control: Remote Access Tools",
+      "summary": "Detected activity consistent with Remote Access Tools (T1219).",
+      "status": "new",
+      "confidence": 0.99,
+      "risk_score": 71,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Zscaler Internet Access Proxy",
+      "vendor": "Zscaler",
+      "module": "proxy"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "proxy"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Zscaler Internet Access Proxy",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0010",
+      "host_risk": 95,
+      "user_risk": 66,
+      "asset_criticality": "High",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "knowledge_base": "Command and Control: Remote Access Tools - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1219",
+        "name": "Remote Access Tools"
+      },
+      "malware": "Cobalt Strike"
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Remote Access Tools"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.10.195",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0015",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:26:46Z",
+    "ingested_at": "2026-08-31T15:30:31Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "command_and_control"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-2941",
+      "name": "Command and Control: Protocol Tunneling",
+      "description": "Detected activity consistent with Protocol Tunneling (T1572).",
+      "severity": "critical",
+      "signature": "SIG-T1572",
+      "mitre_attack": [
+        "T1572"
+      ]
+    },
+    "alert": {
+      "title": "Command and Control: Protocol Tunneling",
+      "summary": "Detected activity consistent with Protocol Tunneling (T1572).",
+      "status": "new",
+      "confidence": 0.95,
+      "risk_score": 75,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Zscaler Internet Access Proxy",
+      "vendor": "Zscaler",
+      "module": "proxy"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "proxy"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Zscaler Internet Access Proxy",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0011",
+      "host_risk": 42,
+      "user_risk": 49,
+      "asset_criticality": "Low",
+      "attack_stage": "command-and-control",
+      "kill_chain_phase": "Command and Control"
+    },
+    "knowledge_base": "Command and Control: Protocol Tunneling - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1572",
+        "name": "Protocol Tunneling"
+      },
+      "malware": "Cobalt Strike"
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Protocol Tunneling"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.9.10",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0016",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:33:46Z",
+    "ingested_at": "2026-08-31T15:36:46Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "lateral_movement"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-1819",
+      "name": "Lateral Movement: Remote Service Session Hijacking",
+      "description": "Detected activity consistent with Remote Service Session Hijacking (T1563).",
+      "severity": "high",
+      "signature": "SIG-T1563",
+      "mitre_attack": [
+        "T1563"
+      ]
+    },
+    "alert": {
+      "title": "Lateral Movement: Remote Service Session Hijacking",
+      "summary": "Detected activity consistent with Remote Service Session Hijacking (T1563).",
+      "status": "new",
+      "confidence": 0.83,
+      "risk_score": 87,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Palo Alto Networks PA-5200 NGFW",
+      "vendor": "Palo Alto Networks",
+      "module": "network"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "network"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Palo Alto Networks PA-5200 NGFW",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0012",
+      "host_risk": 91,
+      "user_risk": 43,
+      "asset_criticality": "Medium",
+      "attack_stage": "lateral-movement",
+      "kill_chain_phase": "Lateral Movement"
+    },
+    "knowledge_base": "Lateral Movement: Remote Service Session Hijacking - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1563",
+        "name": "Remote Service Session Hijacking"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Remote Service Session Hijacking"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "10.10.3.76",
+      "src_ip": "10.10.5.235",
+      "dst_port": 135
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0017",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:38:46Z",
+    "ingested_at": "2026-08-31T15:43:04Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "lateral_movement"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-6466",
+      "name": "Lateral Movement: Domain Trust Discovery",
+      "description": "Detected activity consistent with Domain Trust Discovery (T1534).",
+      "severity": "high",
+      "signature": "SIG-T1534",
+      "mitre_attack": [
+        "T1534"
+      ]
+    },
+    "alert": {
+      "title": "Lateral Movement: Domain Trust Discovery",
+      "summary": "Detected activity consistent with Domain Trust Discovery (T1534).",
+      "status": "new",
+      "confidence": 0.8,
+      "risk_score": 72,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Palo Alto Networks PA-5200 NGFW",
+      "vendor": "Palo Alto Networks",
+      "module": "network"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "network"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Palo Alto Networks PA-5200 NGFW",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0013",
+      "host_risk": 24,
+      "user_risk": 30,
+      "asset_criticality": "Medium",
+      "attack_stage": "lateral-movement",
+      "kill_chain_phase": "Lateral Movement"
+    },
+    "knowledge_base": "Lateral Movement: Domain Trust Discovery - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1534",
+        "name": "Domain Trust Discovery"
+      }
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Domain Trust Discovery"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "10.10.1.234",
+      "src_ip": "10.10.4.11",
+      "dst_port": 445
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0018",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:46:46Z",
+    "ingested_at": "2026-08-31T15:48:43Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "exfiltration"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "high",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-6107",
+      "name": "Exfiltration: Exfiltration Over Web Service",
+      "description": "Detected activity consistent with Exfiltration Over Web Service (T1048).",
+      "severity": "high",
+      "signature": "SIG-T1048",
+      "mitre_attack": [
+        "T1048"
+      ]
+    },
+    "alert": {
+      "title": "Exfiltration: Exfiltration Over Web Service",
+      "summary": "Exfiltration of Email addresses, Physical addresses to external C2 47.121.137.8.",
+      "status": "new",
+      "confidence": 0.76,
+      "risk_score": 100,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Palo Alto Networks PA-5200 NGFW",
+      "vendor": "Palo Alto Networks",
+      "module": "network"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "network"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Palo Alto Networks PA-5200 NGFW",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0014",
+      "host_risk": 49,
+      "user_risk": 45,
+      "asset_criticality": "High",
+      "attack_stage": "exfiltration",
+      "kill_chain_phase": "Exfiltration"
+    },
+    "knowledge_base": "Exfiltration: Exfiltration Over Web Service - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1048",
+        "name": "Exfiltration Over Web Service"
+      },
+      "malware": "Cobalt Strike"
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Exfiltration Over Web Service"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.9.216",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0019",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:46:46Z",
+    "ingested_at": "2026-08-31T15:49:34Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Unsigned PowerShell Script",
+      "description": "Execution of an unsigned local script.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Execution: Unsigned PowerShell Script",
+      "summary": "Execution of an unsigned local script.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 20,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "Microsoft Defender for Endpoint",
+      "vendor": "Microsoft",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "elizabeth.taylor"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell ./build_artifacts.ps1"
+      }
+    },
+    "context": {
+      "raw_source": "Microsoft Defender for Endpoint",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0016",
+      "host_risk": 49,
+      "user_risk": 73,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate IT administration activity, verified with IT team."
+  },
+  {
+    "alert_id": "alert-20260831-0020",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T15:52:46Z",
+    "ingested_at": "2026-08-31T15:53:59Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "exfiltration"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "critical",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "RUL-9210",
+      "name": "Exfiltration: Data Transfer Size Limits",
+      "description": "Detected activity consistent with Data Transfer Size Limits (T1030).",
+      "severity": "critical",
+      "signature": "SIG-T1030",
+      "mitre_attack": [
+        "T1030"
+      ]
+    },
+    "alert": {
+      "title": "Exfiltration: Data Transfer Size Limits",
+      "summary": "Exfiltration of Email addresses, Physical addresses to external C2 47.121.137.8.",
+      "status": "new",
+      "confidence": 0.95,
+      "risk_score": 92,
+      "verdict": "true_positive"
+    },
+    "source": {
+      "product": "Palo Alto Networks PA-5200 NGFW",
+      "vendor": "Palo Alto Networks",
+      "module": "network"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "network"
+    },
+    "actor": {
+      "user": {
+        "name": "david.miller"
+      }
+    },
+    "context": {
+      "raw_source": "Palo Alto Networks PA-5200 NGFW",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0015",
+      "host_risk": 30,
+      "user_risk": 75,
+      "asset_criticality": "Medium",
+      "attack_stage": "exfiltration",
+      "kill_chain_phase": "Exfiltration"
+    },
+    "knowledge_base": "Exfiltration: Data Transfer Size Limits - Verify execution and context with Security Operations.",
+    "threat": {
+      "technique": {
+        "id": "T1030",
+        "name": "Data Transfer Size Limits"
+      },
+      "malware": "Cobalt Strike"
+    },
+    "evidence": [
+      {
+        "type": "behavioral_detection",
+        "data": {
+          "technique": "Data Transfer Size Limits"
+        }
+      }
+    ],
+    "network": {
+      "dst_ip": "47.121.137.8",
+      "src_ip": "10.10.6.104",
+      "dst_port": 443
+    }
+  },
+  {
+    "alert_id": "alert-20260831-0021",
+    "schema_version": "1.0",
+    "timestamp": "2026-08-31T16:07:46Z",
+    "ingested_at": "2026-08-31T16:08:39Z",
+    "event": {
+      "kind": "alert",
+      "category": [
+        "process"
+      ],
+      "type": [
+        "detection"
+      ],
+      "severity": "low",
+      "outcome": "unknown"
+    },
+    "rule": {
+      "id": "UNKNOWN",
+      "name": "Execution: Unsigned PowerShell Script",
+      "description": "Execution of an unsigned local script.",
+      "severity": "low",
+      "signature": "UNKNOWN",
+      "mitre_attack": []
+    },
+    "alert": {
+      "title": "Execution: Unsigned PowerShell Script",
+      "summary": "Execution of an unsigned local script.",
+      "status": "new",
+      "confidence": 0.4,
+      "risk_score": 20,
+      "verdict": "false_positive"
+    },
+    "source": {
+      "product": "Microsoft Defender for Endpoint",
+      "vendor": "Microsoft",
+      "module": "endpoint"
+    },
+    "observer": {
+      "name": "WKSTN-DEV-09",
+      "type": "endpoint"
+    },
+    "actor": {
+      "user": {
+        "name": "alex.chen"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "command_line": "powershell ./build_artifacts.ps1"
+      }
+    },
+    "context": {
+      "raw_source": "Microsoft Defender for Endpoint",
+      "incident_id": "INC-2026-5659",
+      "correlation_id": "corr-0024",
+      "host_risk": 57,
+      "user_risk": 71,
+      "asset_criticality": "Medium"
+    },
+    "knowledge_base": "Legitimate IT administration activity, verified with IT team."
+  }
+]
