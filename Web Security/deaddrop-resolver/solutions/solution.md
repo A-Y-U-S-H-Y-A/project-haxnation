@@ -26,4 +26,4 @@ Every hop is consistent with the story: APT29-style benign hosts doing quiet poi
 
 - The in-page resolver (`hammertoss` widget) performs these steps for the player; it exists so the chapter can be played entirely inside the CTF app. The manual path is fully valid.
 - The zero-width file must be preserved byte-for-byte (it is in this repo as `assets/deaddrop/u/e1i4s-v.html`).
-- Flag value is withheld until the answer-key commit.
+- Answer: `HXN{d34ddr0p_h4mm3rt0ss_ch41n}`.

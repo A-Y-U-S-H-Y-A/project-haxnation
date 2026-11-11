@@ -9,7 +9,7 @@
   "hints": [
     "Follow the reply parser: it scans for a short fixed window and treats what follows as a task. The function that runs it is the same one that beacons out."
   ],
-  "flags": [],
+  "flags": ["HXN{CMD:_heartbeat}"],
   "flag_hashes": ["f99c6ec72224513c21d01d368d56696a3a0b35f1be815b84d7d2b57a44981739"],
   "flag_format": "HXN{<dns_payload_marker>_<function_name>}",
   "points": 250,

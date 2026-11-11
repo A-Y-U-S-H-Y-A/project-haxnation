@@ -36,5 +36,5 @@ Mounting `docker.sock` into untrusted build jobs (PRs from forks, eval jobs, "he
 
 ## Notes for authors
 
-- This lab flag differs from the live-event instance flag; the challenge checks the lab flag (see `flag_hashes` in `challenge.json`). The answer-key commit can re-point the lab at the original flag.
+- The lab now ships the live-event flag; the challenge and the lab agree. (Answer-key drop landed.)
 - The hostfs-init step writes the flag as base64 to honour the "not stored in the clear" hint; `host-machine` mounts it read-only.

@@ -8,7 +8,7 @@ services:
     image: alpine:3.20
     container_name: coinnectar-hostfs-init
     command: >
-      /bin/sh -c "mkdir -p /opt/ctf && printf 'HXN{docker_sock_is_a_host_shell}\n' | base64 > /opt/ctf/flag2.txt && chmod 444 /opt/ctf/flag2.txt"
+      /bin/sh -c "mkdir -p /opt/ctf && printf 'HXN{d0ck3r_3sc4p3_p1d_h0st}\n' | base64 > /opt/ctf/flag2.txt && chmod 444 /opt/ctf/flag2.txt"
     volumes:
       - host_root:/opt/ctf
     restart: "no"

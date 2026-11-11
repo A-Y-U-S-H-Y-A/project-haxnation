@@ -10,7 +10,7 @@
     "The server is picky about who's asking &mdash; the same trick as Cobalt Strike malleable profiles and APT28 loaders. The client builds that identity at runtime instead of storing it in the clear.",
     "Once you have it, replay it exactly: the request builder (or <code>curl -A</code>) is enough."
   ],
-  "flags": [],
+  "flags": ["HXN{us3r_4g3nt_c2_r3play}"],
   "flag_hashes": ["e56b09e950fd0a8282e9f3d5c400feac92f2f2e17310514d43086cb14f8f85ed"],
   "flag_format": "HXN{...}",
   "points": 150,

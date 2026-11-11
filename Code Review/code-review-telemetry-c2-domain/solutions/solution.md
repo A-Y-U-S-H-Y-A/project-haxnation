@@ -27,4 +27,4 @@ Submit `HXN{<host>_<import_time_sink>}` where the host is the decoded constant a
 
 - The `report_status` wrapper never actually opens a socket in this challenge — it builds `(chosen, packed, primary, secondary)` and returns; reading the code is the solve.
 - Decoy analysis that wastes time (intentionally): the ROT-encoded route and the pretty `TELEMETRY_ENDPOINTS` list — neither resolves to anything real.
-- Flag value is withheld until the answer-key commit.
+- Answer: `HXN{cdn.jsdelivr.net_report_status}`.

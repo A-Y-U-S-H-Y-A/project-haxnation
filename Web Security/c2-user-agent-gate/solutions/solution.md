@@ -36,5 +36,5 @@ flag = bytes(b ^ key[i % len(key)] for i, b in enumerate(ciphertext)).decode()
 
 ## Notes for authors
 
-- Flag value is withheld until the answer-key commit.
+- Answer: `HXN{us3r_4g3nt_c2_r3play}`.
 - The challenge as shipped contains no live dependency; the emulation is self-contained.

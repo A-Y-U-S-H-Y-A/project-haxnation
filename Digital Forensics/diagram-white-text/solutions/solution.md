@@ -25,4 +25,4 @@ The trap is trusting the render. Excalidraw stores full element data regardless 
 ## Notes for authors
 
 - The hidden element is a single text node; no file tricks needed.
-- Flag value is withheld until the answer-key commit.
+- Answer: `HXN{eXc2la_ha5_hldd3n_s3cr3ts}`.

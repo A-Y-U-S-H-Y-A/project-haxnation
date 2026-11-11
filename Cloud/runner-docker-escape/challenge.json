@@ -10,8 +10,8 @@
     "The attack isn't on your container — it's a request to the daemon. What does <code>-v /:/host</code> give a container you start?",
     "Once you're on the host filesystem, enumerate — it isn't where the last flag was, and you may need to decode what you find."
   ],
-  "flags": [],
-  "flag_hashes": ["9816cc7b4490859abdfade1604f8874747f2c2a7f1697f1c2feddc4f9594036a"],
+  "flags": ["HXN{d0ck3r_3sc4p3_p1d_h0st}"],
+  "flag_hashes": ["672d0f2e22fd32578da4debabf6cbac4103d2df4afe50a37f69bb3d7511ec26d"],
   "flag_format": "HXN{...}",
   "points": 500,
   "assets": [],

@@ -5,7 +5,7 @@ RUN apt-get update \
 RUN dd if=/dev/zero of=/hostdisk.img bs=1M count=16
 RUN mkfs.ext4 -q -F /hostdisk.img
 RUN mkdir -p /hostfs/opt/ctf \
- && printf 'HXN{privileged_jobs_see_host_devices}\n' > /hostfs/opt/ctf/flag.txt
+ && printf 'HXN{pr1v1l3g3d_r1nn3r_h0st_4cc3ss}\n' > /hostfs/opt/ctf/flag.txt
 # write the flag straight into the ext4 image without mounting it
 RUN debugfs -w -R 'mkdir /opt' /hostdisk.img \
  && debugfs -w -R 'mkdir /opt/ctf' /hostdisk.img \

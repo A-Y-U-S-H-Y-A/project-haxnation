@@ -19,4 +19,4 @@ Submit `HXN{<marker_hex>_<decoded_sink>}` with the marker exactly as it appears 
 
 - The challenge is a source audit: no execution of untrusted code is required to solve it.
 - Red herrings: `health_check()` builds a `ping -c 1 <host>` template and firms `subprocess` usage; `get_runtime_info` reaches for `/etc/passwd`-ish content on day ≥ 26; `_internal_maintenance` reuses `safe_invoke` with `os`/`system` too, but through a different decode path (`_resolve` on this one). Every path funnels into `os`, but the backdoor *branch that flips config into code* is the `_MARKER` one.
-- Flag value is withheld until the answer-key commit.
+- Answer: `HXN{cafebabedeadbeef_os.system}`.

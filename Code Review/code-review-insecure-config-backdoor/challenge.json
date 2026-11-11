@@ -9,7 +9,7 @@
   "hints": [
     "Follow the decrypt path. When the recovered plaintext starts a certain way, the rest stops being config &mdash; and the sink's name is built out of Base64 pieces."
   ],
-  "flags": [],
+  "flags": ["HXN{cafebabedeadbeef_os.system}"],
   "flag_hashes": ["19d6ebe3d5b66788e25b8ee9dbaa15768fe3bdd81348535c4889a0f91c057da5"],
   "flag_format": "HXN{<magic_marker_hex>_<decoded_exec_sink>}",
   "points": 200,

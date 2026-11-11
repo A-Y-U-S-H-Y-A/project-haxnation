@@ -10,7 +10,7 @@
     "Nothing here is hardcoded: each innocent resource points at the next. Read what the files contain, not just what they render.",
     "The last hop is locked. Something you picked up on the way is the key."
   ],
-  "flags": [],
+  "flags": ["HXN{d34ddr0p_h4mm3rt0ss_ch41n}"],
   "flag_hashes": ["196e2eb898b63a7120bedf60a8ed86eb0c3491561307cf63a584490e96740f7e"],
   "flag_format": "HXN{...}",
   "points": 250,
