@@ -10,6 +10,8 @@ API_DIR = DIST_DIR / 'api'
 CHALLENGES_API_DIR = API_DIR / 'challenges'
 SOC_API_DIR = DIST_DIR / 'soc-api'
 SOC_CHALLENGES_API_DIR = SOC_API_DIR / 'challenges'
+STORYLINES_DIR = REPO_ROOT / 'Storylines'
+EVENTS_API_DIR = API_DIR / 'events'
 
 # Required fields for validation
 REQUIRED_FIELDS = ['id', 'name', 'category', 'difficulty']
@@ -27,6 +29,7 @@ def build_api():
     lite_index_soc = []
     challenge_count_main = 0
     challenge_count_soc = 0
+    challenges_by_id = {}
 
     # Crawl the repository for challenge.json files
     for root, _, files in os.walk(REPO_ROOT):
@@ -101,6 +104,8 @@ def build_api():
                 lite_index_main.append(lite_entry)
                 challenge_count_main += 1
 
+            challenges_by_id[chal_id] = data
+
     # 4. Save the Master Lite Indexes
     lite_index_main_path = API_DIR / 'challenges-lite.json'
     with open(lite_index_main_path, 'w', encoding='utf-8') as f:
@@ -110,7 +115,85 @@ def build_api():
     with open(lite_index_soc_path, 'w', encoding='utf-8') as f:
         json.dump(lite_index_soc, f, separators=(',', ':')) # Minified
 
-    # 5. Save the Total Challenges Count for Shields.io Widget
+    # 5. Storylines: merge each manifest in Storylines/*.json with the crawled
+    #    challenge.json files and emit a self-contained event document.
+    #    Storyline challenges are also part of the flat lite index (by design —
+    #    they are regular practice challenges too).
+    if STORYLINES_DIR.exists():
+        events_lite = []
+        EVENTS_API_DIR.mkdir(parents=True, exist_ok=True)
+
+        for manifest_path in sorted(STORYLINES_DIR.glob('*.json')):
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                try:
+                    manifest = json.load(f)
+                except json.JSONDecodeError:
+                    print(f"❌ ERROR: Invalid JSON format in {manifest_path}")
+                    exit(1)
+
+            event_id = manifest.get('id')
+            event_name = manifest.get('name')
+            chapters = manifest.get('chapters')
+            if not event_id or not event_name or not isinstance(chapters, list) or not chapters:
+                print(f"❌ ERROR: Storyline manifest {manifest_path} needs id, name and a non-empty chapters array")
+                exit(1)
+
+            points_total = 0
+            merged_chapters = []
+            for ch_meta in chapters:
+                ch_id = ch_meta.get('id')
+                ch_data = challenges_by_id.get(ch_id)
+                if ch_data is None:
+                    print(f"❌ ERROR: Storyline '{event_id}' references unknown chapter id '{ch_id}' (not found in any challenge.json)")
+                    exit(1)
+                ch_points = int(ch_data.get('points', 0))
+                if ch_data.get('questions'):
+                    ch_points = sum(int(q.get('points', 0)) for q in ch_data['questions'])
+                points_total += ch_points
+                merged_chapters.append({
+                    **ch_data,
+                    'story': {
+                        'order': ch_meta.get('order'),
+                        'act': ch_meta.get('act'),
+                        'when': ch_meta.get('when'),
+                        'open': ch_meta.get('open'),
+                        'close': ch_meta.get('close'),
+                    },
+                })
+
+            merged_chapters.sort(key=lambda c: (c.get('story', {}).get('order') or 0))
+
+            # sanity: manifest's declared points_total must match the computed sum
+            declared = manifest.get('points_total')
+            if declared is not None and int(declared) != points_total:
+                print(f"⚠️  WARNING: Storyline '{event_id}' points_total={declared} but computed {points_total} from chapters")
+
+            events_lite.append({
+                'id': event_id,
+                'name': event_name,
+                'subtitle': manifest.get('subtitle', ''),
+                'org': manifest.get('org', ''),
+                'chapters': len(merged_chapters),
+                'points_total': points_total,
+                'tags': ['storyline'],
+            })
+
+            event_doc = {
+                **manifest,
+                'points_total': points_total,
+                'chapters': merged_chapters,
+            }
+            event_path = EVENTS_API_DIR / f"{event_id}.json"
+            with open(event_path, 'w', encoding='utf-8') as f:
+                json.dump(event_doc, f, separators=(',', ':'))
+
+        events_lite_path = API_DIR / 'events-lite.json'
+        with open(events_lite_path, 'w', encoding='utf-8') as f:
+            json.dump(events_lite, f, separators=(',', ':'))
+
+        print(f"📖 Built {len(events_lite)} storyline event(s) → api/events-lite.json + api/events/<id>.json")
+
+    # 6. Save the Total Challenges Count for Shields.io Widget
     total_challenges = challenge_count_main + challenge_count_soc
     badge_data = {
         "schemaVersion": 1,

@@ -1,0 +1,144 @@
+{
+  "id": "operation-coinnectar",
+  "name": "Operation Coinnectar",
+  "subtitle": "The Coinnectar Supply-Chain Incident",
+  "org": "HaxNation × FOSS Mumbai",
+  "flag_format": "HXN{...}",
+  "tagline": "Reconstruct the attack, commit by commit.",
+  "points_total": 2500,
+  "story_version": "1.0.0",
+  "intro": "Several internal services depending on the open-source library Coinnectar began showing signs of compromise in early March 2026 — unusual DNS traffic, unexpected process executions, and suspicious build activity. Coinnectar had been maintained for years by Alex Rivers. In recent months a long-time external contributor steadily earned trust through consistent, high-quality work and was eventually granted merge rights. Your team now holds the full Git history, application / DNS / runner logs, a diagram recovered from the contributor's laptop, and — via the IR team's exec gateway — access to the project's privileged build runner. Reconstruct the attack.",
+  "acts": [
+    {
+      "id": 1,
+      "roman": "I",
+      "name": "Point of Origin",
+      "blurb": "Everything started with a single commit."
+    },
+    {
+      "id": 2,
+      "roman": "II",
+      "name": "Collateral Damage",
+      "blurb": "Internal web services wired to Coinnectar were hit too."
+    },
+    {
+      "id": 3,
+      "roman": "III",
+      "name": "Hidden in Plain Sight",
+      "blurb": "A diagram from the contributor's laptop hides more than it shows."
+    },
+    {
+      "id": 4,
+      "roman": "IV",
+      "name": "What Was Executed?",
+      "blurb": "Correlate the logs and reconstruct the command timeline."
+    },
+    {
+      "id": 5,
+      "roman": "V",
+      "name": "The Backdoors",
+      "blurb": "Deep review of the malicious modules the trusted contributor shipped."
+    },
+    {
+      "id": 6,
+      "roman": "VI",
+      "name": "Abusing the Runner",
+      "blurb": "The attacker understood the privileged runner. Now it's your turn."
+    }
+  ],
+  "chapters": [
+    {
+      "id": "first-bad-commit",
+      "order": 1,
+      "act": 1,
+      "when": "Day 0 · early March 2026",
+      "open": "<p class=\"dlg\">“Is this the one?”<br>“It’s the only library every broken service has in common.”<br>“Coinnectar? Alex has maintained that thing for years. It’s boring. Boring is the point.”<br>“Boring libraries don’t start resolving domains nobody has ever heard of.”<br>“So you think Alex did this?”<br>“I think Alex gave somebody the keys. Months of clean pull requests, reviews, docs fixes… then merge rights. You’d have done the same.”<br>“Great. So where does it start?”<br>“That’s what the new analyst is for.”</p><p>You are the new analyst. By the time the call ends, a clone of Coinnectar is on your machine — every branch, every tag, every commit since the first one Alex ever pushed.</p><p>Somewhere in that history the project stopped being Alex’s. Nobody broke in. The change walked through the front door, reviewed and merged like every other.</p>",
+      "close": "<p>The hash goes up on the whiteboard in thick black marker, and for the first time the incident has a beginning.</p><p>“Okay,” the IR lead says, staring at it. “So that’s how it got in. Now I want to know what it was talking to.”</p><p>Two internal services wired to Coinnectar have been acting strangely ever since that commit landed. The SOC has a captured client from one of them.</p>"
+    },
+    {
+      "id": "c2-user-agent-gate",
+      "order": 2,
+      "act": 2,
+      "when": "Day 1 · SOC floor",
+      "open": "<p class=\"dlg\">“It’s a CDN health check. Look — <code>{\"status\":\"ok\"}</code>. Every time.”<br>“Every time <i>you</i> ask. What about when the implant asks?”<br>“Why would it answer differently?”<br>“Because that’s what a C2 does. It only talks to its own.”</p><p>The endpoint calls itself Coinnectar auto-update and telemetry. To a browser, to curl, to every scanner the SOC owns, it is a healthy, boring server. The captured client sees something else entirely.</p><p>You don’t need to break in. You need to sound like you belong.</p>",
+      "close": "<p>The server finally speaks — and what it hands over makes one thing clear: the live controller isn’t here. It never was.</p><p>“It doesn’t hardcode its C2,” you tell the room. “It goes looking for it.”</p><p>Buried in the implant’s config is the seed it starts that search from.</p>"
+    },
+    {
+      "id": "deaddrop-resolver",
+      "order": 3,
+      "act": 2,
+      "when": "Day 2 · threat intel",
+      "open": "<p class=\"dlg\">“All I see is traffic to big, trusted sites. Nothing we’d ever block.”<br>“That’s the trick. Every hop is innocent. It’s the chain that isn’t.”</p><p>APT29 did this with HAMMERTOSS: posts pointing to pictures, pictures carrying instructions, every hop on a host defenders whitelist without a second thought. The Coinnectar implant learned the same lesson.</p><p>You have the seed. Follow it one hop at a time until it gives up the controller.</p>",
+      "close": "<p>At the end of the chain sits the string the implant was hunting for. You now know where the backdoor reports.</p><p>While you were walking dead-drops, forensics finished imaging the contributor’s laptop. Almost everything is wiped. One file survived: an architecture diagram, neat and labelled, the kind you’d attach to a design doc.</p><p>“It’s just a picture,” someone says. You’ve stopped believing that.</p>"
+    },
+    {
+      "id": "diagram-white-text",
+      "order": 4,
+      "act": 3,
+      "when": "Day 3 · forensics lab",
+      "open": "<p class=\"dlg\">“Boxes, arrows, a database icon. Very professional.”<br>“It’s an <code>.excalidraw</code> file?”<br>“Yeah. Why?”<br>“Because that’s not an image. That’s JSON.”</p><p>The canvas shows only what its author wanted shown. The file keeps everything else — every element, every colour, every scrap of text, whether or not anyone can see it.</p>",
+      "close": "<p>The diagram was carrying something the contributor never meant to hand over. It confirms what you suspected: this was planned, step by step, long before the first commit.</p><p>But a plan isn’t proof of what actually ran. For that you need the victim’s own logs — and the payment service on <code>pay-prod-03</code> kept writing them through the whole thing.</p>"
+    },
+    {
+      "id": "log-analysis",
+      "order": 5,
+      "act": 4,
+      "when": "27 March 2026 · pay-prod-03",
+      "open": "<pre class=\"chapter-log\">INFO  [payment-svc] transfer completed\nINFO  [payment-svc] health ok\nINFO  [payment-svc] metrics shipped ok</pre><p class=\"dlg\">“It all looks normal.”<br>“It’s supposed to. Ninety percent of this file is a payment service doing its job. Read the other ten.”</p><p>Somewhere between the transfers and the health checks, the backdoors were at work: a probe that went where it shouldn’t, a beacon that grew every time it ran, and a routine that only woke on certain days and let something slip a few characters at a time.</p><p>Three questions. Answer each one from the log alone.</p>",
+      "close": "<p>The timeline holds. You can show when the backdoor woke, what it ran, and what it sent out.</p><p>“Fine,” the IR lead says. “We know <i>what</i> it did. Now show me <i>how</i>. Show me the code.”</p><p>The contributor didn’t ship one backdoor. They shipped four — Python, Rust and C — each dressed up as ordinary engineering. The first is a config helper.</p>"
+    },
+    {
+      "id": "code-review-insecure-config-backdoor",
+      "order": 6,
+      "act": 5,
+      "when": "Day 5 · code review, module 1 of 4",
+      "open": "<p class=\"dlg\">“There’s no <code>os.system</code> in here. No <code>eval</code>. I grepped.”<br>“Then it’s built from pieces. Nobody leaves the sink lying around in plain sight.”</p><p>The patch to <code>utils/config_helper.py</code> says it adds encrypted config loading, and mostly it does. But follow the decrypt path to the end and there’s a branch where the blob stops being treated as config at all.</p>",
+      "close": "<p>A config file that becomes a command when its first bytes are right. The SOC has a detection rule live before you’ve finished the write-up.</p><p>Next on the bench: the wallet SDK’s shiny new “compatibility layer”, and the telemetry it was never supposed to send.</p>"
+    },
+    {
+      "id": "code-review-telemetry-c2-domain",
+      "order": 7,
+      "act": 5,
+      "when": "Day 5 · code review, module 2 of 4",
+      "open": "<p class=\"dlg\">“It lists its telemetry endpoints right at the top. Very transparent.”<br>“Count them. Then count where it actually sends things.”</p><p>Nobody has to call anything. Importing the module is enough — before your own code has run a single line, the snapshot is already on its way out.</p>",
+      "close": "<p>The real destination and the trigger that fires it, both pinned down. It also explains the strange lookups the network team kept flagging and kept getting told to ignore.</p><p>Which brings you to the Rust crate that claims to be for “service discovery”.</p>"
+    },
+    {
+      "id": "code-review-dns-covert-channel",
+      "order": 8,
+      "act": 5,
+      "when": "Day 6 · code review, module 3 of 4",
+      "open": "<p class=\"dlg\">“It’s uptime metrics over DNS. Plenty of projects do that.”<br>“Plenty of projects don’t read the answers.”</p><p>Leaking data out over DNS is old news. This crate goes further: it reads the replies, and when one carries the right marker, it does whatever the reply says.</p>",
+      "close": "<p>Beacon out, command back, executed in the same call — a working C2 channel hiding inside a metrics library.</p><p>One module left: a vendored C library that parses a “lightweight binary state” format. Everyone read the serializer. Nobody read the other half.</p>"
+    },
+    {
+      "id": "code-review-deserialization-rce",
+      "order": 9,
+      "act": 5,
+      "when": "Day 6 · code review, module 4 of 4",
+      "open": "<p class=\"dlg\">“The serializer’s fine. I checked it line by line.”<br>“Nobody attacks the serializer.”</p><p><code>state_serializer.c</code> is the textbook case: untrusted bytes read back into structures, and one “application specific” field type that the application never asked for.</p>",
+      "close": "<p>Four of four. Every sink, every trigger, every marker documented.</p><p>“One thing still bugs me,” the IR lead says. “Release builds were signed. So how did all of this end up in what we shipped?”</p><p>The answer lives in the build infrastructure: a self-hosted runner, tagged <code>privileged</code>.</p>"
+    },
+    {
+      "id": "runner-privileged-host",
+      "order": 10,
+      "act": 6,
+      "when": "Day 7 · build infrastructure",
+      "open": "<p class=\"dlg\">“Why is the runner privileged?”<br>“Docker-in-Docker builds. It was the easiest fix.”<br>“Easiest for who?”</p><p>The contributor knew exactly what that tag meant. Now the IR team has stood up an exec gateway onto the same runner — one command at a time inside the job sandbox, just like CI.</p><p>To show the board how bad this was, you’ll do what the attacker did: start inside the job, finish on the host.</p>",
+      "close": "<p>From inside a “sandboxed” job, you read a file only the host should see. The screenshot goes straight into the report.</p><p>“They’ll say that’s just the privileged runner,” someone warns. “The other one isn’t privileged.”</p><p>The other one has the Docker socket mounted inside it.</p>"
+    },
+    {
+      "id": "runner-docker-escape",
+      "order": 11,
+      "act": 6,
+      "when": "Day 7 · build infrastructure, later",
+      "open": "<p class=\"dlg\">“It’s unprivileged. No extra caps, no devices. It’s fine.”<br>“Then what’s <code>/var/run/docker.sock</code> doing in there?”<br>“…Builds need Docker.”</p><p>Whoever can talk to the daemon doesn’t need to escape their container. They ask for a new one, built however they like.</p><p>This is the last door. Walk through it.</p>",
+      "close": "<p>The host gives up its last secret. There is nothing left of the attack you can’t explain.</p>"
+    }
+  ],
+  "finale": {
+    "title": "Case Closed",
+    "when": "Day 8 · the debrief",
+    "text": "<p class=\"dlg\">“So. Start to finish.”<br>“One trusted contributor. One commit. A beacon that only answers its own, a controller hidden behind dead-drops, a plan left in a diagram, four backdoors in three languages — and a build runner that handed over the host.”<br>“And Alex?”<br>“Alex trusted the wrong person. That’s not a crime. It’s just how open source works, until it isn’t.”</p><p>The report goes out that night. Coinnectar ships a clean release the next morning, the contributor’s access is gone, and the runner is no longer privileged.</p><p>The case file is closed. Your name is on it.</p>"
+  }
+}

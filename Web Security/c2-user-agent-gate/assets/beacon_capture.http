@@ -1,0 +1,21 @@
+# ----------------------------------------------------------------------------
+# Captured beacon request (payment-svc egress proxy, 2026-03-27).
+# The capture tool masked the build token in the User-Agent for "privacy".
+# The format is intact; the secret token is only recoverable from the client
+# source (beacon_client.py).
+# ----------------------------------------------------------------------------
+GET /v1/collect HTTP/1.1
+Host: update.coinnectar.dev
+Accept: */*
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) Coinnectar-Updater/3.4.7 Build/****MASKED****
+Connection: close
+
+# ---- response when the User-Agent matched (same capture) -------------------
+# HTTP/1.1 200 OK
+# Server: cloudflare
+# Content-Type: application/octet-stream
+# X-C2-Task: <base64 task blob>
+#
+# ---- response to the analyst replaying it in a browser ---------------------
+# HTTP/1.1 200 OK
+# {"status":"ok"}        <-- decoy; the analyst's User-Agent was wrong

@@ -1,0 +1,25 @@
+{
+  "id": "deaddrop-resolver",
+  "name": "Hammertoss Redux",
+  "category": ["Web Security"],
+  "difficulty": "Medium",
+  "tags": ["Web", "Storyline: Operation Coinnectar", "Chapter 3"],
+  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "description": "<p>The Coinnectar implant never hardcodes its live C2. Like APT29's <i>HAMMERTOSS</i>, it resolves the current controller at runtime by walking a chain of innocent-looking resources on trusted hosts, each quietly pointing to the next. Defenders see traffic to reputable domains and move on.</p><p>You've recovered the seed the implant starts from. Walk the chain and recover the <b>final C2 string</b> &mdash; that string is the flag. Use the in-page resolver, or do it the implant's way with <code>curl</code>.</p>",
+  "hints": [
+    "Nothing here is hardcoded: each innocent resource points at the next. Read what the files contain, not just what they render.",
+    "The last hop is locked. Something you picked up on the way is the key."
+  ],
+  "flags": [],
+  "flag_hashes": ["196e2eb898b63a7120bedf60a8ed86eb0c3491561307cf63a584490e96740f7e"],
+  "flag_format": "HXN{...}",
+  "points": 250,
+  "assets": [
+    "./assets/deaddrop/collect.js",
+    "./assets/deaddrop/u/e1i4s-v.html",
+    "./assets/deaddrop/d/final.txt"
+  ],
+  "interactive": "drop",
+  "deployment": {"type": "static"},
+  "next": "diagram-white-text"
+}

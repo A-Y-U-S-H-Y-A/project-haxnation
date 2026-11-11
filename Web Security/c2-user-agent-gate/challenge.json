@@ -1,0 +1,24 @@
+{
+  "id": "c2-user-agent-gate",
+  "name": "Phantom Beacon",
+  "category": ["Web Security"],
+  "difficulty": "Easy",
+  "tags": ["Web", "Storyline: Operation Coinnectar", "Chapter 2"],
+  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "description": "<p>One internal service exposes a <code>Coinnectar auto-update / telemetry</code> endpoint. <code>curl</code> it and you get a bland <code>{\"status\":\"ok\"}</code> &mdash; a healthy CDN, nothing to see. The implant that actually talks to it disagrees.</p><p>Make the endpoint talk the way the implant does, and read what it hands back. Everything you need to sound like the implant is in the captured client.</p>",
+  "hints": [
+    "The server is picky about who's asking &mdash; the same trick as Cobalt Strike malleable profiles and APT28 loaders. The client builds that identity at runtime instead of storing it in the clear.",
+    "Once you have it, replay it exactly: the request builder (or <code>curl -A</code>) is enough."
+  ],
+  "flags": [],
+  "flag_hashes": ["e56b09e950fd0a8282e9f3d5c400feac92f2f2e17310514d43086cb14f8f85ed"],
+  "flag_format": "HXN{...}",
+  "points": 150,
+  "assets": [
+    "./assets/beacon_capture.http",
+    "./assets/beacon_client.py"
+  ],
+  "interactive": "ua",
+  "deployment": {"type": "static"},
+  "next": "deaddrop-resolver"
+}

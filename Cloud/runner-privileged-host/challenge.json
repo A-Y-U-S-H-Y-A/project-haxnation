@@ -1,0 +1,24 @@
+{
+  "id": "runner-privileged-host",
+  "name": "Privileged by Design",
+  "category": ["Cloud"],
+  "difficulty": "Hard",
+  "tags": ["Cloud / CI", "Storyline: Operation Coinnectar", "Chapter 10"],
+  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "description": "<p>Coinnectar builds on a self-hosted runner tagged <code>privileged</code>. The attacker understood exactly what that grants: a <code>--privileged</code> sandbox shares the host's capabilities and <b>devices</b>, so the wall between &ldquo;job&rdquo; and &ldquo;machine&rdquo; is thin &mdash; if you know where to push.</p><p>Stand up the local privileged runner lab (see <code>lab/README.md</code>) and break out of the job sandbox onto the host. The flag sits on the runner <b>host</b> under <code>/opt/ctf/</code>, on a filesystem the sandbox can reach but hasn't been handed.</p>",
+  "hints": [
+    "Being privileged doesn't hand you the host's files — it hands you the host's block devices. List them.",
+    "A disk you can see is a disk you can mount. Mount the host's root partition somewhere and read what you need — then look closely at what you recover."
+  ],
+  "flags": [],
+  "flag_hashes": ["03bab35e64d3ab30c8bcfa57eb57c4ec336513cb50948883b3dc5fcfdcc3fa31"],
+  "flag_format": "HXN{...}",
+  "points": 350,
+  "assets": [],
+  "deployment": {
+    "type": "docker",
+    "commands": ["cd lab && docker compose up --build -d"],
+    "notes": "Local privileged lab. Players run the lab on their own machine; see lab/README.md. Do not run on production hosts."
+  },
+  "next": "runner-docker-escape"
+}

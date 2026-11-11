@@ -94,6 +94,44 @@ Copy and paste this template into your challenge folder and fill it out:
     * `"type": "static"`: For downloadable files (crypto, forensics, reversing).
     * `"type": "docker"`: For containerized apps. (If using this, you must include a valid `Dockerfile` and specify `"internal_port": 8080` in the deployment object).
 
+### Optional storyline fields
+
+Storyline chapters are ordinary challenges with a few extra keys. Nothing here is required for regular challenges.
+
+* **`points`**: Integer point value. Used by storyline events; the flat practice grid ignores it.
+* **`flag_hashes`**: An array of hex-encoded SHA-256 hashes of accepted flags, e.g. `["a5fd…"]`. When present, the platform verifies `sha256(normalize(input))` instead of an exact plaintext match. Use it when the plaintext should **not** ship to clients/repo (e.g. migrated live-event content). `flags` may be `[]` when `flag_hashes` is used.
+* **`normalize`**: Applied before hashing/comparison: `"lower"` (trim + lowercase) or omitted (exact).
+* **`questions`**: An array of sub-questions for multi-part challenges. Each entry: `{"id": "…", "points": n, "prompt": "<HTML>", "flag_format": "…", "flag_hashes": […], "normalize": "lower"?}`. A multi-question chapter is solved when **all** questions are solved. (`points` on the chapter is informational; the questions carry their own points.)
+* **`links`**: An array of `{"label": "…", "url": "…"}` for external resources.
+* **`tags`**: Free-form array, e.g. `["Storyline: Operation Coinnectar", "Chapter 1"]`.
+
+### Storyline manifests
+
+Storylines are defined by a single manifest in `Storylines/` (`Storylines/<event-id>.json`):
+
+```json
+{
+  "id": "operation-coinnectar",
+  "name": "Operation Coinnectar",
+  "subtitle": "The Coinnectar Supply-Chain Incident",
+  "org": "HaxNation × FOSS Mumbai",
+  "flag_format": "HXN{...}",
+  "points_total": 2500,
+  "intro": "<p>Case-file prologue (HTML)…</p>",
+  "acts": [{"id": 1, "roman": "I", "name": "Point of Origin", "blurb": "…"}],
+  "chapters": [
+    {"id": "first-bad-commit", "order": 1, "act": 1,
+     "when": "Day 0", "open": "<p>…</p>", "close": "<p>…</p>"}
+  ],
+  "finale": {"title": "Case Closed", "when": "Day 8", "text": "<p class=\"dlg\">…</p>"}
+}
+```
+
+* `chapters[].id` must reference an existing `challenge.json` `id`; `build_api.py` fails otherwise.
+* `order` is the story sequence. Chapter locking is progressive: chapter *k* opens once chapters *1..k-1* are solved (enforced client-side by the platform).
+* The merge emits `api/events-lite.json` and `api/events/<event-id>.json` (self-contained: manifest + merged chapter data). Storyline challenges also remain in the regular flat challenge API.
+* Keep flags out of the manifest and out of story prose.
+
 ---
 
 ## ✅ Quality Assurance Checklist
