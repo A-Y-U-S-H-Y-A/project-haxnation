@@ -1,0 +1,40 @@
+# Coinnectar — "build job" lab (docker socket escape)
+# Two services:
+#   host-machine  — the runner host's stand-in: holds /opt/ctf/flag2.txt in a named volume
+#   build-job     — the unprivileged PR-build sandbox with /var/run/docker.sock mounted (the flaw)
+# Isolated, disposable, local-only. Do NOT run on a shared or production machine.
+services:
+  init-hostfs:
+    image: alpine:3.20
+    container_name: coinnectar-hostfs-init
+    command: >
+      /bin/sh -c "mkdir -p /opt/ctf && printf 'HXN{docker_sock_is_a_host_shell}\n' | base64 > /opt/ctf/flag2.txt && chmod 444 /opt/ctf/flag2.txt"
+    volumes:
+      - host_root:/opt/ctf
+    restart: "no"
+
+  host-machine:
+    image: debian:bookworm-slim
+    container_name: coinnectar-host
+    hostname: coinnectar-host
+    command: ["/bin/sh", "-c", "sleep infinity"]
+    volumes:
+      - host_root:/opt/ctf:ro
+    depends_on:
+      - init-hostfs
+
+  build-job:
+    build:
+      context: .
+      dockerfile: build-job.Dockerfile
+    container_name: coinnectar-build-job
+    hostname: build-job
+    command: ["/bin/sh", "-c", "while :; do sleep 3600; done"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - host-machine
+
+volumes:
+  host_root:
+    name: coinnectar-host-root

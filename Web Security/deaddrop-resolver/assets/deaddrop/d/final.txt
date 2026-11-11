@@ -1,0 +1,4 @@
+# coinnectar live-controller record (rotating)
+# This node is encrypted. Recover the key from the previous hop.
+# algo: flag_bytes = XOR(ciphertext, sha256(KEY) keystream)
+cipher_hex=740b37b8e64b56ccc16d12afee4c96f2f04fea44c6e45e82f47f7a505c91

@@ -1,0 +1,31 @@
+{
+  "id": "first-bad-commit",
+  "name": "The First Bad Commit",
+  "category": ["Digital Forensics"],
+  "difficulty": "Easy",
+  "tags": ["Forensics / Git", "Storyline: Operation Coinnectar", "Chapter 1"],
+  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "description": "<p>The Coinnectar compromise did not happen all at once &mdash; a long-trusted external contributor landed it through ordinary-looking pull requests. One of those commits is where the supply chain actually broke.</p><p>Walk the full history of the public repository and find the <b>point of origin</b>. Submit the <b>full 40-character commit SHA</b>.</p>",
+  "hints": [
+    "Several late commits add 'features' to different layers of the library. Read the diffs by author date, not the messages.",
+    "Three of the suspicious changes lean on something a fourth one introduced first."
+  ],
+  "flags": [],
+  "flag_hashes": ["a5fd53d04aeeb8f91c266b79877431d185b8c91495bea5abb8b504614ff1c57a"],
+  "flag_format": "<full 40-char commit sha>",
+  "normalize": "lower",
+  "points": 100,
+  "assets": [],
+  "links": [
+    {
+      "label": "GitHub mirror (browse commits)",
+      "url": "https://github.com/alex-rivers-coincollector/Coinnectar/commits/main"
+    },
+    {
+      "label": "GitLab origin",
+      "url": "https://gitlab.com/coinnectar-group/coinnectar"
+    }
+  ],
+  "deployment": {"type": "static"},
+  "next": "c2-user-agent-gate"
+}

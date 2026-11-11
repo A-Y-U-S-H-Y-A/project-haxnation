@@ -1,0 +1,21 @@
+{
+  "id": "code-review-deserialization-rce",
+  "name": "State That Executes Itself",
+  "category": ["Code Review"],
+  "difficulty": "Medium",
+  "tags": ["Code Review", "Storyline: Operation Coinnectar", "Chapter 9"],
+  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "description": "<p>A vendored C library, <code>state_serializer.c</code>, parses a &ldquo;lightweight binary state/config&rdquo; format. The serializer looks harmless; the deserializer is the classic insecure-deserialization gadget.</p><p>One &ldquo;application specific&rdquo; field type is treated as a shell command and handed to a process-exec primitive. Identify the field type that triggers it and the exec wrapper used. Submit <code>HXN{&lt;magic_field_type_hex&gt;_&lt;exec_syscall&gt;}</code>.</p>",
+  "hints": [
+    "Walk the field loop in the deserializer. One type isn't data &mdash; it is built into a <code>/bin/sh -c</code> call and executed. The serializer never emits that type."
+  ],
+  "flags": [],
+  "flag_hashes": ["da00f7726e64e5fcdcf62830665d34fc890b84b531957e4005cd5217bb18b5a7"],
+  "flag_format": "HXN{<magic_field_type_hex>_<exec_syscall>}",
+  "points": 250,
+  "assets": [
+    "./assets/state_serializer.c"
+  ],
+  "deployment": {"type": "static"},
+  "next": "runner-privileged-host"
+}

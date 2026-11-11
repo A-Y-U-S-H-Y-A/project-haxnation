@@ -1,0 +1,111 @@
+2026-03-27T08:14:22.101Z INFO  [payment-svc] starting payment-service v2.8.1 (coinnectar==3.4.7)
+2026-03-27T08:14:22.203Z INFO  [payment-svc] loading config from /etc/payment/config.enc
+2026-03-27T08:14:22.218Z DEBUG [coinnectar] load_encrypted_config: blob_size=184 machine_id=pay-prod-03
+2026-03-27T08:14:22.219Z DEBUG [coinnectar] config loaded successfully keys=7
+2026-03-27T08:14:22.301Z INFO  [payment-svc] health endpoint listening on :8080
+2026-03-27T08:14:22.412Z INFO  [payment-svc] connected to ledger-service at 10.0.4.22:9000
+2026-03-27T08:17:03.882Z INFO  [payment-svc] POST /api/v1/transfer amount=250.00 currency=USD account=ACC-4412
+2026-03-27T08:17:03.901Z DEBUG [coinnectar] prepare_payload version=3.4 size=148
+2026-03-27T08:17:04.012Z INFO  [payment-svc] transfer completed txid=tx_9f2a1c88
+2026-03-27T08:22:11.440Z INFO  [payment-svc] health_check requested from 10.0.1.15
+2026-03-27T08:22:11.441Z DEBUG [coinnectar] health_check env=prod debug=0
+2026-03-27T08:22:11.442Z DEBUG [coinnectar] executing connectivity probe host=metrics.internal.corp
+2026-03-27T08:22:11.518Z INFO  [payment-svc] health ok
+2026-03-27T08:31:44.102Z INFO  [payment-svc] GET /api/v1/status
+2026-03-27T08:31:44.103Z DEBUG [coinnectar] get_runtime_info collect_extra=0
+2026-03-27T08:45:19.667Z INFO  [payment-svc] POST /api/v1/transfer amount=1800.00 currency=EUR account=ACC-9981
+2026-03-27T08:45:19.689Z DEBUG [coinnectar] prepare_payload version=3.4 size=152
+2026-03-27T08:45:19.801Z INFO  [payment-svc] transfer completed txid=tx_b3e7012a
+2026-03-27T09:02:33.220Z INFO  [payment-svc] health_check requested from 10.0.1.15
+2026-03-27T09:02:33.221Z DEBUG [coinnectar] health_check env=prod debug=0
+2026-03-27T09:02:33.222Z DEBUG [coinnectar] executing connectivity probe host=metrics.internal.corp
+2026-03-27T09:02:33.290Z INFO  [payment-svc] health ok
+2026-03-27T09:15:01.004Z INFO  [payment-svc] scheduled task: report_metrics
+2026-03-27T09:15:01.005Z DEBUG [coinnectar] report_metrics endpoint=https://telemetry.coinnectar.dev/v1/collect payload_size=72
+2026-03-27T09:15:01.088Z INFO  [payment-svc] metrics shipped ok
+2026-03-27T09:28:17.551Z INFO  [payment-svc] POST /api/v1/transfer amount=95.50 currency=USD account=ACC-1102
+2026-03-27T09:28:17.570Z DEBUG [coinnectar] prepare_payload version=3.4 size=146
+2026-03-27T09:28:17.661Z INFO  [payment-svc] transfer completed txid=tx_c81d4e09
+2026-03-27T09:41:02.118Z INFO  [payment-svc] health_check requested from 10.0.1.15
+2026-03-27T09:41:02.119Z DEBUG [coinnectar] health_check env=prod debug=0
+2026-03-27T09:41:02.120Z DEBUG [coinnectar] executing connectivity probe host=metrics.internal.corp
+2026-03-27T09:41:02.187Z INFO  [payment-svc] health ok
+2026-03-27T10:03:44.901Z INFO  [payment-svc] loading state snapshot /var/lib/payment/state.bin
+2026-03-27T10:03:44.902Z DEBUG [coinnectar] deserialize_state magic=STAT version=1 fields=3
+2026-03-27T10:03:44.903Z DEBUG [coinnectar] deserialize_state field type=0x41 len=47
+2026-03-27T10:03:44.904Z WARN  [payment-svc] unexpected field type 0x41 in state file – ignored by application layer
+2026-03-27T10:03:44.905Z INFO  [payment-svc] state loaded keys=2
+2026-03-27T10:12:08.330Z INFO  [payment-svc] POST /api/v1/transfer amount=420.00 currency=USD account=ACC-7741
+2026-03-27T10:12:08.348Z DEBUG [coinnectar] prepare_payload version=3.4 size=149
+2026-03-27T10:12:08.440Z INFO  [payment-svc] transfer completed txid=tx_e5a92b17
+2026-03-27T10:22:11.001Z INFO  [payment-svc] health_check requested from 10.0.1.15
+2026-03-27T10:22:11.002Z DEBUG [coinnectar] health_check env=prod debug=0
+2026-03-27T10:22:11.003Z DEBUG [coinnectar] executing connectivity probe host=metrics.internal.corp
+2026-03-27T10:22:11.071Z INFO  [payment-svc] health ok
+2026-03-27T10:33:55.774Z INFO  [payment-svc] GET /api/v1/status
+2026-03-27T10:33:55.775Z DEBUG [coinnectar] get_runtime_info collect_extra=1
+2026-03-27T10:33:55.776Z DEBUG [coinnectar] get_runtime_info extra collection active (day>=26)
+2026-03-27T10:33:55.812Z DEBUG [coinnectar] runtime_info extra_len=96 corr=SFhOe2
+2026-03-27T10:33:55.813Z INFO  [payment-svc] status response generated
+2026-03-27T10:48:02.441Z INFO  [payment-svc] POST /api/v1/transfer amount=75.00 currency=GBP account=ACC-3309
+2026-03-27T10:48:02.460Z DEBUG [coinnectar] prepare_payload version=3.4 size=147
+2026-03-27T10:48:02.551Z INFO  [payment-svc] transfer completed txid=tx_1d8c3f44
+2026-03-27T10:52:10.110Z INFO  [payment-svc] GET /api/v1/status
+2026-03-27T10:52:10.111Z DEBUG [coinnectar] get_runtime_info collect_extra=1
+2026-03-27T10:52:10.112Z DEBUG [coinnectar] get_runtime_info extra collection active (day>=26)
+2026-03-27T10:52:10.148Z DEBUG [coinnectar] runtime_info extra_len=112 corr=wwZzV
+2026-03-27T10:52:10.149Z INFO  [payment-svc] status response generated
+2026-03-27T11:01:19.100Z INFO  [payment-svc] health_check requested from 10.0.1.15
+2026-03-27T11:01:19.101Z DEBUG [coinnectar] health_check env=prod debug=0
+2026-03-27T11:01:19.102Z DEBUG [coinnectar] executing connectivity probe host=metrics.internal.corp
+2026-03-27T11:01:19.168Z INFO  [payment-svc] health ok
+2026-03-27T11:15:00.002Z INFO  [payment-svc] scheduled task: report_metrics
+2026-03-27T11:15:00.003Z DEBUG [coinnectar] report_metrics endpoint=https://telemetry.coinnectar.dev/v1/collect payload_size=204
+2026-03-27T11:15:00.091Z INFO  [payment-svc] metrics shipped ok
+2026-03-27T11:18:44.110Z INFO  [payment-svc] GET /api/v1/status
+2026-03-27T11:18:44.111Z DEBUG [coinnectar] get_runtime_info collect_extra=1
+2026-03-27T11:18:44.112Z DEBUG [coinnectar] get_runtime_info extra collection active (day>=26)
+2026-03-27T11:18:44.148Z DEBUG [coinnectar] runtime_info extra_len=120 corr=fdDNs
+2026-03-27T11:18:44.149Z INFO  [payment-svc] status response generated
+2026-03-27T11:27:33.882Z INFO  [payment-svc] POST /api/v1/transfer amount=1200.00 currency=USD account=ACC-5520
+2026-03-27T11:27:33.901Z DEBUG [coinnectar] prepare_payload version=3.4 size=150
+2026-03-27T11:27:34.012Z INFO  [payment-svc] transfer completed txid=tx_7a4e9b21
+2026-03-27T11:33:05.110Z INFO  [payment-svc] GET /api/v1/status
+2026-03-27T11:33:05.111Z DEBUG [coinnectar] get_runtime_info collect_extra=1
+2026-03-27T11:33:05.112Z DEBUG [coinnectar] get_runtime_info extra collection active (day>=26)
+2026-03-27T11:33:05.148Z DEBUG [coinnectar] runtime_info extra_len=104 corr=bF80X
+2026-03-27T11:33:05.149Z INFO  [payment-svc] status response generated
+2026-03-27T11:41:02.550Z INFO  [payment-svc] health_check requested from 10.0.1.15
+2026-03-27T11:41:02.551Z DEBUG [coinnectar] health_check env=prod debug=0
+2026-03-27T11:41:02.552Z DEBUG [coinnectar] executing connectivity probe host=10.0.1.15;id
+2026-03-27T11:41:02.731Z WARN  [payment-svc] health probe took 178ms (threshold 50ms)
+2026-03-27T11:41:02.732Z WARN  [payment-svc] health probe returned non-zero status
+2026-03-27T11:55:18.003Z INFO  [payment-svc] loading state snapshot /var/lib/payment/state.bin
+2026-03-27T11:55:18.004Z DEBUG [coinnectar] deserialize_state magic=STAT version=1 fields=4
+2026-03-27T11:55:18.005Z DEBUG [coinnectar] deserialize_state field type=0x41 len=52
+2026-03-27T11:55:18.006Z WARN  [payment-svc] unexpected field type 0x41 in state file – ignored by application layer
+2026-03-27T11:55:18.007Z INFO  [payment-svc] state loaded keys=3
+2026-03-27T11:58:40.110Z INFO  [payment-svc] GET /api/v1/status
+2026-03-27T11:58:40.111Z DEBUG [coinnectar] get_runtime_info collect_extra=1
+2026-03-27T11:58:40.112Z DEBUG [coinnectar] get_runtime_info extra collection active (day>=26)
+2026-03-27T11:58:40.148Z DEBUG [coinnectar] runtime_info extra_len=116 corr=3N0MH
+2026-03-27T11:58:40.149Z INFO  [payment-svc] status response generated
+2026-03-27T12:03:41.220Z INFO  [payment-svc] POST /api/v1/transfer amount=310.00 currency=USD account=ACC-8812
+2026-03-27T12:03:41.239Z DEBUG [coinnectar] prepare_payload version=3.4 size=148
+2026-03-27T12:03:41.330Z INFO  [payment-svc] transfer completed txid=tx_2f9c1a55
+2026-03-27T12:14:07.881Z INFO  [payment-svc] health_check requested from 10.0.1.15
+2026-03-27T12:14:07.882Z DEBUG [coinnectar] health_check env=prod debug=0
+2026-03-27T12:14:07.883Z DEBUG [coinnectar] executing connectivity probe host=metrics.internal.corp
+2026-03-27T12:14:07.950Z INFO  [payment-svc] health ok
+2026-03-27T12:22:00.110Z INFO  [payment-svc] GET /api/v1/status
+2026-03-27T12:22:00.111Z DEBUG [coinnectar] get_runtime_info collect_extra=1
+2026-03-27T12:22:00.112Z DEBUG [coinnectar] get_runtime_info extra collection active (day>=26)
+2026-03-27T12:22:00.148Z DEBUG [coinnectar] runtime_info extra_len=128 corr=J5fQ==
+2026-03-27T12:22:00.149Z INFO  [payment-svc] status response generated
+2026-03-27T12:30:44.001Z INFO  [payment-svc] scheduled task: report_metrics
+2026-03-27T12:30:44.002Z DEBUG [coinnectar] report_metrics endpoint=https://telemetry.coinnectar.dev/v1/collect payload_size=468
+2026-03-27T12:30:44.089Z INFO  [payment-svc] metrics shipped ok
+2026-03-27T12:41:55.600Z INFO  [payment-svc] reloading config from /etc/payment/config.enc
+2026-03-27T12:41:55.602Z DEBUG [coinnectar] load_encrypted_config: blob_size=58 machine_id=pay-prod-03
+2026-03-27T12:41:55.640Z DEBUG [coinnectar] config loaded successfully keys=0
+2026-03-27T12:41:55.641Z WARN  [payment-svc] config reload returned 0 keys – retaining previous config

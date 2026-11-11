@@ -1,0 +1,12 @@
+# Coinnectar CI — "privileged" runner lab
+# The job container is deliberately --privileged: that is the vulnerability.
+# Isolated, disposable, local-only. Do NOT run on shared or production machines.
+services:
+  coinnectar-ci-job:
+    build: .
+    container_name: coinnectar-ci-job
+    hostname: ci-runner
+    privileged: true
+    stdin_open: true
+    tty: true
+    command: ["/bin/bash", "-c", "sleep infinity"]
