@@ -4,7 +4,7 @@
   "category": ["Code Review"],
   "difficulty": "Easy",
   "tags": ["Code Review", "Storyline: Operation Coinnectar", "Chapter 7"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
   "description": "<p>The <code>coinnectar</code> wallet SDK added a &ldquo;cross-version serialization compatibility layer.&rdquo; It advertises a tidy list of telemetry endpoints &mdash; but one destination is assembled at runtime from an obfuscated host, and a snapshot ships to it the moment the module is imported.</p><p>Find the real delivery host and the function that fires on import. Submit <code>HXN{&lt;decoded_exfil_host&gt;_&lt;import_time_sink&gt;}</code>.</p>",
   "hints": [
     "Ignore the pretty endpoint list. Something is decoded into a host and contacted without anyone explicitly calling it."

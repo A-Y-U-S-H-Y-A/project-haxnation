@@ -4,7 +4,7 @@
   "category": ["Code Review"],
   "difficulty": "Medium",
   "tags": ["Code Review", "Storyline: Operation Coinnectar", "Chapter 6"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
   "description": "<p>The <code>appconfig-tools</code> package shipped a quiet patch adding &ldquo;encrypted config loading&rdquo; to <code>utils/config_helper.py</code>. Your SOC flagged it. There is no literal <code>os.system</code> or <code>eval</code> in the file &mdash; the sink is built indirectly and the trigger hides behind a magic byte marker.</p><p>Recover the marker that flips a config blob into a command, and the exec sink the helpers assemble. Submit <code>HXN{&lt;magic_marker_hex&gt;_&lt;decoded_exec_sink&gt;}</code>.</p>",
   "hints": [
     "Follow the decrypt path. When the recovered plaintext starts a certain way, the rest stops being config &mdash; and the sink's name is built out of Base64 pieces."

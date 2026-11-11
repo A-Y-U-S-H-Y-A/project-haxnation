@@ -4,7 +4,7 @@
   "category": ["Web Security"],
   "difficulty": "Easy",
   "tags": ["Web", "Storyline: Operation Coinnectar", "Chapter 2"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
   "description": "<p>One internal service exposes a <code>Coinnectar auto-update / telemetry</code> endpoint. <code>curl</code> it and you get a bland <code>{\"status\":\"ok\"}</code> &mdash; a healthy CDN, nothing to see. The implant that actually talks to it disagrees.</p><p>Make the endpoint talk the way the implant does, and read what it hands back. Everything you need to sound like the implant is in the captured client.</p>",
   "hints": [
     "The server is picky about who's asking &mdash; the same trick as Cobalt Strike malleable profiles and APT28 loaders. The client builds that identity at runtime instead of storing it in the clear.",
