@@ -21,5 +21,5 @@ The flag is a commit hash, so the answer is public by design — but only once y
 
 ## Notes for authors
 
-- The answer is verified as the `flag_hashes` entry in this challenge's `challenge.json`.
+- The answer is `201477f1b5eed445085a81c460320d0dff104344` (the first of the four supply-chain commits to land in 3.4 stability work). The answer is also plaintext in this challenge's `challenge.json` as of the answer-key drop.
 - The accompanying GitLab origin mirror is the reference copy of the history.

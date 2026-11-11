@@ -9,7 +9,7 @@
   "hints": [
     "What renders on the canvas and what's stored in the file are not the same thing. Look for an element you can't see."
   ],
-  "flags": [],
+  "flags": ["HXN{eXc2la_ha5_hldd3n_s3cr3ts}"],
   "flag_hashes": ["701baaa963d246225b9def89213a3f5e65aecb0e0db300f3557207cbe16fcbc4"],
   "flag_format": "HXN{...}",
   "points": 100,

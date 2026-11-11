@@ -9,7 +9,7 @@
   "hints": [
     "Ignore the pretty endpoint list. Something is decoded into a host and contacted without anyone explicitly calling it."
   ],
-  "flags": [],
+  "flags": ["HXN{cdn.jsdelivr.net_report_status}"],
   "flag_hashes": ["072dcae4bfe4be79adde845d6575cd45d38316c94861cca88af308bd7f9286ce"],
   "flag_format": "HXN{<decoded_exfil_host>_<import_time_sink>}",
   "points": 150,

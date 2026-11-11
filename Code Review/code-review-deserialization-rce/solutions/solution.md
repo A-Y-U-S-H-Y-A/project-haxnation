@@ -22,4 +22,4 @@ Submit `HXN{<field_type_hex>_<exec_syscall>}` with the field type as it appears 
 
 - The log file shows the same marker in the wild: `deserialize_state field type=0x41`, "ignored by application layer" — the warning is for the app, not the backdoor.
 - `execve` (not `fork`) does the actual execution — fork is only the process-spawn wrapper.
-- Flag value is withheld until the answer-key commit.
+- Answer: `HXN{0x41_execve}`.

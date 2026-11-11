@@ -18,4 +18,4 @@ Submit `HXN{<marker>_<function_name>}` with the marker exactly as written in the
 
 - Same shape as the classic APT pattern: a trusted-metrics channel whose replies double as a tasking queue. Covertness comes from never opening a non-DNS channel.
 - The parser is `[u8]`-scan based — an answer with `CMD:` anywhere in it is picked up, which is the deliberate weakness this chapter teaches.
-- Flag value is withheld until the answer-key commit.
+- Answer: `HXN{CMD:_heartbeat}`.

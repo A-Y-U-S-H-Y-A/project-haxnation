@@ -10,8 +10,8 @@
     "Being privileged doesn't hand you the host's files — it hands you the host's block devices. List them.",
     "A disk you can see is a disk you can mount. Mount the host's root partition somewhere and read what you need — then look closely at what you recover."
   ],
-  "flags": [],
-  "flag_hashes": ["03bab35e64d3ab30c8bcfa57eb57c4ec336513cb50948883b3dc5fcfdcc3fa31"],
+  "flags": ["HXN{pr1v1l3g3d_r1nn3r_h0st_4cc3ss}"],
+  "flag_hashes": ["5f31c6e838d762da8b06c31a23013d227ea445b72904a90f9fcd6041831fa382"],
   "flag_format": "HXN{...}",
   "points": 350,
   "assets": [],

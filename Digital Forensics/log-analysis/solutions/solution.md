@@ -48,4 +48,4 @@ paste <(grep -o 'corr=[^ ]*' app-logs.log | cut -d= -f2) | tr -d '\t' | base64 -
 ## Notes for authors
 
 - Every answer is derived from the log; no external service is involved.
-- Answers: Q1/Q2 are strings, Q3 is an `HXN{...}` marker. Flag values are withheld until the answer-key commit.
+- Answers: Q1 `10.0.1.15;id` · Q2 `telemetry.coinnectar.dev` · Q3 `HXN{l0g5_t3ll_4_st0ry}`.

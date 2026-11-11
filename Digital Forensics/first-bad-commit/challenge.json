@@ -10,7 +10,7 @@
     "Several late commits add 'features' to different layers of the library. Read the diffs by author date, not the messages.",
     "Three of the suspicious changes lean on something a fourth one introduced first."
   ],
-  "flags": [],
+  "flags": ["201477f1b5eed445085a81c460320d0dff104344"],
   "flag_hashes": ["a5fd53d04aeeb8f91c266b79877431d185b8c91495bea5abb8b504614ff1c57a"],
   "flag_format": "<full 40-char commit sha>",
   "normalize": "lower",

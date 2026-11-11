@@ -28,4 +28,4 @@
 
 ## Notes for authors
 
-- This lab flag differs from the live-event instance flag; the challenge checks the lab flag (see `flag_hashes` in `challenge.json`). The answer-key commit can re-point the lab at the original flag.
+- The lab now ships the live-event flag; the challenge and the lab agree. (Answer-key drop landed.)

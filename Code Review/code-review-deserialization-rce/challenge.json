@@ -9,7 +9,7 @@
   "hints": [
     "Walk the field loop in the deserializer. One type isn't data &mdash; it is built into a <code>/bin/sh -c</code> call and executed. The serializer never emits that type."
   ],
-  "flags": [],
+  "flags": ["HXN{0x41_execve}"],
   "flag_hashes": ["da00f7726e64e5fcdcf62830665d34fc890b84b531957e4005cd5217bb18b5a7"],
   "flag_format": "HXN{<magic_field_type_hex>_<exec_syscall>}",
   "points": 250,
