@@ -4,7 +4,7 @@
   "category": ["Cloud"],
   "difficulty": "Hard",
   "tags": ["Cloud / CI", "INSANE", "Storyline: Operation Coinnectar", "Chapter 11"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
   "description": "<p>The second sandbox is <b>not</b> privileged &mdash; but someone left the Docker socket inside it. That is the whole game: whoever can reach the daemon can ask it to start a <i>new</i> container, with whatever mounts they choose, and that container runs on the <b>host</b>.</p><p>Stand up the local build-job lab (see <code>lab/README.md</code>). A flag exists only on the real host, outside every build container. Don't attack the sandbox you're in &mdash; use the socket to launch one that lands you on the host filesystem, then go and find it. The path isn't advertised, and the flag may not be stored in the clear.</p>",
   "hints": [
     "The attack isn't on your container — it's a request to the daemon. What does <code>-v /:/host</code> give a container you start?",

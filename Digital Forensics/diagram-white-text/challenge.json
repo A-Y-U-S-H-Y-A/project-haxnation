@@ -4,7 +4,7 @@
   "category": ["Digital Forensics"],
   "difficulty": "Easy",
   "tags": ["Forensics", "Storyline: Operation Coinnectar", "Chapter 4"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
   "description": "<p>An &ldquo;Architecture Overview&rdquo; diagram was recovered from the contributor's laptop. It renders as a tidy box-and-arrow sketch &mdash; but a <code>.excalidraw</code> file is just JSON, and not everything in it is meant to be seen.</p><p>Recover the secret the file carries.</p>",
   "hints": [
     "What renders on the canvas and what's stored in the file are not the same thing. Look for an element you can't see."

@@ -4,7 +4,7 @@
   "category": ["Code Review"],
   "difficulty": "Medium",
   "tags": ["Code Review", "Storyline: Operation Coinnectar", "Chapter 8"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
   "description": "<p>A Rust crate, <code>dns_telemetry.rs</code>, offers &ldquo;service discovery + lightweight DNS metrics.&rdquo; Under the uptime reporting is a covert channel: a crafted DNS reply carrying a marker is parsed into a command and executed.</p><p>Find the marker the parser scans for and the public function that both beacons and runs the delivered command. Submit <code>HXN{&lt;dns_payload_marker&gt;_&lt;function_name&gt;}</code> &mdash; the marker exactly as written.</p>",
   "hints": [
     "Follow the reply parser: it scans for a short fixed window and treats what follows as a task. The function that runs it is the same one that beacons out."

@@ -4,7 +4,7 @@
   "category": ["Digital Forensics"],
   "difficulty": "Medium",
   "tags": ["Log Analysis", "Storyline: Operation Coinnectar", "Chapter 5"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
   "description": "<p>The affected payment service left application logs. Mixed into ordinary transfers and health checks are the fingerprints of the backdoors in action &mdash; an injected probe, a telemetry beacon that balloons, and a day-gated routine that leaks a marker a piece at a time.</p><p>Read the log carefully and answer the three questions below.</p>",
   "hints": [
     "Everything you need is in the log itself. Compare the odd lines against the many ordinary ones around them, and mind the order timestamps put things in."

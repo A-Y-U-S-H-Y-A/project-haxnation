@@ -4,7 +4,7 @@
   "category": ["Web Security"],
   "difficulty": "Medium",
   "tags": ["Web", "Storyline: Operation Coinnectar", "Chapter 3"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
   "description": "<p>The Coinnectar implant never hardcodes its live C2. Like APT29's <i>HAMMERTOSS</i>, it resolves the current controller at runtime by walking a chain of innocent-looking resources on trusted hosts, each quietly pointing to the next. Defenders see traffic to reputable domains and move on.</p><p>You've recovered the seed the implant starts from. Walk the chain and recover the <b>final C2 string</b> &mdash; that string is the flag. Use the in-page resolver, or do it the implant's way with <code>curl</code>.</p>",
   "hints": [
     "Nothing here is hardcoded: each innocent resource points at the next. Read what the files contain, not just what they render.",

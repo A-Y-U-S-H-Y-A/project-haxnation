@@ -4,8 +4,8 @@
   "category": ["Digital Forensics"],
   "difficulty": "Easy",
   "tags": ["Forensics / Git", "Storyline: Operation Coinnectar", "Chapter 1"],
-  "authors": [{"name": "Operation Coinnectar Crew (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/haxnation/foss-2026-ctf"}],
-  "description": "<p>The Coinnectar compromise did not happen all at once &mdash; a long-trusted external contributor landed it through ordinary-looking pull requests. One of those commits is where the supply chain actually broke.</p><p>Walk the full history of the public repository and find the <b>point of origin</b>. Submit the <b>full 40-character commit SHA</b>.</p>",
+  "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
+  "description": "<p>The Coinnectar compromise did not happen all at once &mdash; a long-trusted external contributor landed it through ordinary-looking pull requests. One of those commits is where the supply chain actually broke.</p><p>Walk the full history of the public repository: <a href=\"https://github.com/alex-rivers-coincollector/Coinnectar/commits/main\" target=\"_blank\" rel=\"noopener noreferrer\">https://github.com/alex-rivers-coincollector/Coinnectar/commits/main</a> and find the <b>point of origin</b>. Submit the <b>full 40-character commit SHA</b>.</p>",
   "hints": [
     "Several late commits add 'features' to different layers of the library. Read the diffs by author date, not the messages.",
     "Three of the suspicious changes lean on something a fourth one introduced first."
