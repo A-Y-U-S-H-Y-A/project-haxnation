@@ -1,0 +1,44 @@
+{
+  "id": "ics-cascade-complete",
+  "name": "Cascade Complete",
+  "category": [
+    "ICS/OT"
+  ],
+  "difficulty": "Medium",
+  "tags": [
+    "ICS/OT",
+    "Storyline: Cascade Failure",
+    "Chapter 5"
+  ],
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "<p>You now know the attacker's source, the SIS bypass and the implant config. Replay the whole attack against the plant simulator: keep the operators blind, defeat the safety system and drive the tank to the implant's trigger level.</p><p>Once triggered, the implant exfiltrates a message by switching a pump on and off. The message is in the tank level itself. Capture the level transmitter samples and decode it.</p><p>Simulator: <a href=\"https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/cascade-complete/\">https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/cascade-complete/</a></p><p>Needs the answers from <b>The Leaky Hop</b>, <b>The Silent Safety System</b> and <b>Ghost Rung</b>. No banner appears here: submit the decoded ASCII as <code>HXN{MESSAGE}</code>.</p>",
+  "hints": [
+    "The console has a <code>help</code> and a <code>regs</code> command. If the operators can still see the real level, they will stop you.",
+    "A pump running drains the tank and a stopped pump lets it fill. The bits are encoded in the transitions, not the levels: think line coding."
+  ],
+  "flags": [
+    "HXN{CASCADE-DONE}"
+  ],
+  "flag_hashes": [
+    "fcd6ca33469723ee7cef2f58c1844a9713afd430caa0be468cbe9d98f6896b9f"
+  ],
+  "normalize": "lower",
+  "flag_format": "HXN{...}",
+  "points": 300,
+  "assets": [],
+  "links": [
+    {
+      "label": "Launch simulator",
+      "url": "https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/cascade-complete/"
+    }
+  ],
+  "deployment": {
+    "type": "static",
+    "notes": "Browser simulator in sim-site/, published by scripts/build_api.py to https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/cascade-complete/. To run locally: cd sim-site && python -m http.server 8080, then open http://localhost:8080 (WebCrypto needs localhost or https)."
+  }
+}

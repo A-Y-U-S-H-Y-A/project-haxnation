@@ -1,0 +1,38 @@
+TRICON-LITE SAFETY RUNTIME  -  TRIBIN01 IMAGE FORMAT  (vendor reference card)
+==========================================================================
+
+All multi-byte fields are big-endian.
+
+HEADER (16 bytes)
+  0x00  char[8]  magic "TRIBIN01"
+  0x08  u16      n_consts
+  0x0A  u16      n_strings
+  0x0C  u16      code_len   (bytes)
+  0x0E  u16      ce_len     (bytes)
+
+SECTIONS (in order, immediately after the header)
+  consts    n_consts x u16
+  strings   n_strings x { u8 len, char[len] }      (indexed from 0)
+  code      code_len bytes of bytecode (below)
+  ce        cause & effect rows, 4 bytes each:
+            { u8 cause_string, u8 setpoint_const, u8 effect_string, u8 votes_required }
+
+EXECUTION MODEL
+  One scan runs the code from offset 0 until END. Values on the stack are booleans.
+  DIAG_WORD is a 16-bit diagnostic register written over the engineering port.
+  The SUPPRESS latch, when set, blocks every TRIP for the rest of the scan.
+
+OPCODES                     operands       effect
+  0x00 END                  -              end of scan
+  0x01 LD    s              u8 string      push trip state of input named strings[s]
+  0x02 AND                  -              pop b, pop a, push a AND b
+  0x03 OR                   -              pop b, pop a, push a OR b
+  0x04 NOT                  -              pop a, push NOT a
+  0x08 JMP   n              u8             skip the next n bytes
+  0x09 JZ    n              u8             pop a; if a is false skip the next n bytes
+  0x10 CMPC  c              u8 const       push (DIAG_WORD == consts[c])
+  0x11 SUPP                 -              pop a; if true set the SUPPRESS latch
+  0x12 ALM   s              u8 string      pop a; if true raise alarm strings[s] to the DCS
+  0x20 EMIT  f s c          u8,u8,u8       write tag sprintf(strings[f], strings[s], consts[c])
+                                           to the diagnostic event log
+  0x30 TRIP  s              u8 string      pop a; if true and not SUPPRESSED de-energise strings[s]

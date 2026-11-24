@@ -1,0 +1,98 @@
+{
+  "id": "cascade-failure",
+  "name": "Cascade Failure",
+  "subtitle": "Blackwood Water Authority",
+  "org": "HaxNation",
+  "flag_format": "HXN{...}",
+  "tagline": "The tank overflowed. Every screen said it couldn't.",
+  "points_total": 1450,
+  "story_version": "1.0.0",
+  "intro": "<p>At 02:00 on a quiet night, Tank T-101 at the Blackwood Water Authority treatment plant overflowed. The HMI showed a steady 5 m the whole time. The historian agrees. The Safety Instrumented System, the last line of defence, never tripped and never raised an alarm.</p><p>You are the OT incident responder called in at dawn. You have an edge SPAN capture, a historian export, the SIS controller's compiled logic, and access to the plant's engineering workstation and simulators. Somebody walked through the DMZ, blinded the operators, silenced the safety system and left something behind in the PLC.</p><p>Find out who, how, and what they left. Then get the plant back.</p>",
+  "acts": [
+    {
+      "id": 1,
+      "roman": "I",
+      "name": "The Breach",
+      "blurb": "Every malicious session came from the DMZ proxy. Nobody lives on a proxy."
+    },
+    {
+      "id": 2,
+      "roman": "II",
+      "name": "Blind Operators",
+      "blurb": "The screens were lying, and the safety system kept quiet."
+    },
+    {
+      "id": 3,
+      "roman": "III",
+      "name": "Ghost in the Logic",
+      "blurb": "The PLC is running more than the project shows."
+    },
+    {
+      "id": 4,
+      "roman": "IV",
+      "name": "The Cascade",
+      "blurb": "Replay the attack end to end, and hear what the pump was saying."
+    },
+    {
+      "id": 5,
+      "roman": "V",
+      "name": "Recovery",
+      "blurb": "Fail over to a clean standby, if you can keep it clean."
+    }
+  ],
+  "chapters": [
+    {
+      "id": "ics-leaky-hop",
+      "order": 1,
+      "act": 1,
+      "when": "Hour 0 · 06:10, control-room annex",
+      "open": "<p class=\"dlg\">“Firewall says it was the DMZ proxy. Every write, every session.”<br>“The proxy didn’t wake up at two in the morning and decide to flood a tank.”<br>“So who was driving it?”<br>“Someone who thought a proxy was enough to hide behind.”</p><p>The edge SPAN capture covers the minutes around the first malicious write to PLC-01. It is noisy: HMIs, the historian, the engineering workstation and a vendor subnet all talking at once.</p><p>Proxies forward bytes. They don’t always forward everything.</p>",
+      "close": "<p>One host on the vendor subnet resolved the PLC’s name a heartbeat before the proxy connected, and its name is written into the proxied OPC UA session too.</p><p class=\"dlg\">“That’s our operator.”<br>“Then what were they doing for the half hour before the writes?”</p>"
+    },
+    {
+      "id": "ics-impossible-levels",
+      "order": 2,
+      "act": 2,
+      "when": "Hour 2 · historian review",
+      "open": "<p class=\"dlg\">“The night shift swears the level never moved.”<br>“The historian backs them up. Inflow in, outflow out. Perfectly balanced.”<br>“Then why is there water on the floor of the pump house?”</p><p>You have the historian export for T-101 and the datasheet for the outlet pump. The numbers add up. That is the problem.</p>",
+      "close": "<p>The HMI froze on its last good value while the real level climbed metres above it, and the “balanced” outflow came from a pump that was logged as stopped.</p><p class=\"dlg\">“The operators weren’t asleep. They were blind.”<br>“A tank that high should have tripped the SIS. Why didn’t it?”</p>"
+    },
+    {
+      "id": "ics-silent-safety",
+      "order": 3,
+      "act": 2,
+      "when": "Hour 4 · SIS cabinet",
+      "open": "<p class=\"dlg\">“The SIS is independent. Separate controller, separate transmitters. It can’t be fooled by the HMI.”<br>“It wasn’t fooled. It was told to stand down.”<br>“There’d be an alarm. Every bypass is annunciated.”<br>“Every bypass the vendor wrote.”</p><p>The safety program has been pulled from the controller along with the vendor’s image-format card. Somewhere in a few hundred bytes is the reason the plant didn’t trip.</p>",
+      "close": "<p>A second bypass suppresses the trip and says nothing to the DCS. Its diagnostic word is one you will see again.</p><p class=\"dlg\">“They knew this system well.”<br>“Well enough to leave something in the PLC too?”</p>"
+    },
+    {
+      "id": "ics-ghost-rung",
+      "order": 4,
+      "act": 3,
+      "when": "Hour 7 · engineering workstation",
+      "open": "<p class=\"dlg\">“Project’s clean. Two rungs, exactly what we commissioned.”<br>“That’s the copy on your laptop. What’s on the controller?”<br>“...The same thing. Isn’t it?”</p><p>The engineering workstation can compare what it thinks the PLC runs with what the PLC actually holds. Something there doesn’t match, and it is waiting for the right conditions before it does anything.</p>",
+      "close": "<p>The hidden rung fires and writes out its configuration in plain ASCII: the trigger level, the pump it drives, and the data block it lives in.</p><p class=\"dlg\">“It wasn’t only flooding the tank.”<br>“No. When the level hit its mark, it was supposed to start talking.”</p>"
+    },
+    {
+      "id": "ics-cascade-complete",
+      "order": 5,
+      "act": 4,
+      "when": "Hour 10 · plant simulator",
+      "open": "<p class=\"dlg\">“We know the source, the bypass and the implant. What we don’t know is what it sent.”<br>“Sent how? It never touched the internet.”<br>“It didn’t need to. It had a pump and a level transmitter.”</p><p>Replay the night on the plant simulator, step by step, as the attacker did. Keep the HMI blind, keep the SIS quiet and push the tank to the trigger. Then watch the level and write down what it does.</p>",
+      "close": "<p>Decoded from the rise and fall of LT-101, the message is a two-word status report: the attacker’s confirmation that the job was done.</p><p class=\"dlg\">“So they got their proof.”<br>“And left the implant behind to do it again. Now we take the plant back.”</p>"
+    },
+    {
+      "id": "ics-hot-standby",
+      "order": 6,
+      "act": 5,
+      "when": "Hour 14 · failover",
+      "open": "<p class=\"dlg\">“PLC-01 has a hot standby. Fail over and we’re clean.”<br>“The standby syncs from the primary every fifteen seconds.”<br>“So?”<br>“So it has a perfect copy of everything they poisoned.”</p><p>The parameter block <code>%DB10</code> has been tampered with, slot by slot, and each slot in a different way. Fix it, get a clean copy onto the standby and fail over. Something on the network still has write access.</p>",
+      "close": "<p>The standby takes control with a clean block, rides out the morning inflow surge and holds steady. The recovery token comes back.</p>"
+    }
+  ],
+  "finale": {
+    "title": "Cascade Contained",
+    "when": "Day 2 · the debrief",
+    "text": "<p class=\"dlg\">“Start to finish.”<br>“A vendor-subnet host behind the DMZ proxy. A frozen HMI and forged flows. A silent SIS bypass. A ghost rung in the PLC that turned a pump into a radio. And an implant that kept re-poisoning the block we were trying to fail over to.”<br>“Any one of those alone, and somebody notices.”<br>“That’s why they chained them.”</p><p>The proxy route is shut, the SIS logic is restored from a verified baseline, <code>%DB99</code> is gone and both controllers carry a clean <code>%DB10</code>. T-101 runs at 5 m, and this time the screen is telling the truth.</p><p>The case file is closed. Your name is on it.</p>"
+  }
+}

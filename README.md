@@ -15,6 +15,7 @@
 In addition to the flat challenge collection, Project Haxnation ships **storyline events** — ordered, narrative-driven sequences of challenges played as a case file:
 
 - **[Operation Coinnectar](https://ctf.haxnation.org/#/ctf/practice/events/operation-coinnectar)** — *The Coinnectar Supply-Chain Incident* (HaxNation × FOSS Mumbai). 11 chapters across 6 acts — reconstruct a supply-chain compromise from the first bad commit through the backdoors to the privileged build runner. ~2,500 points. Also available in the regular practice grid.
+- **[Cascade Failure](https://ctf.haxnation.org/#/ctf/practice/events/cascade-failure)**: *Blackwood Water Authority* (HaxNation). 6 ICS/OT chapters across 5 acts. Unmask an attacker behind a DMZ proxy, rebuild a tank level the HMI hid, find a silent SIS bypass and a ghost PLC rung, replay the attack to decode a pump-borne covert channel, then fail over to a clean hot standby. 1,450 points. Challenges live in [`ICS OT/`](./ICS%20OT), and the three browser simulators are published to GitHub Pages under `/sims/`.
 
 Storyline manifests live in [`Storylines/`](./Storylines) (`Storylines/*.json`) and are built into the static API as `api/events-lite.json` and `api/events/<id>.json`. Storyline chapters are ordinary challenges with optional extra fields — see the schema notes in [CONTRIBUTING.md](./CONTRIBUTING.md#optional-storyline-fields).
 
