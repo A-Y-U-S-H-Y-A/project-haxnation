@@ -11,7 +11,7 @@
       "url": "https://github.com/A-Y-U-S-H-Y-A"
     }
   ],
-  "description": "<p>I guess the other accounts have the FreezePlay Tickets? Or maybe they do not? Or maybe I have them? Or maybe I do not?</p><p>The flag is in the format <code>HXN{Flag}</code>. Enter the entire flag to validate the challenge.</p>",
+  "description": "I guess the other accounts have the FreezePlay Tickets? Or maybe they do not? Or maybe I have them? Or maybe I do not?\n\nThe flag is in the format `HXN{Flag}`. Enter the entire flag to validate the challenge.",
   "hints": [],
   "flags": [
     "HXN{IkN0WH@c!ng}"

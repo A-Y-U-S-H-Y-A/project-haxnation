@@ -17,10 +17,10 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "<p>The level hit its HiHi trip point and the Safety Instrumented System did nothing. It did it quietly, with no alarm on the DCS. We pulled the compiled safety program from the SIS controller along with the vendor's image-format reference card.</p><p>Disassemble the logic and find the bypass the attacker used. Submit its tag exactly as the controller emits it: <code>HXN{TAG}</code>.</p>",
+  "description": "The level hit its HiHi trip point and the Safety Instrumented System did nothing. It did it quietly, with no alarm on the DCS. We pulled the compiled safety program from the SIS controller along with the vendor's image-format reference card.\n\nDisassemble the logic and find the bypass the attacker used. Submit its tag exactly as the controller emits it: `HXN{TAG}`.",
   "hints": [
-    "<code>strings</code> shows several candidate tags and constants. Some are decoys. Disassemble it properly with the opcode card.",
-    "Look for a path that suppresses the trip <i>without</i> raising an alarm, and make sure the code you read is actually reachable."
+    "`strings` shows several candidate tags and constants. Some are decoys. Disassemble it properly with the opcode card.",
+    "Look for a path that suppresses the trip *without* raising an alarm, and make sure the code you read is actually reachable."
   ],
   "flags": [
     "HXN{BWA-SIS-BYPASS-7A4F}"

@@ -17,10 +17,10 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "<p>During the intrusion the operators at HMI-01 watched Tank T-101 sit calmly near 5 m. The historian export agrees with them and the flows even balance. Engineering says the tank overflowed anyway.</p><p>Using the historian export and the pump datasheet, rebuild the true level from physics and find the largest gap between the real level and what the HMI showed.</p><p>Submit the peak deviation in metres, rounded to 2 decimals: <code>HXN{x.xx}</code>.</p>",
+  "description": "During the intrusion the operators at HMI-01 watched Tank T-101 sit calmly near 5 m. The historian export agrees with them and the flows even balance. Engineering says the tank overflowed anyway.\n\nUsing the historian export and the pump datasheet, rebuild the true level from physics and find the largest gap between the real level and what the HMI showed.\n\nSubmit the peak deviation in metres, rounded to 2 decimals: `HXN{x.xx}`.",
   "hints": [
     "Read the datasheet closely: what does a stopped fixed-speed pump with a check valve actually move? Is its discharge even metered?",
-    "Trust only measured quantities. Integrate <code>dh = (Qin - Qout) * dt / A</code> with the tank geometry from the datasheet."
+    "Trust only measured quantities. Integrate `dh = (Qin - Qout) * dt / A` with the tank geometry from the datasheet."
   ],
   "flags": [
     "HXN{3.47}"

@@ -7,7 +7,7 @@
   "tagline": "The tank overflowed. Every screen said it couldn't.",
   "points_total": 1450,
   "story_version": "1.0.0",
-  "intro": "<p>At 02:00 on a quiet night, Tank T-101 at the Blackwood Water Authority treatment plant overflowed. The HMI showed a steady 5 m the whole time. The historian agrees. The Safety Instrumented System, the last line of defence, never tripped and never raised an alarm.</p><p>You are the OT incident responder called in at dawn. You have an edge SPAN capture, a historian export, the SIS controller's compiled logic, and access to the plant's engineering workstation and simulators. Somebody walked through the DMZ, blinded the operators, silenced the safety system and left something behind in the PLC.</p><p>Find out who, how, and what they left. Then get the plant back.</p>",
+  "intro": "At 02:00 on a quiet night, Tank T-101 at the Blackwood Water Authority treatment plant overflowed. The HMI showed a steady 5 m the whole time. The historian agrees. The Safety Instrumented System, the last line of defence, never tripped and never raised an alarm.<br><br>You are the OT incident responder called in at dawn. You have an edge SPAN capture, a historian export, the SIS controller's compiled logic, and access to the plant's engineering workstation and simulators. Somebody walked through the DMZ, blinded the operators, silenced the safety system and left something behind in the PLC.<br><br>Find out who, how, and what they left. Then get the plant back.",
   "acts": [
     {
       "id": 1,

@@ -17,10 +17,10 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "<p>Recovery time. PLC-01 runs as a redundant pair: the primary syncs its <code>%DB10</code> parameter block to a hot standby every 15 seconds, and the plan is to fail over to a clean standby.</p><p>The attacker poisoned <code>%DB10</code>, and not all in the same way. Restore every value to its design basis, get a clean copy onto the standby, and fail over. If the standby holds the plant stable for 60 seconds, the recovery token is released.</p><p>Simulator: <a href=\"https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/hot-standby/\">https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/hot-standby/</a></p><p>Flag format: <code>HXN{token}</code>. The correct block is not in the page: you have to work it out.</p>",
+  "description": "Recovery time. PLC-01 runs as a redundant pair: the primary syncs its `%DB10` parameter block to a hot standby every 15 seconds, and the plan is to fail over to a clean standby.\n\nThe attacker poisoned `%DB10`, and not all in the same way. Restore every value to its design basis, get a clean copy onto the standby, and fail over. If the standby holds the plant stable for 60 seconds, the recovery token is released.\n\nSimulator: [https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/hot-standby/](https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/hot-standby/)\n\nFlag format: `HXN{token}`. The correct block is not in the page: you have to work it out.",
   "hints": [
     "Each slot is an IEEE-754 REAL stored as two 16-bit words. Try every byte and word order (ABCD, CDAB, BADC, DCBA) and ask which value makes engineering sense.",
-    "Watch the event log around each sync. You are not the only one writing to <code>%DB10</code>."
+    "Watch the event log around each sync. You are not the only one writing to `%DB10`."
   ],
   "flags": [
     "HXN{standby_clean_1sync}"

@@ -5,7 +5,7 @@
   "difficulty": "Hard",
   "tags": ["Cloud / CI", "Storyline: Operation Coinnectar", "Chapter 10"],
   "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
-  "description": "<p>Coinnectar builds on a self-hosted runner tagged <code>privileged</code>. The attacker understood exactly what that grants: a <code>--privileged</code> sandbox shares the host's capabilities and <b>devices</b>, so the wall between &ldquo;job&rdquo; and &ldquo;machine&rdquo; is thin &mdash; if you know where to push.</p><p>Stand up the local privileged runner lab (see <code>lab/README.md</code>) and break out of the job sandbox onto the host. The flag sits on the runner <b>host</b> under <code>/opt/ctf/</code>, on a filesystem the sandbox can reach but hasn't been handed.</p>",
+  "description": "Coinnectar builds on a self-hosted runner tagged `privileged`. The attacker understood exactly what that grants: a `--privileged` sandbox shares the host's capabilities and **devices**, so the wall between “job” and “machine” is thin — if you know where to push.\n\nStand up the local privileged runner lab (see `lab/README.md`) and break out of the job sandbox onto the host. The flag sits on the runner **host** under `/opt/ctf/`, on a filesystem the sandbox can reach but hasn't been handed.",
   "hints": [
     "Being privileged doesn't hand you the host's files — it hands you the host's block devices. List them.",
     "A disk you can see is a disk you can mount. Mount the host's root partition somewhere and read what you need — then look closely at what you recover."

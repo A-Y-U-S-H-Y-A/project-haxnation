@@ -60,7 +60,7 @@ Copy and paste this template into your challenge folder and fill it out:
       "url": "https://github.com/yourusername"
     }
   ],
-  "description": "<p>Your challenge description here. You can use basic <b>HTML tags</b> to format paragraphs, code blocks, or blockquotes.</p>",
+  "description": "Your challenge description here. Use **Markdown** to format paragraphs, `code` or blockquotes.",
   "hints": [
     "Hint 1 goes here.",
     "Hint 2 goes here."
@@ -86,8 +86,8 @@ Copy and paste this template into your challenge folder and fill it out:
     * *Easy*: Requires basic concepts and out-of-the-box tools.
     * *Medium*: Requires custom scripting or combining multiple known vulnerabilities.
     * *Hard*: Requires advanced mathematics, deep reverse engineering, or zero-day concepts.
-* **`description`**: The prompt shown to the user. Use HTML tags (`<p>`, `<br>`, `<code>`, `<blockquote>`, `<b>`) for formatting. Do not use Markdown here.
-* **`hints`**: An array of strings. Leave empty `[]` if there are no hints.
+* **`description`**: The prompt shown to the user, written in **Markdown**. The platform escapes HTML here, so tags like `<p>` show up as literal text. Supported: blank-line paragraphs, `#` headings, `-` / `1.` lists, `> ` quotes, `**bold**`, `*italic*`, `` `code` ``, `[text](https://…)` links, tables and fenced code blocks. Inline code is still scanned for `_italic_`/`*italic*`, so put text like `` `HXN{<a>_<b_c>}` `` in a fenced block instead. *Exception:* `SOC/` scenario descriptions are rendered as HTML.
+* **`hints`**: An array of strings (Markdown, same rules as `description`). Leave empty `[]` if there are no hints.
 * **`flags`**: An array of accepted flags. Please wrap flags in standard formats like `HXN{flag_here}` unless otherwise specified.
 * **`assets`**: An array of relative file paths that the user needs to download to start the challenge (e.g., `"./capture.pcapng"`).
 * **`deployment`**: Tells our infrastructure how to run the challenge.

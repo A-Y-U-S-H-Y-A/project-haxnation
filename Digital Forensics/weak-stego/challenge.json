@@ -15,7 +15,7 @@
       "url": "https://github.com/Gngt432"
     }
   ],
-  "description": "<p>An image is suspected to have some type of data. Help us figuring the 'key' way to decrypt it.</p>",
+  "description": "An image is suspected to have some type of data. Help us figuring the 'key' way to decrypt it.",
   "hints": [
     "A bruteforce or dictionary attack will be needed here."
   ],

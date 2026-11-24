@@ -11,7 +11,7 @@
       "url": "https://github.com/A-Y-U-S-H-Y-A"
     }
   ],
-  "description": "<p>Dear I.T. Department,</p><p>I was transferring my keys to a secure environment and something went wrong. 2 characters of my RSA private key (base64) were replaced by <code>_</code> somehow.</p><p>Please help me figure out the key and decrypt the text given in the file. All I remember is that the contents were in the format <code>HXN{Flag}</code>. Enter the entire flag to validate the challenge.</p>",
+  "description": "Dear I.T. Department,\n\nI was transferring my keys to a secure environment and something went wrong. 2 characters of my RSA private key (base64) were replaced by `_` somehow.\n\nPlease help me figure out the key and decrypt the text given in the file. All I remember is that the contents were in the format `HXN{Flag}`. Enter the entire flag to validate the challenge.",
   "hints": [],
   "flags": [
     "HXN{F!xingRS@}"

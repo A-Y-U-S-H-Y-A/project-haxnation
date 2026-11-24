@@ -16,10 +16,10 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "<p>The engineering workstation shows PLC-01's ladder project as two clean, harmless rungs. The PLC is running something else.</p><p>Open the simulator, find the logic the project doesn't show, work out what triggers it, and make it fire. The hidden rung writes an implant configuration into memory, and the simulator shows the flag once the rung really executes.</p><p>Simulator: <a href=\"https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/ghost-rung/\">https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/ghost-rung/</a></p><p>Flag format: <code>HXN{config}</code>. You will need the diagnostic word from <i>The Silent Safety System</i>.</p>",
+  "description": "The engineering workstation shows PLC-01's ladder project as two clean, harmless rungs. The PLC is running something else.\n\nOpen the simulator, find the logic the project doesn't show, work out what triggers it, and make it fire. The hidden rung writes an implant configuration into memory, and the simulator shows the flag once the rung really executes.\n\nSimulator: [https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/ghost-rung/](https://a-y-u-s-h-y-a.github.io/project-haxnation/sims/ghost-rung/)\n\nFlag format: `HXN{config}`. You will need the diagnostic word from *The Silent Safety System*.",
   "hints": [
     "Compare the online program with the offline project. Is there a block the project doesn't list?",
-    "Decode the block's bytes with the opcode card. Every condition has to be true in the <b>same scan</b>, timer and counter included."
+    "Decode the block's bytes with the opcode card. Every condition has to be true in the **same scan**, timer and counter included."
   ],
   "flags": [
     "HXN{gh0st:db99:9.20:p2off}"

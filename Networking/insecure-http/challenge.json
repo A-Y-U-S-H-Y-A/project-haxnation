@@ -11,7 +11,7 @@
       "url": "https://github.com/rydanstar01"
     }
   ],
-  "description": "<p>Always use HTTPS.</p><p>The flag format is <code>HXN{Flag}</code>.<br>Enter the entire flag to validate the challenge.</p>",
+  "description": "Always use HTTPS.\n\nThe flag format is `HXN{Flag}`.\n\nEnter the entire flag to validate the challenge.",
   "hints": [],
   "flags": [
     "HXN{N37W0RK_C4P7UR3}"

@@ -16,10 +16,10 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "<p>At 02:17 UTC someone wrote new setpoints to <b>PLC-01</b> at the Blackwood Water Authority treatment plant. Every malicious Modbus and OPC UA session in the edge SPAN capture comes from the DMZ proxy <code>192.168.20.9</code>, so the proxy is all the firewall logs show.</p><p>A proxy only relays the stream it is given. Find the host that is really behind it.</p><p>Submit the attacker's real IPv4 address as <code>HXN{a.b.c.d}</code>.</p>",
+  "description": "At 02:17 UTC someone wrote new setpoints to **PLC-01** at the Blackwood Water Authority treatment plant. Every malicious Modbus and OPC UA session in the edge SPAN capture comes from the DMZ proxy `192.168.20.9`, so the proxy is all the firewall logs show.\n\nA proxy only relays the stream it is given. Find the host that is really behind it.\n\nSubmit the attacker's real IPv4 address as `HXN{a.b.c.d}`.",
   "hints": [
     "A TCP relay carries bytes, not name lookups. Who had to resolve the PLC's hostname just before the proxy connected?",
-    "Several hosts resolve <code>plc01</code> legitimately. Rule out every resolver that then talks to the PLC directly, and check the OPC UA ApplicationUri."
+    "Several hosts resolve `plc01` legitimately. Rule out every resolver that then talks to the PLC directly, and check the OPC UA ApplicationUri."
   ],
   "flags": [
     "HXN{10.21.37.14}"

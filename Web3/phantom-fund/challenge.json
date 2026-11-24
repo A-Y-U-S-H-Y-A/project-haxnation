@@ -11,7 +11,7 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "<b> Deploy instance with 10 Finney </b><br/>We've deployed a highly-secure decentralized crowdfunding platform. Users can create campaigns, raise ETH, withdraw their raised funds, or completely cancel their campaign to allow users to refund their remaining contributions.\n<br />\nA high-profile VC just backed a project called \"Campaign 999\". Show them why relying solely on standard state arrays and structs can lead to catastrophic logic flaws.\n<br />\n<b>Objective:</b> Drain the PhantomFund contract balance to 0.",
+  "description": "**Deploy instance with 10 Finney**\n\nWe've deployed a highly-secure decentralized crowdfunding platform. Users can create campaigns, raise ETH, withdraw their raised funds, or completely cancel their campaign to allow users to refund their remaining contributions.\n\nA high-profile VC just backed a project called \"Campaign 999\". Show them why relying solely on standard state arrays and structs can lead to catastrophic logic flaws.\n\n**Objective:** Drain the PhantomFund contract balance to 0.",
   "hints": [],
   "flags": [
     "WEB3_PLACEHOLDER_FLAG"

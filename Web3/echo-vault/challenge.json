@@ -11,7 +11,7 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "<b> Deploy instance with 10 Finney </b><br/>\nWe've built a futuristic, unhackable yield vault that generates massive returns. We've even implemented a flash-loan system to allow arbers to utilize idle capital, strictly verifying that the contract's balance is kept whole.\n<br/>\nCan you make off with the vault's funds?\n<br/>\n<b>Objective:</b> Drain the EchoVault so its final balance is 0.",
+  "description": "**Deploy instance with 10 Finney**\n\nWe've built a futuristic, unhackable yield vault that generates massive returns. We've even implemented a flash-loan system to allow arbers to utilize idle capital, strictly verifying that the contract's balance is kept whole.\n\nCan you make off with the vault's funds?\n\n**Objective:** Drain the EchoVault so its final balance is 0.",
   "hints": [],
   "flags": [
     "WEB3_PLACEHOLDER_FLAG"
