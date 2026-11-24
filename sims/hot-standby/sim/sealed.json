@@ -1,0 +1,28 @@
+{
+  "answer": {
+    "salt": "s5drD1BtDyfYX95oNpFKtg==",
+    "iv": "yDbk3ebMxp0skHkS",
+    "ct": "J7l7cFrV4Fpbb237glpBNAcxWfLfl/ls6iDTZJoLXf8N9pU=",
+    "iter": 200000
+  },
+  "db10_names": [
+    "HiHi level (m)",
+    "Pump start (m)",
+    "Pump stop (m)",
+    "Max fill (m3/s)",
+    "LoLo level (m)",
+    "Area (m2)",
+    "Level setpoint (m)",
+    "Deadband (m)"
+  ],
+  "db10_initial": [
+    "00004108",
+    "D0400000",
+    "00000040",
+    "00003F00",
+    "3FC00000",
+    "41490FDB",
+    "40F9999A",
+    "4C3ECDCC"
+  ]
+}

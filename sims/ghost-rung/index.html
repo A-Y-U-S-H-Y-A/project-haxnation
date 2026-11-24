@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ghost Rung // Cascade Failure</title>
+  <meta name="theme-color" content="#5ce1e6">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="hx-header">
+    <div class="hx-bar">
+      <div class="hx-brand">
+        <img src="logo.png" alt="" class="hx-logo" width="38" height="38">
+        <span class="hx-brand-text"><b>Cascade Failure</b><small>Blackwood Water Authority × HaxNation</small></span>
+      </div>
+      <span class="hx-tag">Ghost Rung</span>
+    </div>
+  </header>
+
+  <main>
+    <div id="flag" class="flag-banner" role="status" aria-live="polite"></div>
+    <div id="sim-root">Loading simulator…</div>
+  </main>
+
+  <script type="module">
+    import { mount } from "./sim/ghost-rung.js";
+    const root = document.getElementById("sim-root");
+    const banner = document.getElementById("flag");
+    root.textContent = "";
+    mount(root, {
+      onReveal(answer) {
+        banner.innerHTML = "<small>Challenge solved. Submit this flag</small>";
+        banner.appendChild(document.createTextNode("HXN{" + answer + "}"));
+        banner.classList.add("show");
+        banner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      },
+    });
+  </script>
+</body>
+</html>
