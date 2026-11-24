@@ -11,7 +11,7 @@
       "url": "https://github.com/A-Y-U-S-H-Y-A"
     }
   ],
-  "description": "<p>We found this basic Android application featuring login and signup functionality. It seems the developer might have left some credentials behind in the local storage.</p><p>Can you find the hidden flag?</p>",
+  "description": "We found this basic Android application featuring login and signup functionality. It seems the developer might have left some credentials behind in the local storage.\n\nCan you find the hidden flag?",
   "hints": [
     "How do Android applications store data locally?",
     "Try inspecting the application's databases directory using ADB, or check for unencrypted SQLite databases."

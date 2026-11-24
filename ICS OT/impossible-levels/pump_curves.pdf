@@ -1,0 +1,54 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 1 /Kids [4 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 910 >>
+stream
+BT
+/F1 10 Tf
+14 TL
+54 738 Td
+(BLACKWOOD REGIONAL WATER AUTHORITY - EQUIPMENT DATASHEET) Tj
+T* (DOC REF: BRWA-EQ-DS-P101-REV3   SYSTEM: Transfer Pump P-101 / Tank T-101) Tj
+T* () Tj
+T* (1. TANK T-101) Tj
+T* (   Vertical cylinder, internal diameter 4.00 m, straight side 10.0 m.) Tj
+T* (   High-High \(HiHi\) trip level 8.50 m. Overflow weir 9.60 m.) Tj
+T* () Tj
+T* (2. PUMP P-101 \(fixed speed, discharge to clearwell\)) Tj
+T* (   Duty point: 0.280 m^3/s at 18 m TDH \(tolerance +/- 0.005 m^3/s\).) Tj
+T* (   Check valve CV-101 on discharge: no reverse or residual flow when stopped.) Tj
+T* () Tj
+T* (3. INLET FCV-101) Tj
+T* (   Modulating, 0.000 .. 0.500 m^3/s. Magnetic flow meter FT-101, +/- 0.5 %.) Tj
+T* () Tj
+T* (4. INSTRUMENTATION NOTES) Tj
+T* (   LT-101 level transmitter feeds the PLC; HMI-01 displays the PLC tag.) Tj
+T* (   P-101 discharge flow is not metered; the PLC logs a calculated value.) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000317 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1278
+%%EOF

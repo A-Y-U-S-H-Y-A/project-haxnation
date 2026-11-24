@@ -12,6 +12,7 @@ SOC_API_DIR = DIST_DIR / 'soc-api'
 SOC_CHALLENGES_API_DIR = SOC_API_DIR / 'challenges'
 STORYLINES_DIR = REPO_ROOT / 'Storylines'
 EVENTS_API_DIR = API_DIR / 'events'
+SIMS_DIR = DIST_DIR / 'sims'
 
 # Required fields for validation
 REQUIRED_FIELDS = ['id', 'name', 'category', 'difficulty']
@@ -30,6 +31,7 @@ def build_api():
     challenge_count_main = 0
     challenge_count_soc = 0
     challenges_by_id = {}
+    sim_count = 0
 
     # Crawl the repository for challenge.json files
     for root, _, files in os.walk(REPO_ROOT):
@@ -105,6 +107,18 @@ def build_api():
                 challenge_count_main += 1
 
             challenges_by_id[chal_id] = data
+
+            # Browser-based challenges ship a static site in `sim-site/`. Publish it
+            # next to the API so the existing Pages deploy serves it at
+            # <pages>/sims/<challenge-folder>/. Only sim-site/ is copied, never solutions.
+            sim_site = Path(root) / 'sim-site'
+            if sim_site.is_dir():
+                sim_dest = SIMS_DIR / Path(root).name
+                if sim_dest.exists():
+                    print(f"❌ ERROR: Duplicate sim folder name '{Path(root).name}' ({json_path})")
+                    exit(1)
+                shutil.copytree(sim_site, sim_dest)
+                sim_count += 1
 
     # 4. Save the Master Lite Indexes
     lite_index_main_path = API_DIR / 'challenges-lite.json'
@@ -206,6 +220,7 @@ def build_api():
         json.dump(badge_data, f)
 
     print(f"✅ Successfully built API for {challenge_count_main} main challenges and {challenge_count_soc} SOC challenges!")
+    print(f"🕹️  Published {sim_count} simulator site(s) → sims/<challenge-folder>/")
     print(f"📁 Output located in: {DIST_DIR}")
 
 if __name__ == "__main__":

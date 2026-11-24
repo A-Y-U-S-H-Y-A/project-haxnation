@@ -15,7 +15,7 @@
       "url": "https://github.com/Gngt432"
     }
   ],
-  "description": "<p>We were able to capture the output and the algorithm before the secret key was corrupted. Help us find the key.</p>",
+  "description": "We were able to capture the output and the algorithm before the secret key was corrupted. Help us find the key.",
   "hints": [],
   "flags": [
     "aurum{XHfl_010_bcYdeX_97B}"

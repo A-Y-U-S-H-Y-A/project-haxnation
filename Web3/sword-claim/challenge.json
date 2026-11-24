@@ -11,7 +11,7 @@
       "url": "https://github.com/param-jasani"
     }
   ],
-  "description": "A legendary sword sits in a stone, waiting for the chosen one. The rules of the smart contract dictate that only the true owner (the deployer of the contract) has the right to claim it. \n<br/>\nBut sometimes, destiny makes a typo.",
+  "description": "A legendary sword sits in a stone, waiting for the chosen one. The rules of the smart contract dictate that only the true owner (the deployer of the contract) has the right to claim it.\n\nBut sometimes, destiny makes a typo.",
   "hints": [],
   "flags": [
     "WEB3_PLACEHOLDER_FLAG"

@@ -5,9 +5,9 @@
   "difficulty": "Medium",
   "tags": ["Code Review", "Storyline: Operation Coinnectar", "Chapter 6"],
   "authors": [{"name": "Param Jasani (HaxNation x FOSS Mumbai 2026)", "url": "https://github.com/param-jasani"}],
-  "description": "<p>The <code>appconfig-tools</code> package shipped a quiet patch adding &ldquo;encrypted config loading&rdquo; to <code>utils/config_helper.py</code>. Your SOC flagged it. There is no literal <code>os.system</code> or <code>eval</code> in the file &mdash; the sink is built indirectly and the trigger hides behind a magic byte marker.</p><p>Recover the marker that flips a config blob into a command, and the exec sink the helpers assemble. Submit <code>HXN{&lt;magic_marker_hex&gt;_&lt;decoded_exec_sink&gt;}</code>.</p>",
+  "description": "The `appconfig-tools` package shipped a quiet patch adding “encrypted config loading” to `utils/config_helper.py`. Your SOC flagged it. There is no literal `os.system` or `eval` in the file — the sink is built indirectly and the trigger hides behind a magic byte marker.\n\nRecover the marker that flips a config blob into a command, and the exec sink the helpers assemble. Submit\n\n```\nHXN{<magic_marker_hex>_<decoded_exec_sink>}\n```\n\n.",
   "hints": [
-    "Follow the decrypt path. When the recovered plaintext starts a certain way, the rest stops being config &mdash; and the sink's name is built out of Base64 pieces."
+    "Follow the decrypt path. When the recovered plaintext starts a certain way, the rest stops being config — and the sink's name is built out of Base64 pieces."
   ],
   "flags": ["HXN{cafebabedeadbeef_os.system}"],
   "flag_hashes": ["19d6ebe3d5b66788e25b8ee9dbaa15768fe3bdd81348535c4889a0f91c057da5"],

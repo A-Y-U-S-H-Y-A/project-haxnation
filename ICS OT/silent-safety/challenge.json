@@ -1,0 +1,41 @@
+{
+  "id": "ics-silent-safety",
+  "name": "The Silent Safety System",
+  "category": [
+    "ICS/OT"
+  ],
+  "difficulty": "Medium",
+  "tags": [
+    "ICS/OT",
+    "Storyline: Cascade Failure",
+    "Chapter 3",
+    "Easy-Medium"
+  ],
+  "authors": [
+    {
+      "name": "Param Jasani",
+      "url": "https://github.com/param-jasani"
+    }
+  ],
+  "description": "The level hit its HiHi trip point and the Safety Instrumented System did nothing. It did it quietly, with no alarm on the DCS. We pulled the compiled safety program from the SIS controller along with the vendor's image-format reference card.\n\nDisassemble the logic and find the bypass the attacker used. Submit its tag exactly as the controller emits it: `HXN{TAG}`.",
+  "hints": [
+    "`strings` shows several candidate tags and constants. Some are decoys. Disassemble it properly with the opcode card.",
+    "Look for a path that suppresses the trip *without* raising an alarm, and make sure the code you read is actually reachable."
+  ],
+  "flags": [
+    "HXN{BWA-SIS-BYPASS-7A4F}"
+  ],
+  "flag_hashes": [
+    "0d6eb8dffb8deb33e1af131c588e724b8df410e12fb4328912d8b39a832e3111"
+  ],
+  "normalize": "lower",
+  "flag_format": "HXN{...}",
+  "points": 150,
+  "assets": [
+    "./safety_logic.bin",
+    "./tribin_opcodes.txt"
+  ],
+  "deployment": {
+    "type": "static"
+  }
+}

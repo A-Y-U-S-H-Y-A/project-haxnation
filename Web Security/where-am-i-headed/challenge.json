@@ -11,7 +11,7 @@
       "url": "https://github.com/A-Y-U-S-H-Y-A"
     }
   ],
-  "description": "Can you navigate your way to the hidden flag? The flag is in the format <code>HXN{Flag}</code>.",
+  "description": "Can you navigate your way to the hidden flag? The flag is in the format `HXN{Flag}`.",
   "flags": [
     "HXN{Wher3Am1!}"
   ],

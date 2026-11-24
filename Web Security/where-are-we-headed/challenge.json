@@ -9,7 +9,7 @@
       "url": "https://github.com/A-Y-U-S-H-Y-A"
     }
   ],
-  "description": "Can you bypass the custom header-based access control to read sensitive files? The flag is in the format <code>HXN{Flag}</code>.",
+  "description": "Can you bypass the custom header-based access control to read sensitive files? The flag is in the format `HXN{Flag}`.",
   "flags": [
     "HXN{h3ader_p0w3rful_4cc3ss}"
   ],

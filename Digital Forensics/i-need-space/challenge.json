@@ -15,7 +15,7 @@
       "url": "https://github.com/Gngt432"
     }
   ],
-  "description": "<p>A mysterious text file was captured from an instant messaging site. We believe it contains some type of sensitive data. Help us find the same!</p>",
+  "description": "A mysterious text file was captured from an instant messaging site. We believe it contains some type of sensitive data. Help us find the same!",
   "hints": [],
   "flags": [
     "aurum{hx0_jBK34_232dvfHgs}"
