@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Haxnation Backstage</title>
+  <style>
+    body { background:#0b0b0b; color:#e6e6e6; font-family:ui-monospace,Menlo,Consolas,monospace; margin:0; padding:2.5rem; }
+    .wrap { max-width:720px; margin:0 auto; }
+    h1 { color:#22d3ee; letter-spacing:2px; }
+    .card { border:2px solid #22d3ee; padding:1.25rem; margin-top:1.5rem; }
+    code { color:#22d3ee; }
+    input,button { font:inherit; padding:.5rem; }
+    button { background:#22d3ee; border:0; color:#0b0b0b; cursor:pointer; font-weight:bold; }
+    pre { white-space:pre-wrap; word-break:break-all; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 data-brand>HAXNATION</h1>
+    <p data-tagline>own the night.</p>
+    <div class="card">
+      <h2>Meetup pass portal</h2>
+      <p>Grab your attendee pass, then present it to the door.</p>
+      <p>
+        <input id="name" placeholder="your name" />
+        <button onclick="reg()">Get pass</button>
+      </p>
+      <pre id="out"></pre>
+    </div>
+    <div class="card">
+      <h2>Endpoints</h2>
+      <ul>
+        <li><code>POST /api/register</code> &mdash; <code>{ "name": "..." }</code> &rarr; your pass</li>
+        <li><code>GET /api/whoami</code> &mdash; <code>Authorization: Bearer &lt;pass&gt;</code></li>
+        <li><code>GET /api/backstage</code> &mdash; staff only</li>
+      </ul>
+    </div>
+  </div>
+  <script src="/static/brand.js"></script>
+  <script>
+    async function reg() {
+      const name = document.getElementById('name').value || 'guest';
+      const r = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name })
+      });
+      const j = await r.json();
+      document.getElementById('out').textContent = JSON.stringify(j, null, 2);
+    }
+  </script>
+</body>
+</html>
