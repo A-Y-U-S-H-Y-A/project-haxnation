@@ -1,0 +1,33 @@
+{
+  "id": "web-backstage-pass",
+  "name": "Backstage Pass",
+  "category": [
+    "Web Security"
+  ],
+  "difficulty": "Medium",
+  "authors": [
+    {
+      "name": "Arham Sayyed",
+      "url": "https://github.com/arham-sayyed"
+    }
+  ],
+  "description": "The Haxnation meetup runs on digital passes. Register at the portal and you get an **attendee** pass, but the good stuff is *backstage*, and attendee passes don't open that door.\n\nThe pass is a JSON Web Token. The crew swears it's signed properly and that forged passes bounce. Prove them wrong and read what's backstage.\n\nThe flag is in the format `HXN{Flag}`. Enter the entire flag to validate the challenge.",
+  "hints": [
+    "A JWT is three base64url parts. You can read the header and payload without any key — do that first, and pay attention to every field in the header, not just the payload.",
+    "The door rejects an unsigned pass outright. But a malformed header field can make the server tell you how it finds its signing key. If that field were a path, where could it point — and whose contents do you already know exactly?"
+  ],
+  "flags": [],
+  "flag_hashes": [
+    "31b19542c8585e5bbab9e6ef6c2a82e4324b6fb411b1508ce9443a39dc4ca33d"
+  ],
+  "flag_format": "HXN{...}",
+  "assets": [],
+  "deployment": {
+    "type": "docker",
+    "commands": [
+      "docker build -t backstage-pass .",
+      "docker run -e FLAG='HXN{...}' -p 8080:8080 backstage-pass"
+    ],
+    "internal_port": 8080
+  }
+}
